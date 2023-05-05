@@ -11,4 +11,5 @@ public class Casa {
 		tipo = t;
 		cor = c;
 	}
+	
 }

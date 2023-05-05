@@ -1,5 +1,5 @@
 package Model;
 
 public enum TipoCasa {
-	inicial, saida, comum, abrigo;
+	inicial, partida, comum, abrigo, retaFinal;
 }

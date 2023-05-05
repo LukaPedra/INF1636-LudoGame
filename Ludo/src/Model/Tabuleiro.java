@@ -1,5 +1,8 @@
 package Model;
 
+import java.util.Vector;
+
 public class Tabuleiro {
-	Vector 
+	Vector<Casa> tabuleiro = new Vector<Casa>(52);
+	
 }

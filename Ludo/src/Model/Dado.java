@@ -1,13 +1,15 @@
 package Model;
 
-import java.lang.Math;
+import java.util.Random;
 
 public class Dado {
-	int min = 1;
-	int max = 6;
-	int lado;
+	Random random = new Random();
+    int resultado;
 	
-	public void getLado() {
-		lado = (int)Math.random() * (max-min+1) + min;
+	public int getLado() {
+		Random random = new Random();
+        int resultado = random.nextInt(6) + 1;
+		System.out.println(resultado);
+		return resultado;
 	}
 }

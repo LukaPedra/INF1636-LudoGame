@@ -1,14 +1,12 @@
+import Model.Dado;
+
 public class Game{
     int value;
     String color;
 
-    public construct(){
-        int value = 0;
-    }
-
-    public construct(String color){
-        int value = 1;
-        color = this.color;
-
-    }
+	public static void main(String[] args) {
+		Dado a = new Dado();
+		a.getLado();
+		//System.out.println(a.getLado());
+	}
 }

@@ -9,7 +9,6 @@ public class Dado {
 	public int getLado() {
 		Random random = new Random();
         int resultado = random.nextInt(6) + 1;
-		System.out.println(resultado);
 		return resultado;
 	}
 }

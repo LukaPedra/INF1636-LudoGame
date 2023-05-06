@@ -13,9 +13,10 @@ public class Tabuleiro {
 		
 		for (int i = 0; i < size; i++){
 			Casa casa = new Casa();
-			if (i % (parte) == 0){
+
+			if (i % parte == 0){ // IF da RETA FINAL
 				casa.setTipo(TipoCasa.retaFinal);
-				switch (i / parte){
+				switch (i){
 					case 0:
 						casa .setCor(Cor.azul);
 						break;
@@ -30,12 +31,31 @@ public class Tabuleiro {
 						break;
 				}
 			}
-			else if (i % parte == 5){
-
+			else if (i % parte == 11){ // IF do ABRIGO
+				casa.setTipo(TipoCasa.abrigo);
 			}
+			else if (i % parte == 2){ // IF da PARTIDA
+				casa.setTipo(TipoCasa.partida);
+				switch (i){
+					case 2:
+						casa .setCor(Cor.azul);
+						break;
+					case 15:
+						casa.setCor(Cor.vermelho);
+						break;
+					case 28:
+						casa.setCor(Cor.verde);
+						break;
+					case 41:
+						casa.setCor(Cor.amarelo);
+						break;
+				}
+			}
+
 			tabuleiro.add(casa);
 		}
 	}
+
 	public Vector<Casa> getArrayCasas(){
 		return tabuleiro;
 	}
@@ -50,8 +70,15 @@ public class Tabuleiro {
 			Casa casa = new Casa(TipoCasa.retaFinal, c);
 			tabuleiro.add(casa);
         }
-		
 	}
 
-	
+	public void quadradoInicial(Cor c){
+		int size = 4;
+		tabuleiro = new Vector<Casa>(size);
+		System.out.println(tabuleiro.size());
+		for (int i = 0; i < size; i++) {
+			Casa casa = new Casa(TipoCasa.inicial, c);
+			tabuleiro.add(casa);
+        }
+	}
 }

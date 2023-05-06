@@ -10,14 +10,15 @@ public class Casa {
 	
 	//Associa a casa a uma cor
 	public Casa(TipoCasa t, Cor c) {
-		tipo = t;
-		setCor(c);
+		this.tipo = t;
+		this.cor = c;
 	}
+
 	public void setTipo(TipoCasa t){
-		tipo = t;
+		this.tipo = t;
 	}
 	public void setCor(Cor c){
-		cor = c;
+		this.cor = c;
 	}
 	
 	//Métodos para pegar as variaveis da classe

@@ -2,26 +2,29 @@ package Model;
 
 public class Casa {
 	TipoCasa tipo; // Casa comum = 0; Casa de saída = 1; Abrigo = 2
-	Cor corAssociada; //Se for uma casa especial uma cor pode ser associada a ela
+	Cor cor; //Se for uma casa especial uma cor pode ser associada a ela
 	
-	
-	public Casa(TipoCasa t) { // Construtor para Casa Comum e Abrigos
-		tipo = t;
+	public Casa(){
+		tipo = TipoCasa.comum;
 	}
+	
 	//Associa a casa a uma cor
 	public Casa(TipoCasa t, Cor c) {
 		tipo = t;
-		setCorAssociada(c);
+		setCor(c);
 	}
-	public void setCorAssociada(Cor c){
-		corAssociada = c;
+	public void setTipo(TipoCasa t){
+		tipo = t;
+	}
+	public void setCor(Cor c){
+		cor = c;
 	}
 	
 	//Métodos para pegar as variaveis da classe
 	public TipoCasa getTipo(){
 		return tipo;
 	}
-	public Cor getCorAssociada(){
-		return corAssociada;
+	public Cor getCor(){
+		return cor;
 	}
 }

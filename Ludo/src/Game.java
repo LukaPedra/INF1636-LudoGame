@@ -1,6 +1,5 @@
 import Model.Casa;
 import Model.Dado;
-import Model.RenderColor;
 import Model.Tabuleiro;
 
 public class Game{
@@ -9,11 +8,10 @@ public class Game{
 
 	public static void main(String[] args) {
 		//Testando métodos
-		Tabuleiro a = new Tabuleiro();
-		a.RetaFinal(RenderColor.amarelo);
-		for (Casa casa : a.getArrayCasas()){
-			System.out.println(casa.getRenderColor());
-		}
+		//Tabuleiro a = new Tabuleiro();
 		//System.out.println(a.getLado());
+		int size = 52;
+		System.out.println(size / 13);
+		System.out.println(size % 13);
 	}
 }

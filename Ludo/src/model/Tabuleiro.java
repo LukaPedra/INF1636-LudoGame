@@ -71,15 +71,16 @@ class Tabuleiro {
 	}
 	public int getCasaInicial(Cor c) {
 		if (c == Cor.azul) {
-			return 0;
+			return 2;
 		} else if (c == Cor.vermelho) {
-			return 13;
+			return 15;
 		} else if (c == Cor.verde) {
-			return 26;
+			return 28;
 		} else { //Caso amarelo
-			return 39;
+			return 41;
 		}
 	}
+	/* 
 	public void quadradoInicial(Cor c) {
 		int size = 4;
 		tabuleiro = new Vector<Casa>(size);
@@ -88,5 +89,5 @@ class Tabuleiro {
 			Casa casa = new Casa(TipoCasa.inicial, c);
 			tabuleiro.add(casa);
         }
-	}
+	}*/
 }

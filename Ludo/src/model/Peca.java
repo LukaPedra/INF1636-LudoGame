@@ -8,7 +8,6 @@ class Peca {
 
 	public Peca(Jogador jogador){
 		this.jogador = jogador;
-		this.tabuleiro = this.jogador.getTabuleiro();
 
 	}
 	public boolean podeMover(int nCasas){

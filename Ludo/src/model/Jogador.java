@@ -4,24 +4,34 @@ import java.util.Vector;
 
 class Jogador {
     private final Cor cor;
+    private static Tabuleiro tabuleiro;
+    private Tabuleiro tabuleiroFinal;
     private Vector<Peca> pecas = new Vector<Peca>();
+
     public Jogador(Cor cor) {
         this.cor = cor;
         InicializaPeca();
-
     }
-    private void InicializaPeca(){
+
+    private void InicializaPeca(){ // Colocar as peças no vetor de peças do jogador
         int size = 4;
         Peca peca;
         for (int i = 0; i < size; i++) {
             peca = new Peca(this);
             pecas.add(peca);
         }
-        //Inicializa a primeira posicao da peca na casa inicial da cor
+
+        pecas.get(0).setPosition(tabuleiro.getCasaInicial(cor));
     }
+
+    public void jogar(){
+
+    }
+
     public void moverPeca(int i, int nCasas){
         pecas.get(i).moverPeca(nCasas);
     }
+
     public Vector<Peca> pecasDisponiveis(int nCasas){
         Vector<Peca> pecasDisponiveis = new Vector<Peca>();
         for (Peca peca : pecas){
@@ -31,6 +41,7 @@ class Jogador {
         }
         return pecasDisponiveis;
     }
+
     public int somaEspacosAteFinal(int i){
         int soma = 0;
         for (Peca peca : pecas){
@@ -38,8 +49,24 @@ class Jogador {
         }
         return soma;
     }
+
     public Cor getCor() {
         return cor;
     }
 
+    public static void setTabuleiro(Tabuleiro tabuleiro){
+        Jogador.tabuleiro = tabuleiro;
+    }
+    public void setTabuleiroFinal(Tabuleiro tabuleiroFinal){
+        this.tabuleiroFinal = tabuleiroFinal;
+    }
+
+    public static Tabuleiro getTabuleiro(){
+        return Jogador.tabuleiro;
+    }
+    public Tabuleiro getTabuleiroFinal(){
+        return this.tabuleiroFinal;
+    }
 }
+
+

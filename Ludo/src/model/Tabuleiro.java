@@ -54,14 +54,14 @@ class Tabuleiro {
 		}
 	}
 
-	public Vector<Casa> getArrayCasas(){
+	public Vector<Casa> getTabuleiro(){
 		return tabuleiro;
 	}
 	
 	//Como as retas finais também são "Tabuleiros" crio um vetor de 5 espaços
 	//e pinto ela com a cor dada no parâmetro
 	public void RetaFinal(Cor c) {
-		int size = 5;
+		int size = 6;
 		tabuleiro = new Vector<Casa>(size);
 		System.out.println(tabuleiro.size());
 		for (int i = 0; i < size; i++) {

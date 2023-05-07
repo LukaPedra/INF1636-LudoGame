@@ -4,11 +4,15 @@ class Peca {
 	private final Jogador jogador;
 	private int position = -1; //-1 é posição inicial
 	private Tabuleiro tabuleiro;
+	private Tabuleiro tabuleiroFinal;
+	private boolean retaFinal;
 	//Não precisa da cor pois ele já está referenciando o jogador que possui um por já
 
 	public Peca(Jogador jogador){
 		this.jogador = jogador;
-
+		this.tabuleiro = Jogador.getTabuleiro();
+		this.tabuleiroFinal = jogador.getTabuleiroFinal();
+		this.retaFinal = false;
 	}
 	public boolean podeMover(int nCasas){
 		//Se passar de 52 ele inicia do início do vetor
@@ -16,7 +20,7 @@ class Peca {
 		//Vai iterando e checka
 		if (!(position == -1)) {
 			while (position != destinationIndex){
-				Casa casa = tabuleiro.getArrayCasas().get(position);
+				Casa casa = tabuleiro.getTabuleiro().get(position);
 				position = (position + 1) % 52;
 				//Se no caminho tiver uma barreira ele não pode passar
 				if (casa.isBarreira()){
@@ -28,33 +32,64 @@ class Peca {
 				}
 			}
 			//Se n tiver nada no caminho ele faz uma última checagem na casa final
-			if (tabuleiro.getArrayCasas().get(destinationIndex).podeParar(this)){
+			if (tabuleiro.getTabuleiro().get(destinationIndex).podeParar(this)){
 				return true;
 			}
 		}
 		else if (nCasas == 5) {
-			Casa casaInicial = tabuleiro.getArrayCasas().get(tabuleiro.getCasaInicial(jogador.getCor()));
+			Casa casaInicial = tabuleiro.getTabuleiro().get(tabuleiro.getCasaInicial(jogador.getCor()));
 			return casaInicial.podeParar(this);
 			
 		}
 		return false;
 	}
 	public void moverPeca(int nCasas){
-		if (podeMover(nCasas)){
-			int destinationIndex = (position + nCasas) % 52;
-			while (position != destinationIndex){
-				Casa casa = tabuleiro.getArrayCasas().get(position);
-				position = (position + 1) % 52;
-				if (casa.isCasaFinal(jogador) && casa.podeParar(this)){
-					casa.parouCasa(this);
-					break;
+		int destinationIndex;
+		if (!retaFinal){
+			if (podeMover(nCasas)){
+				destinationIndex = (position + nCasas) % 52;
+				while (position != destinationIndex){
+					position = (position + 1) % 52;
+					nCasas--;
+	
+					Casa casa = tabuleiro.getTabuleiro().get(position);
+					
+					if (casa.isCasaFinal(jogador) && casa.podeParar(this)){
+						casa.parouCasa(this);
+						this.position = 0;
+						this.moverPecaRetaFinal(nCasas);
+						break;
+					}
 				}
+	
+				tabuleiro.getTabuleiro().get(position).parouCasa(this);
 			}
-			tabuleiro.getArrayCasas().get(destinationIndex).parouCasa(this);
-			position = destinationIndex;
+		}
+
+		else{
+			destinationIndex = (position + nCasas);
+			if (nCasas <= 5 - position){
+				while (position != destinationIndex){
+					position = position + 1;
+					nCasas--;
+
+					//Casa casa = tabuleiro.getArrayCasas().get(position);
+					
+					if (position == 5){
+						break;
+					}
+				}
+
+				tabuleiroFinal.getTabuleiro().get(position).parouCasa(this);
+			}
 		}
 	}
-	public void setPosicao(int posicao){
+
+	public void moverPecaRetaFinal(int nCasas){
+		
+	}
+
+	public void setPosition(int posicao){
 		position = posicao;
 	}
 	//função que retorna quantas casas faltam para chegar no final

@@ -5,9 +5,14 @@ public class Game{
     String color;
 
 	public static void main(String[] args) {
-		Peca peca = new Peca(new Jogador(Cor.amarelo));
-		peca.setPosicao(0);
-		System.out.println(peca.casaFaltando());
+		Tabuleiro tabuleiro = new Tabuleiro();
+		Dado dado = new Dado();
+
+		Jogador jAzul = new Jogador(Cor.azul);
+		Jogador jVermelho = new Jogador(Cor.vermelho);
+		Jogador jVerde = new Jogador(Cor.verde);
+		Jogador jAmarelo = new Jogador(Cor.amarelo);
+
 		
 	}
 }

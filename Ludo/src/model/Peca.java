@@ -51,6 +51,31 @@ class Peca {
 	public void setPosicao(int posicao){
 		position = posicao;
 	}
+	//função que retorna quantas casas faltam para chegar no final
+	public int casaFaltando() {
+		int casaQueComeca;
+		if (getCor() == Cor.azul) {
+			casaQueComeca = 2;
+		}
+		else if (getCor() == Cor.vermelho) {
+			casaQueComeca = 15;
+		}
+		else if (getCor() == Cor.verde) {
+			casaQueComeca = 28;
+		}
+		else {
+			casaQueComeca = 41;
+		}
+		int casasPercorridas = (position - casaQueComeca);
+		if (casasPercorridas < 0) {
+			casasPercorridas = 52 - casaQueComeca + position;
+		}
+		int casasFaltando = 52 - casasPercorridas - 2;
+		
+		return casasFaltando;
+	}
+	
+	
 	public Cor getCor(){
 		return jogador.getCor();
 	}

@@ -5,12 +5,9 @@ public class Game{
     String color;
 
 	public static void main(String[] args) {
-		//Testando métodos
-		Tabuleiro a = new Tabuleiro();
-		//System.out.println(a.getLado());
-		for (Casa casa : a.getArrayCasas()){
-			casa.printlnCasa();
-		}
+		Peca peca = new Peca(new Jogador(Cor.amarelo));
+		peca.setPosicao(0);
+		System.out.println(peca.casaFaltando());
 		
 	}
 }

@@ -4,7 +4,7 @@ import java.util.Vector;
 
 class Jogador {
     private final Cor cor;
-    private Vector<Peca> pecas;
+    private Vector<Peca> pecas = new Vector<Peca>();
     private static Tabuleiro tabuleiro;
     public Jogador(Cor cor) {
         this.cor = cor;
@@ -26,6 +26,13 @@ class Jogador {
     }
     public Tabuleiro getTabuleiro() {
         return tabuleiro;
+    }
+    public int somaEspacosAteFinal(int i){
+        int soma = 0;
+        for (Peca peca : pecas){
+            soma =+ peca.casaFaltando();
+        }
+        return soma;
     }
     public Cor getCor() {
         return cor;

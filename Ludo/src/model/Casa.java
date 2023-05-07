@@ -35,7 +35,8 @@ class Casa {
 		}
 		//Nesse caso há uma peça inimiga habitando a casa
 		else {
-			if (tipo == TipoCasa.abrigo){
+			Peca pecaInimiga = pecasDentro.peek();
+			if (tipo == TipoCasa.abrigo || (tipo == TipoCasa.inicial && pecaInimiga.getCor() == cor)){
 				//Não comeu a peça e está na casa com o inimigo
 				pecasDentro.add(peca);
 			}

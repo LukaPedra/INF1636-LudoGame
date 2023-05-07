@@ -1,20 +1,20 @@
-package Model;
+package model;
 
 import java.util.Vector;
 
-public class Tabuleiro {
-	Vector<Casa> tabuleiro;
+class Tabuleiro {
+	private Vector<Casa> tabuleiro;
 	
 	//Tem que usar esse método ao criar uma instancia de tabuleiro para adaptar o vetor do trajeto
-	public Tabuleiro(){
+	public Tabuleiro() {
 		int size = 52;
 		int parte = size/4;
 		tabuleiro = new Vector<Casa>(size);
 		
-		for (int i = 0; i < size; i++){
+		for (int i = 0; i < size; i++) {
 			Casa casa = new Casa();
 
-			if (i % parte == 0){ // IF da RETA FINAL
+			if (i % parte == 0) { // IF da RETA FINAL
 				casa.setTipo(TipoCasa.retaFinal);
 				switch (i){
 					case 0:
@@ -30,11 +30,9 @@ public class Tabuleiro {
 						casa.setCor(Cor.amarelo);
 						break;
 				}
-			}
-			else if (i % parte == 11){ // IF do ABRIGO
+			} else if (i % parte == 11) { // IF do ABRIGO
 				casa.setTipo(TipoCasa.abrigo);
-			}
-			else if (i % parte == 2){ // IF da PARTIDA
+			} else if (i % parte == 2) { // IF da PARTIDA
 				casa.setTipo(TipoCasa.partida);
 				switch (i){
 					case 2:
@@ -62,7 +60,7 @@ public class Tabuleiro {
 	
 	//Como as retas finais também são "Tabuleiros" crio um vetor de 5 espaços
 	//e pinto ela com a cor dada no parâmetro
-	public void RetaFinal(Cor c){
+	public void RetaFinal(Cor c) {
 		int size = 5;
 		tabuleiro = new Vector<Casa>(size);
 		System.out.println(tabuleiro.size());
@@ -72,7 +70,7 @@ public class Tabuleiro {
         }
 	}
 
-	public void quadradoInicial(Cor c){
+	public void quadradoInicial(Cor c) {
 		int size = 4;
 		tabuleiro = new Vector<Casa>(size);
 		System.out.println(tabuleiro.size());

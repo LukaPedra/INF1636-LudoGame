@@ -6,6 +6,7 @@ class Peca {
 	private Tabuleiro tabuleiro;
 	private Tabuleiro tabuleiroFinal;
 	private boolean retaFinal;
+	private boolean chegou;
 	//Não precisa da cor pois ele já está referenciando o jogador que possui um por já
 
 	public Peca(Jogador jogador){
@@ -13,6 +14,7 @@ class Peca {
 		this.tabuleiro = Jogador.getTabuleiro();
 		this.tabuleiroFinal = jogador.getTabuleiroFinal();
 		this.retaFinal = false;
+		this.chegou = false;
 	}
 	public boolean podeMover(int nCasas){
 		//Se passar de 52 ele inicia do início do vetor
@@ -77,6 +79,7 @@ class Peca {
 					nCasas--;
 					
 					if (position == 5){
+						chegou = true;
 						break;
 					}
 				}

@@ -18,7 +18,7 @@ class Tabuleiro {
 				casa.setTipo(TipoCasa.retaFinal);
 				switch (i){
 					case 0:
-						casa .setCor(Cor.azul);
+						casa.setCor(Cor.azul);
 						break;
 					case 13:
 						casa.setCor(Cor.vermelho);
@@ -36,7 +36,7 @@ class Tabuleiro {
 				casa.setTipo(TipoCasa.partida);
 				switch (i){
 					case 2:
-						casa .setCor(Cor.azul);
+						casa.setCor(Cor.azul);
 						break;
 					case 15:
 						casa.setCor(Cor.vermelho);

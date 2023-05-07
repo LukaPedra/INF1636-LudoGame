@@ -9,7 +9,7 @@ public class Game{
 		Tabuleiro a = new Tabuleiro();
 		//System.out.println(a.getLado());
 		for (Casa casa : a.getArrayCasas()){
-			System.out.println(casa.getTipo());
+			casa.printlnCasa();
 		}
 		
 	}

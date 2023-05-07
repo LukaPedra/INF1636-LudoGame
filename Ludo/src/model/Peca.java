@@ -57,10 +57,7 @@ class Peca {
 					Casa casa = tabuleiro.getTabuleiro().get(position);
 					
 					if (casa.isCasaFinal(jogador) && casa.podeParar(this)){
-						casa.parouCasa(this);
-						this.position = 0;
 						this.retaFinal = true;
-
 						break;
 					}
 				}
@@ -70,13 +67,14 @@ class Peca {
 		}
 
 		else{
+			tabuleiro.getTabuleiro().get(position).saiuCasa(null);
+			position = 0;
 			destinationIndex = (position + nCasas);
+
 			if (nCasas <= 5 - position){
 				while (position != destinationIndex){
 					position = position + 1;
 					nCasas--;
-
-					//Casa casa = tabuleiro.getArrayCasas().get(position);
 					
 					if (position == 5){
 						break;

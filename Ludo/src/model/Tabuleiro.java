@@ -53,20 +53,24 @@ class Tabuleiro {
 			tabuleiro.add(casa);
 		}
 	}
-
-	public Vector<Casa> getTabuleiro(){
-		return tabuleiro;
-	}
 	
-	//Como as retas finais também são "Tabuleiros" crio um vetor de 5 espaços
+	//Como as retas finais também são "Tabuleiros" crio um vetor de 6 espaços
 	//e pinto ela com a cor dada no parâmetro
 	public Tabuleiro(Cor c) {
 		int size = 6;
+		tabuleiro = new Vector<Casa>(size);
 		for (int i = 0; i < size; i++) {
 			Casa casa = new Casa(TipoCasa.retaFinal, c);
 			tabuleiro.add(casa);
         }
 	}
+
+	public Vector<Casa> getTabuleiro(){
+		return tabuleiro;
+	}
+	
+	
+	
 	public int getCasaInicial(Cor c) {
 		if (c == Cor.azul) {
 			return 2;

@@ -73,6 +73,9 @@ class Casa {
 			return false;
 		}
 	}
+	public int getNumPecas(){
+		return pecasDentro.size();
+	}
 	public void saiuCasa(Peca peca){
 		pecasDentro.remove();
 	}

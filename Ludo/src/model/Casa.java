@@ -17,7 +17,12 @@ class Casa {
 		this.cor = cor;
 	}
 	public boolean podeParar(Peca peca){
-		if ((pecasDentro.size() <= 1)){
+		if (pecasDentro.size() <= 1){
+			//Se a casa estiver vazia ou tiver outra peça
+			if (pecasDentro.size() == 1 && pecasDentro.peek().getCor() == peca.getCor() && tipo == TipoCasa.partida){
+				//Não pode parar na casa de partida se já tiver uma peça da mesma cor lá
+				return false;
+			}
 			return true;
 		}
 		return false;
@@ -42,6 +47,7 @@ class Casa {
 			}
 			else {
 				//Comeu a Peça
+
 				pecasDentro.remove().backToStart();
 				pecasDentro.add(peca);
 			}

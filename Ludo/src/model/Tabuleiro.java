@@ -80,6 +80,9 @@ class Tabuleiro {
 			return 41;
 		}
 	}
+	public Casa getCasa(int i) {
+		return tabuleiro.get(i);
+	}
 	/* 
 	public void quadradoInicial(Cor c) {
 		int size = 4;

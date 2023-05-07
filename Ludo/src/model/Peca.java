@@ -14,21 +14,28 @@ class Peca {
 		//Se passar de 52 ele inicia do início do vetor
 		int destinationIndex = (position + nCasas) % 52;
 		//Vai iterando e checka
-		while (position != destinationIndex){
-			Casa casa = tabuleiro.getArrayCasas().get(position);
-			position = (position + 1) % 52;
-			//Se no caminho tiver uma barreira ele não pode passar
-			if (casa.isBarreira()){
-				return false;
+		if (!(position == -1)) {
+			while (position != destinationIndex){
+				Casa casa = tabuleiro.getArrayCasas().get(position);
+				position = (position + 1) % 52;
+				//Se no caminho tiver uma barreira ele não pode passar
+				if (casa.isBarreira()){
+					return false;
+				}
+				else if (casa.isCasaFinal(jogador) && casa.podeParar(this)){
+					//Na movimentação tem que limitar o número de casas para não passar do final
+					return true;
+				}
 			}
-			else if (casa.isCasaFinal(jogador) && casa.podeParar(this)){
-				//Na movimentação tem que limitar o número de casas para não passar do final
+			//Se n tiver nada no caminho ele faz uma última checagem na casa final
+			if (tabuleiro.getArrayCasas().get(destinationIndex).podeParar(this)){
 				return true;
 			}
 		}
-		//Se n tiver nada no caminho ele faz uma última checagem na casa final
-		if (tabuleiro.getArrayCasas().get(destinationIndex).podeParar(this)){
-			return true;
+		else if (nCasas == 5) {
+			Casa casaInicial = tabuleiro.getArrayCasas().get(tabuleiro.getCasaInicial(jogador.getCor()));
+			return casaInicial.podeParar(this);
+			
 		}
 		return false;
 	}

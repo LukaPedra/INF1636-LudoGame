@@ -22,7 +22,15 @@ class Jogador {
     public void moverPeca(int i, int nCasas){
         pecas.get(i).moverPeca(nCasas);
     }
-    
+    public Vector<Peca> pecasDisponiveis(int nCasas){
+        Vector<Peca> pecasDisponiveis = new Vector<Peca>();
+        for (Peca peca : pecas){
+            if (peca.podeMover(nCasas)){
+                pecasDisponiveis.add(peca);
+            }
+        }
+        return pecasDisponiveis;
+    }
     public int somaEspacosAteFinal(int i){
         int soma = 0;
         for (Peca peca : pecas){

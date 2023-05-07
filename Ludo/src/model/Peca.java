@@ -47,6 +47,8 @@ class Peca {
 		int destinationIndex;
 		if (!retaFinal){
 			if (podeMover(nCasas)){
+				tabuleiro.getTabuleiro().get(position).saiuCasa(null);
+
 				destinationIndex = (position + nCasas) % 52;
 				while (position != destinationIndex){
 					position = (position + 1) % 52;
@@ -57,7 +59,8 @@ class Peca {
 					if (casa.isCasaFinal(jogador) && casa.podeParar(this)){
 						casa.parouCasa(this);
 						this.position = 0;
-						this.moverPecaRetaFinal(nCasas);
+						this.retaFinal = true;
+
 						break;
 					}
 				}
@@ -83,10 +86,6 @@ class Peca {
 				tabuleiroFinal.getTabuleiro().get(position).parouCasa(this);
 			}
 		}
-	}
-
-	public void moverPecaRetaFinal(int nCasas){
-		
 	}
 
 	public void setPosition(int posicao){

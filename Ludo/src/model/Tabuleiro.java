@@ -69,7 +69,17 @@ class Tabuleiro {
 			tabuleiro.add(casa);
         }
 	}
-
+	public int getCasaInicial(Cor c) {
+		if (c == Cor.azul) {
+			return 0;
+		} else if (c == Cor.vermelho) {
+			return 13;
+		} else if (c == Cor.verde) {
+			return 26;
+		} else { //Caso amarelo
+			return 39;
+		}
+	}
 	public void quadradoInicial(Cor c) {
 		int size = 4;
 		tabuleiro = new Vector<Casa>(size);

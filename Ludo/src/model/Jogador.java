@@ -18,6 +18,8 @@ class Jogador {
             peca = new Peca(this);
             pecas.add(peca);
         }
+        //Inicializa a primeira posicao da peca na casa inicial da cor
+        pecas.get(0).setPosicao(tabuleiro.getCasaInicial(cor));
     }
     public void moverPeca(int i, int nCasas){
         pecas.get(i).moverPeca(nCasas);

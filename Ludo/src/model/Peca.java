@@ -48,6 +48,9 @@ class Peca {
 			position = destinationIndex;
 		}
 	}
+	public void setPosicao(int posicao){
+		position = posicao;
+	}
 	public Cor getCor(){
 		return jogador.getCor();
 	}

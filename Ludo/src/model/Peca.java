@@ -17,13 +17,14 @@ class Peca {
 		this.chegou = false;
 	}
 	public boolean podeMover(int nCasas){
+		int startPoint = position;
 		//Se passar de 52 ele inicia do início do vetor
-		int destinationIndex = (position + nCasas) % 52;
+		int destinationIndex = (startPoint + nCasas) % 52;
 		//Vai iterando e checka
-		if (!(position == -1)) {
-			while (position != destinationIndex){
-				Casa casa = tabuleiro.getTabuleiro().get(position);
-				position = (position + 1) % 52;
+		if (!(startPoint == -1)) {
+			while (startPoint != destinationIndex){
+				startPoint = (startPoint + 1) % 52;
+				Casa casa = tabuleiro.getTabuleiro().get(startPoint);
 				//Se no caminho tiver uma barreira ele não pode passar
 				if (casa.isBarreira()){
 					return false;
@@ -48,22 +49,32 @@ class Peca {
 	public void moverPeca(int nCasas){
 		int destinationIndex;
 		if (!retaFinal){
+			
 			if (podeMover(nCasas)){
-				tabuleiro.getTabuleiro().get(position).saiuCasa(null);
-
-				destinationIndex = (position + nCasas) % 52;
-				while (position != destinationIndex){
-					position = (position + 1) % 52;
-					nCasas--;
-	
-					Casa casa = tabuleiro.getTabuleiro().get(position);
+				if (position == -1){
+					position = tabuleiro.getCasaInicial(jogador.getCor());
 					
-					if (casa.isCasaFinal(jogador) && casa.podeParar(this)){
-						this.retaFinal = true;
-						break;
-					}
 				}
-	
+				else {
+					tabuleiro.getTabuleiro().get(position).saiuCasa(null);
+					destinationIndex = (position + nCasas) % 52;
+					while (position != destinationIndex){
+						position = (position + 1) % 52;
+						nCasas--;
+		
+						Casa casa = tabuleiro.getTabuleiro().get(position);
+						
+						if (casa.isCasaFinal(jogador) && casa.podeParar(this)){
+							casa.parouCasa(this);
+							this.retaFinal = true;
+
+							break;
+						}
+					}
+		
+					
+					
+				}
 				tabuleiro.getTabuleiro().get(position).parouCasa(this);
 			}
 		}
@@ -116,7 +127,9 @@ class Peca {
 		return casasFaltando;
 	}
 	
-	
+	public int getPosition(){
+		return position;
+	}
 	public Cor getCor(){
 		return jogador.getCor();
 	}

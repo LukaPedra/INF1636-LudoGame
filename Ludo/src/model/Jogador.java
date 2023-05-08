@@ -7,7 +7,13 @@ class Jogador {
     private static Tabuleiro tabuleiro;
     private Tabuleiro tabuleiroFinal;
     private Vector<Peca> pecas = new Vector<Peca>();
-
+    
+    
+    public Jogador(Cor cor, Tabuleiro tabuleiro) {
+        this.cor = cor;
+        Jogador.tabuleiro = tabuleiro;
+        InicializaPeca();
+    }
     public Jogador(Cor cor) {
         this.cor = cor;
         InicializaPeca();
@@ -20,13 +26,13 @@ class Jogador {
             peca = new Peca(this);
             pecas.add(peca);
         }
-
+        
         pecas.get(0).setPosition(tabuleiro.getCasaInicial(cor));
+        tabuleiro.getTabuleiro().get(tabuleiro.getCasaInicial(cor)).parouCasa(pecas.get(0));
+        
+       
     }
 
-    public void jogar(){
-
-    }
 
     public void moverPeca(int i, int nCasas){
         pecas.get(i).moverPeca(nCasas);
@@ -49,9 +55,9 @@ class Jogador {
         }
         return soma;
     }
-
-    public Cor getCor() {
-        return cor;
+    
+    public Peca getPeca(int i){
+        return pecas.get(i);
     }
 
     public static void setTabuleiro(Tabuleiro tabuleiro){
@@ -60,7 +66,12 @@ class Jogador {
     public void setTabuleiroFinal(Tabuleiro tabuleiroFinal){
         this.tabuleiroFinal = tabuleiroFinal;
     }
-
+    public Cor getCor() {
+        return cor;
+    }
+    public Vector<Peca> getPecas(){
+        return pecas;
+    }
     public static Tabuleiro getTabuleiro(){
         return Jogador.tabuleiro;
     }

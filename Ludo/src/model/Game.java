@@ -8,7 +8,7 @@ public class Game{
 		Tabuleiro tabuleiro = new Tabuleiro();
 		Dado dado = new Dado();
 
-		Jogador jAzul = new Jogador(Cor.azul);
+		Jogador jAzul = new Jogador(Cor.azul, tabuleiro);
 		Jogador jVermelho = new Jogador(Cor.vermelho);
 		Jogador jVerde = new Jogador(Cor.verde);
 		Jogador jAmarelo = new Jogador(Cor.amarelo);

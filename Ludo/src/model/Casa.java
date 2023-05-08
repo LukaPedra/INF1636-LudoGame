@@ -58,12 +58,12 @@ class Casa {
 		Peca primeiraPeca = pecasDentro.peek();
 		if (pecasDentro.size() == 2){
 			for (Peca peca : pecasDentro){
-				if (!(peca.getCor() == primeiraPeca.getCor())){
-					return false;
+				if (peca.getCor() == primeiraPeca.getCor()){
+					return true;
 				}
 			}
 		}
-		return true;
+		return false;
 	}
 	public boolean isCasaFinal(Jogador jogador){
 		if (tipo == TipoCasa.casafinal && (cor == jogador.getCor())){

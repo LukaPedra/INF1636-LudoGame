@@ -5,7 +5,8 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 class TestCasa {
-	Jogador jogadorVerde = new Jogador(Cor.verde);
+	Tabuleiro tabuleiro = new Tabuleiro();
+	Jogador jogadorVerde = new Jogador(Cor.verde, tabuleiro);
 	Jogador jogadorAzul = new Jogador(Cor.azul);
 	
 	@Test
@@ -43,7 +44,10 @@ class TestCasa {
 		casaAbrigoCasa.parouCasa(peca2);
 		assertEquals(2, casaAbrigoCasa.getNumPecas());
 		
-		//Casa casaComerCasa 
+		Casa casaComer = new Casa();
+		casaComer.parouCasa(peca1);
+		casaComer.parouCasa(peca2);
+		assertEquals(1, casaComer.getNumPecas());
 		
 		
 	}

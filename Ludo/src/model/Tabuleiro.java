@@ -15,7 +15,7 @@ class Tabuleiro {
 			Casa casa = new Casa();
 
 			if (i % parte == 0) { // IF da RETA FINAL
-				casa.setTipo(TipoCasa.retaFinal);
+				casa.setTipo(TipoCasa.casafinal);
 				switch (i){
 					case 0:
 						casa.setCor(Cor.azul);

@@ -1,13 +1,13 @@
 package model;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
-class TestTabuleiro {
+public class TestTabuleiro {
 
 	@Test
-	void testTabuleiro() {
+	public void testTabuleiro() {
 		Tabuleiro tabuleiro = new Tabuleiro();
 		assertTrue(tabuleiro.getTabuleiro().get(0).getCor() == Cor.azul);
 		assertTrue(tabuleiro.getTabuleiro().get(0).getTipo() == TipoCasa.casafinal);

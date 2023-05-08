@@ -1,10 +1,12 @@
 package model;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
-class TestCasa {
+
+
+public class TestCasa {
 	Tabuleiro tabuleiro = new Tabuleiro();
 	Jogador jogadorVerde = new Jogador(Cor.verde, tabuleiro);
 	Jogador jogadorAzul = new Jogador(Cor.azul);

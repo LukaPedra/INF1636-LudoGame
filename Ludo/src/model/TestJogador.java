@@ -1,19 +1,17 @@
 package model;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
-import java.util.Iterator;
+import org.junit.Test;
 
-import org.junit.jupiter.api.Test;
-
-class TestJogador {
+public class TestJogador {
 	Tabuleiro tabuleiro = new Tabuleiro();
 	Jogador jogadorAzul = new Jogador(Cor.azul, tabuleiro);
 	Jogador jogadorAmarelo = new Jogador(Cor.amarelo, tabuleiro);
 
 	
 	@Test
-	void TestaInicializa() {
+	public void TestaInicializa() {
 		Jogador.setTabuleiro(tabuleiro);
 		assertTrue(jogadorAzul.getPecas().get(0).getPosition() == 2);
 		
@@ -40,8 +38,5 @@ class TestJogador {
 		//assertEquals(11, jogadorAzul.getPeca(0).getPosition());
 		
 		
-		
-		
 	}
-
 }

@@ -11,12 +11,7 @@ public class TabuleiroV extends JPanel {
     	int j = 600;
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g;
-
-        // Desenha um retângulo com contorno preto
-        //g2d.setColor(Color.BLACK);
-        //g2d.drawRect(600, 350, 20, 20);
-
-        // Preenche um retângulo com a cor vermelha
+        
         g2d.setColor(Color.GREEN);
         g2d.fillRect(540, 290, 60, 60);
         
@@ -169,7 +164,7 @@ public class TabuleiroV extends JPanel {
         
         g2d.setColor(Color.WHITE);
         
-        // Desenha um círculo preenchido
+        //
         g2d.fillOval(450, 200, 20, 20);
         g2d.fillOval(490, 200, 20, 20);
         g2d.fillOval(450, 240, 20, 20);
@@ -214,11 +209,9 @@ public class TabuleiroV extends JPanel {
         //
         int[] xPoints = {570, 600, 600}; // coordenadas X dos vértices
         int[] yPoints = {320, 290, 351}; // coordenadas Y dos vértices
-
-        // Preenche o triângulo
         g2d.setColor(Color.YELLOW);
         g2d.fillPolygon(xPoints, yPoints, 3);
-        
+        //
         int[] xPoints1 = {570, 540, 540}; // coordenadas X dos vértices
         int[] yPoints1 = {320, 290, 350}; // coordenadas Y dos vértices
         g2d.setColor(Color.RED);

@@ -1,11 +1,11 @@
-package model;
+package view;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class TabuleiroV extends JPanel {
+public class TabulerioPanel extends JPanel {
     @Override
     public void paintComponent(Graphics g) {
     	int j = 600;
@@ -14,8 +14,7 @@ public class TabuleiroV extends JPanel {
         
         g2d.setColor(Color.GREEN);
         g2d.fillRect(540, 290, 60, 60);
-        
-        g2d.setColor(Color.BLACK);
+        g2d.setColor(Color.RED);
         for(int i = 0; i<6; i++) {
              g2d.drawRect(j, 290, 20, 20);
              if(i==4){
@@ -227,7 +226,11 @@ public class TabuleiroV extends JPanel {
 
     public static void main(String[] args) {
         JFrame frame = new JFrame("Exemplo Desenho");
-        frame.add(new TabuleiroV());
+        frame.setResizable(false);
+
+        TabulerioPanel tabuleiro = new TabulerioPanel();
+        tabuleiro.setBounds(10, 10, 1200, 700);
+        frame.add(new TabulerioPanel());
         frame.setSize(1200, 700);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);

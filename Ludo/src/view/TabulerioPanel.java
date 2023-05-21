@@ -8,218 +8,240 @@ import javax.swing.JPanel;
 public class TabulerioPanel extends JPanel {
     @Override
     public void paintComponent(Graphics g) {
-    	int j = 600;
+    	int j = 360;
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g;
+
         
         g2d.setColor(Color.GREEN);
-        g2d.fillRect(540, 290, 60, 60);
-        g2d.setColor(Color.RED);
+        g2d.fillRect(240, 260, 120, 120);
+        
+        g2d.setColor(Color.BLACK);
         for(int i = 0; i<6; i++) {
-             g2d.drawRect(j, 290, 20, 20);
+             g2d.drawRect(j, 260, 40, 40);
              if(i==4){
-            	 g2d.fillRect(j+1, 291, 19, 19);
+            	 g2d.fillRect(j, 260, 40, 40);
              }
-             j = j+20;
+             j = j+40;
         }
-        j=600;
+        j=360;
         for(int i = 0; i<6; i++) {
-            g2d.drawRect(j, 310, 20, 20);
             if(i<=4){
             g2d.setColor(Color.YELLOW);
-           	g2d.fillRect(j+1, 311, 19, 19);
+           	g2d.fillRect(j, 300, 40, 40);
            	g2d.setColor(Color.BLACK);
             }
-            j = j+20;
+            g2d.drawRect(j, 300, 40, 40);
+            j = j+40;
        }
-        j=600;
+        j=360;
         for(int i = 0; i<6; i++) {
-            g2d.drawRect(j, 330, 20, 20);
             if(i==4){
              g2d.setColor(Color.YELLOW);
-           	 g2d.fillRect(j+1, 331, 19, 19);
+           	 g2d.fillRect(j, 340, 40, 40);
            	 g2d.setColor(Color.BLACK);
             }
-            j = j+20;
+            g2d.drawRect(j, 340, 40, 40);
+            j = j+40;
        }
-        j=520;
+        j=200;
         for(int i = 0; i<6; i++) {
-            g2d.drawRect(j, 290, 20, 20);
+            g2d.drawRect(j, 260, 40, 40);
             if(i==4){
              g2d.setColor(Color.RED);
-           	 g2d.fillRect(j+1, 291, 19, 19);
+           	 g2d.fillRect(j, 260, 40, 40);
            	 g2d.setColor(Color.BLACK);
+           	 g2d.drawRect(j, 260, 40, 40);
             }
-            j = j-20;
+            j = j-40;
        }
-        j=520;
+        j=200;
         for(int i = 0; i<6; i++) {
-            g2d.drawRect(j, 310, 20, 20);
+            
             if(i<=4){
             g2d.setColor(Color.RED);
-           	g2d.fillRect(j+1, 311, 19, 19);
+           	g2d.fillRect(j, 300, 40, 40);
            	g2d.setColor(Color.BLACK);
             }
-            j = j-20;
+            g2d.drawRect(j, 300, 40, 40);
+            j = j-40;
        }
-        j=520;
+        j=200;
         g2d.setColor(Color.BLACK);
         for(int i = 0; i<6; i++) {
-             g2d.drawRect(j, 330, 20, 20);
+             g2d.drawRect(j, 340, 40, 40);
              if(i==4){
-            	 g2d.fillRect(j+1, 331, 19, 19);
+            	 g2d.fillRect(j, 340, 40, 40);
              }
-             j = j-20;
+             j = j-40;
         }
-        j=350;
+        j=380;
         g2d.setColor(Color.BLACK);
         for(int i = 0; i<6; i++) {
-             g2d.drawRect(580, j, 20, 20);
+             g2d.drawRect(320, j, 40, 40);
              if(i==4){
-            	 g2d.fillRect(581, j+1, 19, 19);
+            	 g2d.fillRect(320, j, 40, 40);
              }
-             j = j+20;
+             j = j+40;
         }
-        j=350;
+        j=380;
         for(int i = 0; i<6; i++) {
-            g2d.drawRect(560, j, 20, 20);
             if(i<=4){
             g2d.setColor(Color.BLUE);
-           	g2d.fillRect(561, j+1, 19, 19);
+           	g2d.fillRect(280, j, 40, 40);
            	g2d.setColor(Color.BLACK);
             }
-            j = j+20;
+            g2d.drawRect(280, j, 40, 40);
+            j = j+40;
        }
-        j=350;
+        j=380;
         for(int i = 0; i<6; i++) {
-            g2d.drawRect(540, j, 20, 20);
+            g2d.drawRect(240, j, 40, 40);
             if(i==4){
              g2d.setColor(Color.BLUE);
-           	 g2d.fillRect(541, j+1, 19, 19);
+           	 g2d.fillRect(240, j, 40, 40);
            	 g2d.setColor(Color.BLACK);
             }
-            j = j+20;
+            
+            j = j+40;
        }
-        j=270;
+        j=220;
         g2d.setColor(Color.BLACK);
         for(int i = 0; i<6; i++) {
-             g2d.drawRect(540, j, 20, 20);
+             g2d.drawRect(240, j, 40, 40);
              if(i==4){
-            	 g2d.fillRect(541, j+1, 19, 19);
+            	 g2d.fillRect(240, j, 40, 40);
              }
-             j = j-20;
+             j = j-40;
         }
-        j=270;
+        j=220;
         for(int i = 0; i<6; i++) {
-            g2d.drawRect(560, j, 20, 20);
+            
             if(i<=4){
             g2d.setColor(Color.GREEN);
-           	g2d.fillRect(561, j+1, 19, 19);
+           	g2d.fillRect(280, j, 40, 40);
            	g2d.setColor(Color.BLACK);
             }
-            j = j-20;
+            g2d.drawRect(280, j, 40, 40);
+            j = j-40;
        }
-        j=270;
+        j=220;
         for(int i = 0; i<6; i++) {
-            g2d.drawRect(580, j, 20, 20);
+            g2d.drawRect(320, j, 40, 40);
             if(i==4){
              g2d.setColor(Color.GREEN);
-           	 g2d.fillRect(581, j+1, 19, 19);
+           	 g2d.fillRect(320, j, 40, 40);
            	 g2d.setColor(Color.BLACK);
+           	 g2d.drawRect(320, j, 40, 40);
             }
-            j = j-20;
+            j = j-40;
        }
         g2d.setColor(Color.BLUE);
-        g2d.fillRect(420, 351, 120, 120);
-        g2d.setColor(Color.RED);
-        g2d.fillRect(420, 170, 120, 120);
-        g2d.setColor(Color.GREEN);
-        g2d.fillRect(601, 170, 120, 120);
-        g2d.setColor(Color.YELLOW);
-        g2d.fillRect(601, 351, 120, 120);
+        g2d.fillRect(0, 380, 240, 240);
         g2d.setColor(Color.BLACK);
-        g2d.drawRect(420, 170, 300, 300);
-        //
-        g2d.setColor(Color.GREEN);
-        g2d.fillRect(440, 190, 80, 80);
+        g2d.drawRect(0, 380, 240, 240);
         g2d.setColor(Color.RED);
-        g2d.fillRect(445, 195, 70, 70);
-        //180
-        g2d.setColor(Color.RED);
-        g2d.fillRect(440, 371, 80, 80);
-        g2d.setColor(Color.BLUE);
-        g2d.fillRect(445, 376, 70, 70);
-        //
-        g2d.setColor(Color.BLUE);
-        g2d.fillRect(620, 371, 80, 80);
-        g2d.setColor(Color.YELLOW);
-        g2d.fillRect(625, 376, 70, 70);
-        //
-        g2d.setColor(Color.YELLOW);
-        g2d.fillRect(620, 190, 80, 80);
+        g2d.fillRect(0, 20, 240, 240);
+        g2d.setColor(Color.BLACK);
+        g2d.drawRect(0, 20, 240, 240);
         g2d.setColor(Color.GREEN);
-        g2d.fillRect(625, 195, 70, 70);
+        g2d.fillRect(360, 20, 240, 240);
+        g2d.setColor(Color.BLACK);
+        g2d.drawRect(360, 20, 240, 240);
+        g2d.setColor(Color.YELLOW);
+        g2d.fillRect(360, 380, 240, 240);
+        g2d.setColor(Color.BLACK);
+        g2d.drawRect(360, 380, 240, 240);
+        g2d.drawRect(0, 20, 600, 600);
+        // 
+        g2d.setColor(Color.GREEN);
+        g2d.fillRect(40, 60, 160, 160);
+        g2d.setColor(Color.RED);
+        g2d.fillRect(50, 70, 140, 140);
+        //
+        g2d.setColor(Color.RED);
+        g2d.fillRect(40, 420, 160, 160);
+        g2d.setColor(Color.BLUE);
+        g2d.fillRect(50, 430, 140, 140);
+        //
+        g2d.setColor(Color.BLUE);
+        g2d.fillRect(400, 420, 160, 160);
+        g2d.setColor(Color.YELLOW);
+        g2d.fillRect(410, 430, 140, 140);
+        //
+        g2d.setColor(Color.YELLOW);
+        g2d.fillRect(400, 60, 160, 160);
+        g2d.setColor(Color.GREEN);
+        g2d.fillRect(410, 70, 140, 140);
         //
         
         g2d.setColor(Color.WHITE);
         
+        // Desenha um círculo preenchido
+        g2d.fillOval(60, 80, 40, 40);
+        g2d.fillOval(140, 80, 40, 40);
+        g2d.fillOval(60, 160, 40, 40);
+        g2d.fillOval(140, 160, 40, 40);
         //
-        g2d.fillOval(450, 200, 20, 20);
-        g2d.fillOval(490, 200, 20, 20);
-        g2d.fillOval(450, 240, 20, 20);
-        g2d.fillOval(490, 240, 20, 20);
+        g2d.fillOval(60, 440, 40, 40);
+        g2d.fillOval(140, 440, 40, 40);
+        g2d.fillOval(60, 520, 40, 40);
+        g2d.fillOval(140, 520, 40, 40);
         //
-        g2d.fillOval(450, 381, 20, 20);
-        g2d.fillOval(490, 381, 20, 20);
-        g2d.fillOval(450, 421, 20, 20);
-        g2d.fillOval(490, 421, 20, 20);
+        g2d.fillOval(420, 440, 40, 40);
+        g2d.fillOval(500, 440, 40, 40);
+        g2d.fillOval(420, 520, 40, 40);
+        g2d.fillOval(500, 520, 40, 40);
         //
-        g2d.fillOval(630, 381, 20, 20);
-        g2d.fillOval(670, 381, 20, 20);
-        g2d.fillOval(630, 421, 20, 20);
-        g2d.fillOval(670, 421, 20, 20);
-        //
-        g2d.fillOval(630, 200, 20, 20);
-        g2d.fillOval(670, 200, 20, 20);
-        g2d.fillOval(630, 240, 20, 20);
-        g2d.fillOval(670, 240, 20, 20);
+        g2d.fillOval(420, 80, 40, 40);
+        g2d.fillOval(500, 80, 40, 40);
+        g2d.fillOval(420, 160, 40, 40);
+        g2d.fillOval(500, 160, 40, 40);
         //
         g2d.setColor(Color.BLACK);
         //
-        g2d.drawOval(450, 200, 20, 20);
-        g2d.drawOval(490, 200, 20, 20);
-        g2d.drawOval(450, 240, 20, 20);
-        g2d.drawOval(490, 240, 20, 20);
+        g2d.drawOval(60, 80, 40, 40);
+        g2d.drawOval(140, 80, 40, 40);
+        g2d.drawOval(60, 160, 40, 40);
+        g2d.drawOval(140, 160, 40, 40);
         //
-        g2d.drawOval(450, 381, 20, 20);
-        g2d.drawOval(490, 381, 20, 20);
-        g2d.drawOval(450, 421, 20, 20);
-        g2d.drawOval(490, 421, 20, 20);
+        g2d.drawOval(60, 440, 40, 40);
+        g2d.drawOval(140, 440, 40, 40);
+        g2d.drawOval(60, 520, 40, 40);
+        g2d.drawOval(140, 520, 40, 40);
         //
-        g2d.drawOval(630, 381, 20, 20);
-        g2d.drawOval(670, 381, 20, 20);
-        g2d.drawOval(630, 421, 20, 20);
-        g2d.drawOval(670, 421, 20, 20);
+        g2d.drawOval(420, 440, 40, 40);
+        g2d.drawOval(500, 440, 40, 40);
+        g2d.drawOval(420, 520, 40, 40);
+        g2d.drawOval(500, 520, 40, 40);
         //
-        g2d.drawOval(630, 200, 20, 20);
-        g2d.drawOval(670, 200, 20, 20);
-        g2d.drawOval(630, 240, 20, 20);
-        g2d.drawOval(670, 240, 20, 20);
+        g2d.drawOval(420, 80, 40, 40);
+        g2d.drawOval(500, 80, 40, 40);
+        g2d.drawOval(420, 160, 40, 40);
+        g2d.drawOval(500, 160, 40, 40);
         //
-        int[] xPoints = {570, 600, 600}; // coordenadas X dos vértices
-        int[] yPoints = {320, 290, 351}; // coordenadas Y dos vértices
+        int[] xPoints = {300, 360, 360}; // coordenadas X dos vértices
+        int[] yPoints = {320, 260, 380}; // coordenadas Y dos vértices
+
+        // 
         g2d.setColor(Color.YELLOW);
         g2d.fillPolygon(xPoints, yPoints, 3);
-        //
-        int[] xPoints1 = {570, 540, 540}; // coordenadas X dos vértices
-        int[] yPoints1 = {320, 290, 350}; // coordenadas Y dos vértices
+        g2d.setColor(Color.BLACK);
+        g2d.drawPolygon(xPoints, yPoints, 3);
+        
+        int[] xPoints1 = {300, 240, 240}; // coordenadas X dos vértices
+        int[] yPoints1 = {320, 260, 380}; // coordenadas Y dos vértices
         g2d.setColor(Color.RED);
         g2d.fillPolygon(xPoints1, yPoints1, 3);
+        g2d.setColor(Color.BLACK);
+        g2d.drawPolygon(xPoints1, yPoints1, 3);
         //
-        int[] xPoints2 = {570, 600, 540}; // coordenadas X dos vértices
-        int[] yPoints2 = {320, 350, 350}; // coordenadas Y dos vértices
+        int[] xPoints2 = {300, 360, 240}; // coordenadas X dos vértices
+        int[] yPoints2 = {320, 380, 380}; // coordenadas Y dos vértices
         g2d.setColor(Color.BLUE);
         g2d.fillPolygon(xPoints2, yPoints2, 3);
+        g2d.setColor(Color.BLACK);
+        g2d.drawPolygon(xPoints2, yPoints2, 3);
         
     }
     

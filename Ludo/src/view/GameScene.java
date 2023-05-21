@@ -3,17 +3,16 @@ import javax.swing.*;
 import java.awt.*;
 public class GameScene extends JFrame{
 	public final int xScreen = 850;
-    public final int yScreen = 628;
-
-    private TabulerioPanel boardBuilder;
+    public final int yScreen = 656;
+    private TabulerioPanel tabulerioPanel;
     private Menu gameMenu;
 
     public GameScene() {
         this.gameMenu = new Menu();
-        this.boardBuilder = new TabulerioPanel();
+        this.tabulerioPanel = new TabulerioPanel();
 
 
-        setTitle("Ludo, O Jogo");
+        setTitle("Ludo");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(xScreen, yScreen);
         setLocationRelativeTo(null);
@@ -26,7 +25,7 @@ public class GameScene extends JFrame{
 
         //JPanel boardPanel = boardBuilder.getBoardPanel();
         JPanel menuPanel = gameMenu.getMenuPanel();
-        contentPane.add(new TabulerioPanel());
+        contentPane.add(tabulerioPanel);
         contentPane.add(menuPanel, BorderLayout.EAST);
 
         setVisible(true);

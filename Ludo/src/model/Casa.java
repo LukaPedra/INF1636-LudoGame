@@ -65,8 +65,8 @@ class Casa {
 		}
 		return false;
 	}
-	public boolean isCasaFinal(Jogador jogador){
-		if (tipo == TipoCasa.casafinal && (cor == jogador.getCor())){
+	public boolean isCasaFinal(Jogador j){
+		if ((tipo == TipoCasa.casafinal) && (cor == j.getCor())){
 			return true;
 		}
 		else {

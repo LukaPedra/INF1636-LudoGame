@@ -4,22 +4,18 @@ import java.util.Vector;
 
 class Jogador {
     private final Cor cor;
-    private static Tabuleiro tabuleiro;
-    private Tabuleiro tabuleiroFinal;
     private Vector<Peca> pecas = new Vector<Peca>();
+    private Peca lastPeca;
+    private int seis;
     
     
-    public Jogador(Cor cor, Tabuleiro tabuleiro) {
+    public Jogador(Tabuleiro t, Cor cor) {
         this.cor = cor;
-        Jogador.tabuleiro = tabuleiro;
-        InicializaPeca();
-    }
-    public Jogador(Cor cor) {
-        this.cor = cor;
-        InicializaPeca();
+        InicializaPeca(t);
+        seis = 0;
     }
 
-    private void InicializaPeca(){ // Colocar as peças no vetor de peças do jogador
+    private void InicializaPeca(Tabuleiro t){ // Colocar as peças no vetor de peças do jogador
         int size = 4;
         Peca peca;
         for (int i = 0; i < size; i++) {
@@ -27,21 +23,29 @@ class Jogador {
             pecas.add(peca);
         }
         
-        pecas.get(0).setPosition(tabuleiro.getCasaInicial(cor));
-        tabuleiro.getTabuleiro().get(tabuleiro.getCasaInicial(cor)).parouCasa(pecas.get(0));
+        pecas.get(0).setPosition(t.getCasaInicial(cor));
+        t.getTabuleiro().get(t.getCasaInicial(cor)).parouCasa(pecas.get(0));
+    }
+
+    public boolean podeJogar(){
+		if (seis == 3){
+			seis = 0;
+			return false;
+		}
+		return true;
+	}
+
+    public void moverPeca(Tabuleiro t, int i, int nCasas){
+        Peca currentP = this.getPeca(i);
+        currentP.moverPeca(this, t, nCasas);
+        this.setLastPeca(currentP);
         
-       
     }
 
-
-    public void moverPeca(int i, int nCasas){
-        pecas.get(i).moverPeca(nCasas);
-    }
-
-    public Vector<Peca> pecasDisponiveis(int nCasas){
+    public Vector<Peca> pecasDisponiveis(Tabuleiro t, int nCasas){
         Vector<Peca> pecasDisponiveis = new Vector<Peca>();
         for (Peca peca : pecas){
-            if (peca.podeMover(nCasas)){
+            if (peca.podeMover(this, t, nCasas)){
                 pecasDisponiveis.add(peca);
             }
         }
@@ -55,28 +59,29 @@ class Jogador {
         }
         return soma;
     }
-    
+
+    public void addSeis(){
+        this.seis += 1;
+    }
+
     public Peca getPeca(int i){
         return pecas.get(i);
     }
 
-    public static void setTabuleiro(Tabuleiro tabuleiro){
-        Jogador.tabuleiro = tabuleiro;
-    }
-    public void setTabuleiroFinal(Tabuleiro tabuleiroFinal){
-        this.tabuleiroFinal = tabuleiroFinal;
-    }
+    public Vector<Peca> getPecas(){
+        return pecas;
+    }  
+
     public Cor getCor() {
         return cor;
     }
-    public Vector<Peca> getPecas(){
-        return pecas;
+
+    public void setLastPeca(Peca p){
+        this.lastPeca = p;
     }
-    public static Tabuleiro getTabuleiro(){
-        return Jogador.tabuleiro;
-    }
-    public Tabuleiro getTabuleiroFinal(){
-        return this.tabuleiroFinal;
+
+    public Peca getLastPeca(Peca p){
+        return lastPeca;
     }
 }
 

@@ -12,7 +12,5 @@ public class Game{
 		Jogador jVermelho = new Jogador(Cor.vermelho);
 		Jogador jVerde = new Jogador(Cor.verde);
 		Jogador jAmarelo = new Jogador(Cor.amarelo);
-
-		
 	}
 }

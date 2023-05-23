@@ -1,8 +1,0 @@
-Classes:
-    - player (boneco, cor ...)
-    - dado (funcionamento do valor random, ...)
-    - casinha (numero definido da casa, )
-    - mapaGeral (vetor com casas padrao de movimento dos bonecos)
-    - mapaCor (vetor com casas da cor para cada boneco especifico)
-    - base cor (base onde os bonecos estao antes de sairem para o jogo)
-    - movimentação (condicoes de movimento e saida dos bonecos ...)

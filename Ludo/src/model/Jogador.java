@@ -23,8 +23,8 @@ class Jogador {
             pecas.add(peca);
         }
         
-        pecas.get(0).setPosition(t.getCasaInicial(cor));
-        t.getTabuleiro().get(t.getCasaInicial(cor)).parouCasa(pecas.get(0));
+        pecas.get(0).setPosition(t.getPosicaoPartida(cor));
+        t.getCasa(t.getPosicaoPartida(cor)).parouCasa(pecas.get(0));
     }
 
     public boolean podeJogar(){

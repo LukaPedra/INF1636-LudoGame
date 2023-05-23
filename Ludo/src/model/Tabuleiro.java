@@ -71,7 +71,7 @@ class Tabuleiro {
 	
 	
 	
-	public int getCasaInicial(Cor c) {
+	public int getPosicaoPartida(Cor c) {
 		if (c == Cor.azul) {
 			return 2;
 		} else if (c == Cor.vermelho) {
@@ -82,9 +82,15 @@ class Tabuleiro {
 			return 41;
 		}
 	}
-	public Casa getCasa(int i) {
-		return tabuleiro.get(i);
+
+	public Casa getCasaPartida(Cor c) {
+		return this.getCasa(this.getPosicaoPartida(c));
 	}
+
+	public Casa getCasa(int i) {
+		return this.tabuleiro.get(i);
+	}
+
 	/* 
 	public void quadradoInicial(Cor c) {
 		int size = 4;

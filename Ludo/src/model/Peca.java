@@ -8,89 +8,90 @@ class Peca {
 
 	public Peca(Jogador j){
 		this.position = -1;
-		cor = j.getCor();
+		this.cor = j.getCor();
 		this.retaFinal = false;
 		this.chegou = false;
 	}
 	public boolean podeMover(Jogador j, Tabuleiro t, int nCasas){
-		// Posição atual da peça
-		int startPoint = this.getPosition();
-		//Se passar de 52 ele inicia do início do vetor
-		int destinationIndex = (startPoint + nCasas) % 52;
+		int startPoint = this.getPosition(); 				/* Posição onde a peça inicia a tentativa de movimentação */
+		int destinationIndex;								/* Posição onde a peça quer chegar */
+		Casa casa = t.getCasa(startPoint);					/* Casa onde a peça está */
 
-		/* Chegou na casa final */
-		if (chegou){
+		/* Está na casa final */
+		if (this.chegou){
 			return false;
 		}
 		
-		/* Está na casa inicial e indo para casa de saída */
-		if ((startPoint == -1) && (nCasas == 5)) { 
-			Casa casaInicial = t.getTabuleiro().get(t.getCasaInicial(j.getCor()));
-			return casaInicial.podeParar(this);
+		/* Está na casa inicial e indo para casa de partida */
+		if (startPoint == -1){
+			if (nCasas != 5){ 
+				return false;
+				
+			}
+			casa = t.getCasaPartida(this.getCor());
 		}
 
 		/* Vai iterando e olhando casa por casa */
-		else if (startPoint != -1) {
+		else{
+			destinationIndex = (startPoint + nCasas) % 52;
+
 			while (startPoint != destinationIndex){
 
 				startPoint = (startPoint + 1) % 52;
-				Casa casa = t.getTabuleiro().get(startPoint);
+				casa = t.getCasa(startPoint);	/* Sempre olha para a casa seguinte */
 
-				//Se no caminho tiver uma barreira ele não pode passar
-				if (casa.isBarreira()){
+				if (casa.isBarreira()){			/* Se for barreira retorna falso dizendo que existe uma barreira naquele caminho e por isso a peça não pode ser movida */
 					return false;
 				}
-				else if (casa.isCasaFinal(j)){
-					//Na movimentação tem que limitar o número de casas para não passar do final
-					return casa.podeParar(this);
+				else if (casa.isCasaFinal(j)){	/* Se for casa final quebra o while antes da hora para não rodar mais vezes sem necessidade */
+					break;
 				}
 			}
-			//Se não tiver nada no caminho ele faz uma última checagem na casa final
-			if (t.getTabuleiro().get(destinationIndex).podeParar(this)){
-				return true;
-			}
 		}
-		
-		return false;
+
+		/* Faz uma verificação se é possível parar na casa */	
+		return casa.podeParar(this);
 	}
 	
 	public void moverPeca(Jogador j, Tabuleiro t, int nCasas){
 
 		int destinationIndex;
-		if (!retaFinal){
+		Casa casa = t.getCasa(position);
+
+		if ((!this.retaFinal) && (podeMover(j, t, nCasas))){
 			
-			if (podeMover(j, t, nCasas)){
-				if (position == -1){
-					position = t.getCasaInicial(j.getCor());
+			if (position == -1){
+				position = t.getPosicaoPartida(this.getCor());
+				casa = t.getCasa(position);
+				return;
+			}
+
+			else {
+				t.getCasa(position).saiuCasa(this);
+				destinationIndex = (position + nCasas) % 52;
+
+				while (position != destinationIndex){
+					position = (position + 1) % 52;
+					nCasas--;
+	
+					casa = t.getCasa(position);
 					
-				}
-				else {
-					t.getTabuleiro().get(position).saiuCasa(this);
-					destinationIndex = (position + nCasas) % 52;
-					while (position != destinationIndex){
-						position = (position + 1) % 52;
-						nCasas--;
-		
-						Casa casa = t.getTabuleiro().get(position);
-						
-						if ((casa.isCasaFinal(j)) && (nCasas > 0)){ 
-							this.retaFinal = true;
-							position = 100;
-							break;
-						}
+					if ((casa.isCasaFinal(j)) && (nCasas > 0)){ 
+						this.retaFinal = true;
+						position = 0;
+						break;
 					}
 				}
 
-				Casa casa = t.getTabuleiro().get(position);
-				casa.parouCasa(this);
+				if (!this.retaFinal){
+					casa.parouCasa(this);
+				}
 			}
+
+			
 		}
 
 		if(retaFinal){
-			if (position == 100){
-				t.getTabuleiro().get(position).saiuCasa(this);
-				position = 0;
-			}
 			
 			destinationIndex = (position + nCasas);
 
@@ -100,7 +101,7 @@ class Peca {
 					nCasas--;
 					
 					if (position == 5){
-						chegou = true;
+						this.chegou = true;
 						break;
 					}
 				}

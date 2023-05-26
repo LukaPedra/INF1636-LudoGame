@@ -51,6 +51,7 @@ public class Menu {
         dadoButton.setBounds(25, 450, 200, 50);
 
 		dadoButton.addActionListener(e -> {
+			dadoValue = (int) (Math.random() * 6 + 1);
 			fotoDado = DadoImage.getDiceImage(dadoValue);
 			System.out.println("Dado");
 		});
@@ -71,7 +72,7 @@ public class Menu {
 		});
 		return button;
 	}
-
+	
 	public JButton carregarJogoButton(){
 		JButton button = new JButton("Carregar Jogo");
 		button.setBounds(25, 90, 200, 50);

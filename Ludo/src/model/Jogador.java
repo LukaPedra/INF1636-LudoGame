@@ -37,18 +37,22 @@ class Jogador {
 
     public void moverPeca(Tabuleiro t, int i, int nCasas){
         Peca currentP = this.getPeca(i);
-        currentP.moverPeca(this, t, nCasas);
+        currentP.moverPeca(t, nCasas);
         this.setLastPeca(currentP);
         
     }
 
     public Vector<Peca> pecasDisponiveis(Tabuleiro t, int nCasas){
         Vector<Peca> pecasDisponiveis = new Vector<Peca>();
-        for (Peca peca : pecas){
-            if (peca.podeMover(this, t, nCasas)){
-                pecasDisponiveis.add(peca);
+        
+        if (podeJogar()){
+            for (Peca peca : pecas){
+                if (peca.podeMover(t, nCasas)){
+                    pecasDisponiveis.add(peca);
+                }
             }
         }
+        
         return pecasDisponiveis;
     }
 

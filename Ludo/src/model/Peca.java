@@ -12,7 +12,7 @@ class Peca {
 		this.retaFinal = false;
 		this.chegou = false;
 	}
-	public boolean podeMover(Jogador j, Tabuleiro t, int nCasas){
+	public boolean podeMover(Tabuleiro t, int nCasas){
 		int startPoint = this.getPosition(); 				/* Posição onde a peça inicia a tentativa de movimentação */
 		int destinationIndex;								/* Posição onde a peça quer chegar */
 		Casa casa = t.getCasa(startPoint);					/* Casa onde a peça está */
@@ -43,7 +43,7 @@ class Peca {
 				if (casa.isBarreira()){			/* Se for barreira retorna falso dizendo que existe uma barreira naquele caminho e por isso a peça não pode ser movida */
 					return false;
 				}
-				else if (casa.isCasaFinal(j)){	/* Se for casa final quebra o while antes da hora para não rodar mais vezes sem necessidade */
+				else if (casa.isCasaFinal(this.getCor())){	/* Se for casa final quebra o while antes da hora para não rodar mais vezes sem necessidade */
 					break;
 				}
 			}
@@ -53,12 +53,12 @@ class Peca {
 		return casa.podeParar(this);
 	}
 	
-	public void moverPeca(Jogador j, Tabuleiro t, int nCasas){
+	public void moverPeca(Tabuleiro t, int nCasas){
 
 		int destinationIndex;
 		Casa casa = t.getCasa(position);
 
-		if ((!this.retaFinal) && (podeMover(j, t, nCasas))){
+		if ((!this.retaFinal) && (podeMover(t, nCasas))){
 			
 			if (position == -1){
 				position = t.getPosicaoPartida(this.getCor());
@@ -76,7 +76,7 @@ class Peca {
 	
 					casa = t.getCasa(position);
 					
-					if ((casa.isCasaFinal(j)) && (nCasas > 0)){ 
+					if ((casa.isCasaFinal(this.getCor())) && (nCasas > 0)){ 
 						this.retaFinal = true;
 						position = 0;
 						break;

@@ -66,16 +66,16 @@ class Casa {
 		return false;
 	}
 	/* Fazer esse método para usar */
-	public boolean isCasaPartida(Jogador j){
-		if ((tipo == TipoCasa.partida) && (cor == j.getCor())){
+	public boolean isCasaPartida(Cor c){
+		if ((tipo == TipoCasa.partida) && (cor == c)){
 			return true;
 		}
 		else {
 			return false;
 		}
 	}
-	public boolean isCasaFinal(Jogador j){
-		if ((tipo == TipoCasa.casafinal) && (cor == j.getCor())){
+	public boolean isCasaFinal(Cor c){
+		if ((tipo == TipoCasa.casafinal) && (cor == c)){
 			return true;
 		}
 		else {

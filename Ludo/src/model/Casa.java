@@ -19,7 +19,7 @@ class Casa {
 	public boolean podeParar(Peca peca){
 		if (pecasDentro.size() <= 1){
 			//Se a casa estiver vazia ou tiver outra peça
-			if (pecasDentro.size() == 1 && pecasDentro.peek().getCor() == peca.getCor() && tipo == TipoCasa.partida){
+			if (pecasDentro.size() == 1 && pecasDentro.peek().getCor() == peca.getCor() && tipo == TipoCasa.saida){
 				//Não pode parar na casa de partida se já tiver uma peça da mesma cor lá
 				return false;
 			}
@@ -41,7 +41,7 @@ class Casa {
 		//Nesse caso há uma peça inimiga habitando a casa
 		else {
 			Peca pecaInimiga = pecasDentro.peek();
-			if (tipo == TipoCasa.abrigo || (tipo == TipoCasa.partida && pecaInimiga.getCor() == cor)){
+			if (tipo == TipoCasa.abrigo || (tipo == TipoCasa.saida && pecaInimiga.getCor() == cor)){
 				//Não comeu a peça e está na casa com o inimigo
 				pecasDentro.add(peca);
 			}
@@ -66,8 +66,8 @@ class Casa {
 		return false;
 	}
 	/* Fazer esse método para usar */
-	public boolean isCasaPartida(Cor c){
-		if ((tipo == TipoCasa.partida) && (cor == c)){
+	public boolean isCasaSaida(Cor c){
+		if ((tipo == TipoCasa.saida) && (cor == c)){
 			return true;
 		}
 		else {

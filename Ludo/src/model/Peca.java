@@ -28,7 +28,7 @@ class Peca {
 				return false;
 				
 			}
-			casa = t.getCasaPartida(this.getCor());
+			casa = t.getCasaSaida(this.getCor());
 		}
 
 		/* Vai iterando e olhando casa por casa */
@@ -58,10 +58,10 @@ class Peca {
 		int destinationIndex;
 		Casa casa = t.getCasa(position);
 
-		if ((!this.retaFinal) && (podeMover(t, nCasas))){
+		if ((!this.retaFinal)){
 			
 			if (position == -1){
-				position = t.getPosicaoPartida(this.getCor());
+				position = t.getPosicaoSaida(this.getCor());
 				casa = t.getCasa(position);
 				return;
 			}
@@ -87,11 +87,9 @@ class Peca {
 					casa.parouCasa(this);
 				}
 			}
-
-			
 		}
 
-		if(retaFinal){
+		if(this.retaFinal){
 			
 			destinationIndex = (position + nCasas);
 

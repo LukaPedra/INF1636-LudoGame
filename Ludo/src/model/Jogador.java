@@ -3,33 +3,43 @@ package model;
 import java.util.Vector;
 
 class Jogador {
-    private final Cor cor;
+    private Cor cor;
+    private int posIni;
+    private Casa casaIni;
     private Vector<Peca> pecas = new Vector<Peca>();
     private Peca lastPeca;
+    private boolean playing;
     private int seis;
     
     
-    public Jogador(Tabuleiro t, Cor cor) {
-        this.cor = cor;
-        InicializaPeca(t);
-        seis = 0;
+    public Jogador(Tabuleiro t, Cor c) {
+        this.cor = c;
+        this.posIni = t.getPosicaoSaida(c);
+        this.casaIni = t.getCasaSaida(c);
+        this.pecas = inicializaPecas(t);
+        this.playing = false;
+        this.seis = 0;
     }
 
-    private void InicializaPeca(Tabuleiro t){ // Colocar as peças no vetor de peças do jogador
+    private Vector<Peca> inicializaPecas(Tabuleiro t){ // Colocar as peças no vetor de peças do jogador
         int size = 4;
-        Peca peca;
+        Vector<Peca> pcs = new Vector<Peca>();
+        Peca pc;
         for (int i = 0; i < size; i++) {
-            peca = new Peca(this);
-            pecas.add(peca);
+            pc = new Peca(this);
+            pcs.add(pc);
         }
         
-        pecas.get(0).setPosition(t.getPosicaoPartida(cor));
-        t.getCasa(t.getPosicaoPartida(cor)).parouCasa(pecas.get(0));
+        pcs.get(0).setPosition(this.posIni);
+        this.casaIni.parouCasa(pcs.get(0));
+
+        return pcs;
     }
 
-    public boolean podeJogar(){
+    public boolean podeJogar(Tabuleiro t){
 		if (seis == 3){
 			seis = 0;
+            t.getCasa(lastPeca.getPosition()).saiuCasa(lastPeca);
 			return false;
 		}
 		return true;
@@ -45,7 +55,7 @@ class Jogador {
     public Vector<Peca> pecasDisponiveis(Tabuleiro t, int nCasas){
         Vector<Peca> pecasDisponiveis = new Vector<Peca>();
         
-        if (podeJogar()){
+        if (podeJogar(t)){
             for (Peca peca : pecas){
                 if (peca.podeMover(t, nCasas)){
                     pecasDisponiveis.add(peca);
@@ -80,12 +90,24 @@ class Jogador {
         return cor;
     }
 
+    public int getPosIni(){
+        return posIni;
+    }
+
     public void setLastPeca(Peca p){
         this.lastPeca = p;
     }
 
-    public Peca getLastPeca(Peca p){
+    public Peca getLastPeca(){
         return lastPeca;
+    }
+
+    public void setPlaying(){
+        this.playing = true;
+    }
+    
+    public boolean getPlaying(){
+        return playing;
     }
 }
 

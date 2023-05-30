@@ -33,7 +33,7 @@ class Tabuleiro {
 			} else if (i % parte == 11) { // IF do ABRIGO
 				casa.setTipo(TipoCasa.abrigo);
 			} else if (i % parte == 2) { // IF da PARTIDA
-				casa.setTipo(TipoCasa.partida);
+				casa.setTipo(TipoCasa.saida);
 				switch (i){
 					case 2:
 						casa.setCor(Cor.azul);
@@ -71,7 +71,7 @@ class Tabuleiro {
 	
 	
 	
-	public int getPosicaoPartida(Cor c) {
+	public int getPosicaoSaida(Cor c) {
 		if (c == Cor.azul) {
 			return 2;
 		} else if (c == Cor.vermelho) {
@@ -83,8 +83,8 @@ class Tabuleiro {
 		}
 	}
 
-	public Casa getCasaPartida(Cor c) {
-		return this.getCasa(this.getPosicaoPartida(c));
+	public Casa getCasaSaida(Cor c) {
+		return this.getCasa(this.getPosicaoSaida(c));
 	}
 
 	public Casa getCasa(int i) {

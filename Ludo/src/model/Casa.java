@@ -35,23 +35,27 @@ class Casa {
 			pecasDentro.add(peca);
 		}
 		//Adiciona uma peça da mesma cor a uma casa
-		else if (pecasDentro.peek().getCor() == peca.getCor()){
-			pecasDentro.add(peca);
-		}
-		//Nesse caso há uma peça inimiga habitando a casa
-		else {
-			Peca pecaInimiga = pecasDentro.peek();
-			if (tipo == TipoCasa.abrigo || (tipo == TipoCasa.saida && pecaInimiga.getCor() == cor)){
-				//Não comeu a peça e está na casa com o inimigo
+		else{
+			if (pecasDentro.peek().getCor() == peca.getCor()){
 				pecasDentro.add(peca);
 			}
-			else {
-				//Comeu a Peça
 
-				pecasDentro.remove().backToStart();
-				pecasDentro.add(peca);
+			else {
+				Peca pecaInimiga = pecasDentro.peek();
+				if (tipo == TipoCasa.abrigo || (tipo == TipoCasa.saida && pecaInimiga.getCor() == cor)){
+					//Não comeu a peça e está na casa com o inimigo
+					pecasDentro.add(peca);
+				}
+				else {
+					//Comeu a Peça
+	
+					pecasDentro.remove().backToStart();
+					pecasDentro.add(peca);
+				}
 			}
-		}
+		}	
+		//Nesse caso há uma peça inimiga habitando a casa
+		
 	}
 	
 	public boolean isBarreira(){

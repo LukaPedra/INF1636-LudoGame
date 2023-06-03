@@ -14,9 +14,9 @@
 - [ ] Se tiver um peão seu na casa de saída, não pode sair com outro para não formar uma barreira, pois é proibido
 
 ### Casa:
-- [ ] Barreira: Dois peões de uma mesma cor podem estar numa casa comum *Parcial*
-- [ ] Abrigo: Dois peões de cores distintas podem estar numa casa de abrigo *Parcial*
-- [ ] Partida: Dois peões de cores distintas podem estar numa casa de saída, desde que um deles seja da cor da casa
+- [x] Barreira: Dois peões de uma mesma cor podem estar numa casa comum *Testar*
+- [x] Abrigo: Dois peões de cores distintas podem estar numa casa de abrigo *Testar*
+- [x] Partida: Dois peões de cores distintas podem estar numa casa de saída, desde que um deles seja da cor da casa *Testar*
 - [x] Somar a distância de cada a peça dos jogadores ao final para saber a colocação do resto
 
 ### Peça:

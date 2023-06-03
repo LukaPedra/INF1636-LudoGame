@@ -8,8 +8,8 @@ import org.junit.Test;
 
 public class TestCasa {
 	Tabuleiro tabuleiro = new Tabuleiro();
-	Jogador jogadorVerde = new Jogador(Cor.verde, tabuleiro);
-	Jogador jogadorAzul = new Jogador(Cor.azul);
+	Jogador jogadorVerde = new Jogador(tabuleiro, Cor.verde);
+	Jogador jogadorAzul = new Jogador(tabuleiro,Cor.azul);
 	
 	@Test
 	public void casoPodeParar() {
@@ -32,9 +32,9 @@ public class TestCasa {
 		assertFalse(casa.podeParar(peca2));
 		casa.saiuCasa(peca2);
 		
-		casa.setTipo(TipoCasa.partida);
+		casa.setTipo(TipoCasa.saida);
 		
-		Casa casaPartida = new Casa(TipoCasa.partida, Cor.verde);
+		Casa casaPartida = new Casa(TipoCasa.saida, Cor.verde);
 		casaPartida.parouCasa(peca1);
 		
 		assertFalse(casa.podeParar(peca11));
@@ -68,7 +68,7 @@ public class TestCasa {
 	@Test
 	public void TesteCasaFinal() {
 		Casa casaFinal = new Casa(TipoCasa.casafinal, Cor.verde);
-		assertTrue(casaFinal.isCasaFinal(jogadorVerde));
+		assertTrue(casaFinal.isCasaFinal(jogadorVerde.getCor()));
 	}
 	@Test
 	public void TesteConstrutor() {

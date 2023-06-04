@@ -11,16 +11,17 @@
 - [ ] Se comer uma peça inimiga, avançar qualquer peça do jogador em 6
 - [ ] Se chegar na casa final, avançar qualquer peça em 6
 - [x] Se tirar 5, o jogador pode escolher um peão para sair da casa *Testar*
-- [ ] Se tiver um peão seu na casa de saída, não pode sair com outro para não formar uma barreira, pois é proibido
+- [x] Somar a distância de cada a peça dos jogadores ao final para saber a colocação do resto *PARCIAL*
+
 
 ### Casa:
 - [x] Barreira: Dois peões de uma mesma cor podem estar numa casa comum *Testar*
 - [x] Abrigo: Dois peões de cores distintas podem estar numa casa de abrigo *Testar*
 - [x] Partida: Dois peões de cores distintas podem estar numa casa de saída, desde que um deles seja da cor da casa *Testar*
-- [x] Somar a distância de cada a peça dos jogadores ao final para saber a colocação do resto
+- [x] Se tiver um peão seu na casa de saída, não pode sair com outro para não formar uma barreira, pois é proibido *Testar*
 
 ### Peça:
-- [x] Se o dado é 5 ativar a Regra de saída (quando o dado for 5 pode tirar uma peça da casa inicial, Aquele hub de cada cor)
-- [x] Se o jogador tirar um número igual a quantidade de casas restantes para o final, ele termina o jogo 
-- [x] Peça não pode passar por uma barreira
-- [ ] Se uma peça cair em uma casa comum ou casa inicial e encontrar uma peça de outra cor, a peça inimiga volta para casa inicial *PARCIAL*
+- [x] Se o dado é 5 ativar a Regra de saída (quando o dado for 5 pode tirar uma peça da casa inicial, Aquele hub de cada cor) *Testar*
+- [x] Se o jogador tirar um número igual a quantidade de casas restantes para o final, ele termina o jogo *Testar*
+- [x] Peça não pode passar por uma barreira *Testar*
+- [x] Se uma peça cair em uma casa comum ou casa inicial e encontrar uma peça de outra cor, a peça inimiga volta para casa inicial *Testar*

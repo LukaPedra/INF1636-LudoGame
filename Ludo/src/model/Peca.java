@@ -4,21 +4,34 @@ class Peca {
 	private int position; //-1 é posição inicial
 	private Cor cor;
 	private boolean retaFinal;
-	private boolean chegou;
+	private boolean winner;
 
 	public Peca(Jogador j){
 		this.position = -1;
 		this.cor = j.getCor();
 		this.retaFinal = false;
-		this.chegou = false;
+		this.winner = false;
 	}
+
+	public void setPosition(int posicao){
+		position = posicao;
+	}
+
+	public int getPosition(){
+		return position;
+	}
+
+	public Cor getCor(){
+		return cor;
+	}
+
 	public boolean podeMover(Tabuleiro t, int nCasas){
-		int startPoint = this.getPosition(); 				/* Posição onde a peça inicia a tentativa de movimentação */
+		int startPoint = this.position; 				/* Posição onde a peça inicia a tentativa de movimentação */
 		int destinationIndex;								/* Posição onde a peça quer chegar */
-		Casa casa = t.getCasa(startPoint);					/* Casa onde a peça está */
+		Casa casa = t.getCasaSaida(this.cor);				/* Casa onde a peça está */
 
 		/* Está na casa final */
-		if (this.chegou){
+		if (this.winner){
 			return false;
 		}
 		
@@ -26,9 +39,7 @@ class Peca {
 		if (startPoint == -1){
 			if (nCasas != 5){ 
 				return false;
-				
 			}
-			casa = t.getCasaSaida(this.getCor());
 		}
 
 		/* Vai iterando e olhando casa por casa */
@@ -54,11 +65,11 @@ class Peca {
 	}
 	
 	public void moverPeca(Tabuleiro t, int nCasas){
-
 		int destinationIndex;
-		Casa casa = t.getCasa(position);
+		
 
-		if ((!this.retaFinal)){
+		if (!this.retaFinal){
+			Casa casa;
 			
 			if (position == -1){
 				position = t.getPosicaoSaida(this.getCor());
@@ -70,22 +81,26 @@ class Peca {
 				t.getCasa(position).saiuCasa(this);
 				destinationIndex = (position + nCasas) % 52;
 
+				casa = t.getCasa(position); //casa atual
+
 				while (position != destinationIndex){
-					position = (position + 1) % 52;
-					nCasas--;
-	
-					casa = t.getCasa(position);
 					
-					if ((casa.isCasaFinal(this.getCor())) && (nCasas > 0)){ 
+					
+					if (casa.isCasaFinal(this.cor)){ /* Se for casa final e ainda tiver coisa pra andar*/
 						this.retaFinal = true;
-						position = 0;
+						position = nCasas;
+
 						break;
 					}
-				}
 
-				if (!this.retaFinal){
-					casa.parouCasa(this);
-				}
+					position = (position + 1) % 52; // soma um na posição da peça
+					casa = t.getCasa(position); // próxima casa
+					nCasas--; // diminui 1 da quantidade de casa para andar
+				}	
+			}
+
+			if (!this.retaFinal){ /* Se não estiver na reta final, para na casa anterior a ela */
+				casa.parouCasa(this);
 			}
 		}
 
@@ -93,52 +108,29 @@ class Peca {
 			
 			destinationIndex = (position + nCasas);
 
-			if (nCasas <= 5 - position){
-				while (position != destinationIndex){
-					position = position + 1;
-					nCasas--;
-					
-					if (position == 5){
-						this.chegou = true;
-						break;
-					}
-				}
+			if (destinationIndex == 6){
+				this.winner = true;
 			}
 		}
 	}
 
-	public void setPosition(int posicao){
-		position = posicao;
-	}
-
-	public int getPosition(){
-		return position;
-	}
-
-	public Cor getCor(){
-		return cor;
-	}
-
 	//função que retorna quantas casas faltam para chegar no final
-	public int casaFaltando() {
-		int casaQueComeca;
-		if (this.getCor() == Cor.azul) {
-			casaQueComeca = 2;
-		}
-		else if (this.getCor() == Cor.vermelho) {
-			casaQueComeca = 15;
-		}
-		else if (this.getCor() == Cor.verde) {
-			casaQueComeca = 28;
-		}
-		else {
-			casaQueComeca = 41;
-		}
+	public int casasFaltando(Tabuleiro t) { // Melhorar para não precisar receber o tabuleiro
+		int casaQueComeca = t.getPosicaoSaida(this.cor);
+		int casasFaltando;
+
 		int casasPercorridas = (position - casaQueComeca);
-		if (casasPercorridas < 0) {
-			casasPercorridas = 52 - casaQueComeca + position;
+
+		if (!this.retaFinal){
+			if (casasPercorridas < 0) {
+				casasPercorridas = 52 - casaQueComeca + position;
+			}
+			casasFaltando = 52 - casasPercorridas - 2;
 		}
-		int casasFaltando = 52 - casasPercorridas - 2;
+
+		else{
+			casasFaltando = 6 - position;
+		}
 		
 		return casasFaltando;
 	}
@@ -148,6 +140,6 @@ class Peca {
 	}
 
 	public boolean isWinner(){
-		return this.chegou;
+		return this.winner;
 	}
 }

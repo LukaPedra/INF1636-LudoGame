@@ -14,7 +14,7 @@ class Tabuleiro {
 		for (int i = 0; i < size; i++) {
 			Casa casa = new Casa();
 
-			if (i % parte == 0) { // IF da RETA FINAL
+			if (i % parte == 0) { // Casa Final
 				casa.setTipo(TipoCasa.casafinal);
 				switch (i){
 					case 0:
@@ -30,9 +30,13 @@ class Tabuleiro {
 						casa.setCor(Cor.amarelo);
 						break;
 				}
-			} else if (i % parte == 11) { // IF do ABRIGO
+			}
+			
+			else if (i % parte == 11) { // Abrigo
 				casa.setTipo(TipoCasa.abrigo);
-			} else if (i % parte == 2) { // IF da PARTIDA
+			} 
+			
+			else if (i % parte == 2) { // Casa de Saída
 				casa.setTipo(TipoCasa.saida);
 				switch (i){
 					case 2:
@@ -54,22 +58,9 @@ class Tabuleiro {
 		}
 	}
 	
-	//Como as retas finais também são "Tabuleiros" crio um vetor de 6 espaços
-	//e pinto ela com a cor dada no parâmetro
-	public Tabuleiro(Cor c) {
-		int size = 6;
-		tabuleiro = new Vector<Casa>(size);
-		for (int i = 0; i < size; i++) {
-			Casa casa = new Casa(TipoCasa.retaFinal, c);
-			tabuleiro.add(casa);
-        }
-	}
-
 	public Vector<Casa> getTabuleiro(){
 		return tabuleiro;
 	}
-	
-	
 	
 	public int getPosicaoSaida(Cor c) {
 		if (c == Cor.azul) {
@@ -90,15 +81,4 @@ class Tabuleiro {
 	public Casa getCasa(int i) {
 		return this.tabuleiro.get(i);
 	}
-
-	/* 
-	public void quadradoInicial(Cor c) {
-		int size = 4;
-		tabuleiro = new Vector<Casa>(size);
-		System.out.println(tabuleiro.size());
-		for (int i = 0; i < size; i++) {
-			Casa casa = new Casa(TipoCasa.inicial, c);
-			tabuleiro.add(casa);
-        }
-	}*/
 }

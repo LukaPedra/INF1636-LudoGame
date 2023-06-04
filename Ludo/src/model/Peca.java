@@ -5,12 +5,14 @@ class Peca {
 	private Cor cor;
 	private boolean retaFinal;
 	private boolean winner;
+	private int iCasaInicial;
 
 	public Peca(Jogador j){
 		this.position = -1;
 		this.cor = j.getCor();
 		this.retaFinal = false;
 		this.winner = false;
+		this.iCasaInicial = j.getPosIni();
 	}
 
 	public void setPosition(int posicao){
@@ -115,17 +117,16 @@ class Peca {
 	}
 
 	//função que retorna quantas casas faltam para chegar no final
-	public int casasFaltando(Tabuleiro t) { // Melhorar para não precisar receber o tabuleiro
-		int casaQueComeca = t.getPosicaoSaida(this.cor);
+	public int casasFaltando() { // Melhorar para não precisar receber o tabuleiro
 		int casasFaltando;
 
-		int casasPercorridas = (position - casaQueComeca);
+		int casasPercorridas = (position - iCasaInicial);
 
 		if (!this.retaFinal){
 			if (casasPercorridas < 0) {
-				casasPercorridas = 52 - casaQueComeca + position;
+				casasPercorridas = 52 - iCasaInicial + position;
 			}
-			casasFaltando = 52 - casasPercorridas - 2;
+			casasFaltando = 52 - casasPercorridas - 2 + 6;
 		}
 
 		else{

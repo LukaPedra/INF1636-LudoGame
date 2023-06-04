@@ -4,20 +4,21 @@ import java.util.Vector;
 
 class Jogador {
     private Cor cor;
-    private Vector<Peca> pecas = new Vector<Peca>();
-    // private boolean playing;
     private int posIni;
     private Casa casaIni;
+    private Vector<Peca> pecas = new Vector<Peca>();
     private Peca lastPeca;
+    // private boolean playing;
     private int seis;
     
     
     public Jogador(Tabuleiro t, Cor c) {
         this.cor = c;
-        this.pecas = inicializaPecas(t);
-        // this.playing = false;
         this.posIni = t.getPosicaoSaida(c);
         this.casaIni = t.getCasaSaida(c);
+        this.pecas = inicializaPecas(t);
+        this.lastPeca = this.getPeca(0);
+        // this.playing = false;
         this.seis = 0;
     }
 

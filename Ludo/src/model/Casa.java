@@ -10,6 +10,11 @@ class Casa {
 	public Casa() {
 		this.tipo = TipoCasa.comum;
 	}
+	//Para usar no teste
+	public Casa(TipoCasa tipo, Cor cor) {
+		this.tipo = tipo;
+		this.cor = cor;
+	}
 
 	public void setTipo(TipoCasa tipo) {
 		this.tipo = tipo;

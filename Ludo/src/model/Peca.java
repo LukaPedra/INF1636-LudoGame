@@ -146,4 +146,8 @@ class Peca {
 	public void backToStart(){
 		position = -1;
 	}
+
+	public boolean isWinner(){
+		return this.chegou;
+	}
 }

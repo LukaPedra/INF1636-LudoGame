@@ -49,7 +49,9 @@ class Jogador {
         Peca currentP = this.getPeca(i);
         currentP.moverPeca(t, nCasas);
         this.setLastPeca(currentP);
-        
+        if (isWinner()){
+           //Função para encerrar o jogo
+        }
     }
 
     public Vector<Peca> pecasDisponiveis(Tabuleiro t, int nCasas){
@@ -108,6 +110,17 @@ class Jogador {
     
     public boolean getPlaying(){
         return playing;
+    }
+
+    //Checa se todos as peças do jogador estão na casa final
+
+    public boolean isWinner(){
+        for (Peca peca : pecas){
+            if (!peca.isWinner()){
+                return false;
+            }
+        }
+        return true;
     }
 }
 

@@ -8,9 +8,6 @@ class Dado {
 	
 	public int rolar(Jogador j) {
 		resultado = random.nextInt(6) + 1;
-		if (resultado == 6){
-			j.addSeis();
-		}
 		return resultado;
 	}
 	

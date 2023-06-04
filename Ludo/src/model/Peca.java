@@ -3,16 +3,16 @@ package model;
 class Peca {
 	private int position; //-1 é posição inicial
 	private Cor cor;
+	private int posInicial;
 	private boolean retaFinal;
 	private boolean winner;
-	private int iCasaInicial;
 
 	public Peca(Jogador j){
 		this.position = -1;
 		this.cor = j.getCor();
+		this.posInicial = j.getPosInicial();
 		this.retaFinal = false;
 		this.winner = false;
-		this.iCasaInicial = j.getPosIni();
 	}
 
 	public void setPosition(int posicao){
@@ -120,11 +120,11 @@ class Peca {
 	public int casasFaltando() { // Melhorar para não precisar receber o tabuleiro
 		int casasFaltando;
 
-		int casasPercorridas = (position - iCasaInicial);
+		int casasPercorridas = (position - this.posInicial);
 
 		if (!this.retaFinal){
 			if (casasPercorridas < 0) {
-				casasPercorridas = 52 - iCasaInicial + position;
+				casasPercorridas = 52 - this.posInicial + position;
 			}
 			casasFaltando = 52 - casasPercorridas - 2 + 6;
 		}

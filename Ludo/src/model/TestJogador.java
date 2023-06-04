@@ -43,7 +43,7 @@ public class TestJogador {
 	public void TesteCasasFaltando() {
 		Tabuleiro tabuleiro = new Tabuleiro();
 		Jogador jogadorAmarelo = new Jogador(tabuleiro, Cor.amarelo);
-		assertTrue(jogadorAmarelo.getPeca(0).getPosition()==jogadorAmarelo.getPosIni());
+		assertTrue(jogadorAmarelo.getPeca(0).getPosition()==jogadorAmarelo.getPosInicial());
 		jogadorAmarelo.moverPeca(tabuleiro,0,2);
 		
 		assertTrue(jogadorAmarelo.getPeca(0).casasFaltando() == 48+6);

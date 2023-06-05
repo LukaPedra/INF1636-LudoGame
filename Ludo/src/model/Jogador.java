@@ -40,25 +40,23 @@ class Jogador {
     public boolean podeJogar(Tabuleiro t, int nCasas){
         /* Se tirar 6 no dado */
         if (nCasas == 6){ 
-            this.addSeis();
+            this.seis += 1;
 
             /* Se já tirou 6 3 vezes */
             if (this.seis == 3){
                 t.getCasa(lastPeca.getPosition()).saiuCasa(lastPeca); // Mudar para voltar para casa inicial
                 lastPeca.backToStart();
-                
-                this.playing = false;
+
+                this.seis = 0;
+
+                return false;
             }
         }
 
         /* Se não puder jogar com nenhuma peça */
         if (pecasDisponiveis(t, nCasas).size() == 0){
-            this.playing = false;
-        }
-
-        if (!this.playing){
-            this.playing = true;
             this.seis = 0;
+
             return false;
         }
 
@@ -68,9 +66,25 @@ class Jogador {
     public void moverPeca(Tabuleiro t, int i, int nCasas){
         Peca currentP = this.getPeca(i);
         currentP.moverPeca(t, nCasas);
-        this.setLastPeca(currentP);
-        this.playing = false;
+        this.lastPeca = currentP;
+
+        if (nCasas == 6){
+            this.playing = true;
+
+        }
+        else{
+            this.playing = false;
+        }
+    }
+
+    public boolean stillPlaying(){
+        if (!this.playing){
+            this.seis = 0;
+            this.playing = true;
+            return false;
+        }
         
+        return true;
     }
 
     public Vector<Peca> pecasDisponiveis(Tabuleiro t, int nCasas){
@@ -91,10 +105,6 @@ class Jogador {
             soma =+ peca.casasFaltando();
         }
         return soma;
-    }
-
-    public void addSeis(){
-        this.seis += 1;
     }
 
     public Peca getPeca(int i){

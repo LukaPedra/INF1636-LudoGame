@@ -18,7 +18,7 @@ class Jogador {
         this.casaIni = t.getCasaSaida(c);
         this.pecas = inicializaPecas(t);
         this.lastPeca = this.getPeca(0);
-        // this.playing = false;
+        this.playing = true;
         this.seis = 0;
     }
 
@@ -44,20 +44,21 @@ class Jogador {
 
             /* Se já tirou 6 3 vezes */
             if (this.seis == 3){
-                this.seis = 0;
                 t.getCasa(lastPeca.getPosition()).saiuCasa(lastPeca); // Mudar para voltar para casa inicial
                 lastPeca.backToStart();
-                return false;
+                
+                this.playing = false;
             }
         }
 
         /* Se não puder jogar com nenhuma peça */
         if (pecasDisponiveis(t, nCasas).size() == 0){
-            return false;
+            this.playing = false;
         }
 
         if (!this.playing){
             this.playing = true;
+            this.seis = 0;
             return false;
         }
 

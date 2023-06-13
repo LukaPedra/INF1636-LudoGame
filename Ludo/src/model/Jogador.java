@@ -8,7 +8,6 @@ class Jogador {
     private Casa casaIni;
     private Vector<Peca> pecas = new Vector<Peca>();
     private Peca lastPeca;
-    private boolean playing;
     private int seis;
     
     
@@ -18,7 +17,6 @@ class Jogador {
         this.casaIni = t.getCasaSaida(c);
         this.pecas = inicializaPecas(t);
         this.lastPeca = this.getPeca(0);
-        this.playing = true;
         this.seis = 0;
     }
 
@@ -67,24 +65,6 @@ class Jogador {
         Peca currentP = this.getPeca(i);
         currentP.moverPeca(t, nCasas);
         this.lastPeca = currentP;
-
-        if (nCasas == 6){
-            this.playing = true;
-
-        }
-        else{
-            this.playing = false;
-        }
-    }
-
-    public boolean stillPlaying(){
-        if (!this.playing){
-            this.seis = 0;
-            this.playing = true;
-            return false;
-        }
-        
-        return true;
     }
 
     public Vector<Peca> pecasDisponiveis(Tabuleiro t, int nCasas){
@@ -122,15 +102,7 @@ class Jogador {
     public int getPosInicial(){
         return posIni;
     }
-
-    public void setPlaying(){
-        this.playing = true;
-    }
     
-    public boolean getPlaying(){
-        return playing;
-    }
-
     public void setLastPeca(Peca p){
         this.lastPeca = p;
     }

@@ -7,11 +7,15 @@ class Dado {
     private int resultado;
 	
 	public int rolar() {
-		resultado = random.nextInt(6) + 1;
-		return resultado;
+		this.resultado = random.nextInt(6) + 1;
+		return this.resultado;
 	}
 	
+	public void setResultado(int n) {
+		this.resultado = n;
+	}
+
 	public int getResultado() {
-		return resultado;
+		return this.resultado;
 	}
 }

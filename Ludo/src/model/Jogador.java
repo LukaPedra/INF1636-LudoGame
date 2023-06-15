@@ -79,6 +79,7 @@ class Jogador {
         return pecasDisponiveis;
     }
 
+
     public int somaEspacosAteFinal(int i){
         int soma = 0;
         for (Peca peca : pecas){
@@ -86,7 +87,14 @@ class Jogador {
         }
         return soma;
     }
-
+    public int[] getPosicoes(){
+        int[] posicoes = new int[4];
+        for (int i = 0; i < 4; i++){
+            posicoes[i] = pecas.get(i).getPosition();
+        }
+        return posicoes;
+    }
+     
     public Peca getPeca(int i){
         return pecas.get(i);
     }

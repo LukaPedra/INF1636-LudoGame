@@ -2,13 +2,19 @@ package view;
 import javax.swing.*;
 import java.awt.*;
 import controller.MouseListener;
-public class GameScene extends JFrame{
+import controller.TabuleiroObservador;
+public class GameScene extends JFrame implements TabuleiroObservador{
 	public final int xScreen = 867;
     public final int yScreen = 656;
     private TabulerioPanel tabulerioPanel;
+    private TabuleiroObservador observer;
     private Menu gameMenu;
 
-    public GameScene() {
+    public GameScene(){
+        this.observer = this;
+        gerarPainelTabuleiro();
+    }
+    public void gerarPainelTabuleiro() {
         this.gameMenu = new Menu();
         this.tabulerioPanel = new TabulerioPanel();
         tabulerioPanel.addMouseListener(new MouseListener());
@@ -37,6 +43,15 @@ public class GameScene extends JFrame{
     public void redraw(){
         repaint();
     }
+    public TabuleiroObservador getObserver(){
+        return this.observer;
+    }
+    @Override
+    public void notify() {
+        // TODO Auto-generated method stub
+        this.redraw();
+    }
+    
 
     public static void main(String[] args) {
         GameScene frame = new GameScene();
@@ -44,4 +59,5 @@ public class GameScene extends JFrame{
             frame.redraw();
         }
     }
+    
 }

@@ -87,7 +87,15 @@ class Jogador {
         }
         return soma;
     }
-    
+    public int getNumPecasSpawn(){
+        int num = 0;
+        for (Peca peca : pecas){
+            if (peca.getPosition() == -1){
+                num++;
+            }
+        }
+        return num;
+    }
     public int[] getPosicoes(){
         int[] posicoes = new int[4];
         for (int i = 0; i < 4; i++){

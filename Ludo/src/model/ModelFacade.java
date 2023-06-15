@@ -1,8 +1,10 @@
 package model;
+import controller.*;
 
 public class ModelFacade {
 	private static ModelFacade instance;
 	private Tabuleiro game;
+
 	
 	private ModelFacade() {
 		instance = this;
@@ -14,7 +16,9 @@ public class ModelFacade {
 		}
 		return instance;
 	}
-	
+	/*public void register(TabuleiroObservador observer) {
+		game.addObserver(observer);
+	}*/
 	public Tabuleiro getGame() {
 		return this.game;
 	}

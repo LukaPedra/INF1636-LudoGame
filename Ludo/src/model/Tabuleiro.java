@@ -14,46 +14,46 @@ class Tabuleiro {
 		for (int i = 0; i < size; i++) {
 			Casa casa = new Casa();
 
-			if (i % parte == 0) { // Casa Final
-				casa.setTipo(TipoCasa.casafinal);
-				switch (i){
-					case 0:
-						casa.setCor(Cor.azul);
-						break;
-					case 13:
-						casa.setCor(Cor.vermelho);
-						break;
-					case 26:
-						casa.setCor(Cor.verde);
-						break;
-					case 39:
-						casa.setCor(Cor.amarelo);
-						break;
-				}
-			}
-			
-			else if (i % parte == 11) { // Abrigo
-				casa.setTipo(TipoCasa.abrigo);
-			} 
-			
-			else if (i % parte == 2) { // Casa de Saída
+			if (i % parte == 0) { // Casa de Saída
 				casa.setTipo(TipoCasa.saida);
 				switch (i){
-					case 2:
-						casa.setCor(Cor.azul);
+					case 0:
+						casa.setCor(Cor.VERDE);
 						break;
-					case 15:
-						casa.setCor(Cor.vermelho);
+					case 13:
+						casa.setCor(Cor.AMARELO);
 						break;
-					case 28:
-						casa.setCor(Cor.verde);
+					case 26:
+						casa.setCor(Cor.AZUL);
 						break;
-					case 41:
-						casa.setCor(Cor.amarelo);
+					case 39:
+						casa.setCor(Cor.VERMELHO);
 						break;
 				}
 			}
 
+			else if (i % parte == 9) { // Abrigo
+				casa.setTipo(TipoCasa.abrigo);
+			} 
+
+			else if (i % parte == 11) { // Casa Final
+				casa.setTipo(TipoCasa.casafinal);
+				switch (i){
+					case 11:
+						casa.setCor(Cor.AMARELO);
+						break;
+					case 24:
+						casa.setCor(Cor.AZUL);
+						break;
+					case 37:
+						casa.setCor(Cor.VERMELHO);
+						break;
+					case 50:
+						casa.setCor(Cor.VERDE);
+						break;
+				}
+			}
+			
 			tabuleiro.add(casa);
 		}
 	}
@@ -63,14 +63,17 @@ class Tabuleiro {
 	}
 	
 	public int getPosicaoSaida(Cor c) {
-		if (c == Cor.azul) {
-			return 2;
-		} else if (c == Cor.vermelho) {
-			return 15;
-		} else if (c == Cor.verde) {
-			return 28;
-		} else { //Caso amarelo
-			return 41;
+		if (c == Cor.VERDE) {
+			return 0;
+		}
+		else if (c == Cor.AMARELO) {
+			return 13;
+		} 
+		else if (c == Cor.AZUL) {
+			return 26;
+		}
+		else { //Caso Vermelho
+			return 39;
 		}
 	}
 

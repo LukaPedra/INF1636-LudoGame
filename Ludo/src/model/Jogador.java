@@ -42,10 +42,10 @@ class Jogador {
 
             /* Se já tirou 6 3 vezes */
             if (this.seis == 3){
+                this.seis = 0;
+
                 t.getCasa(lastPeca.getPosition()).saiuCasa(lastPeca); // Mudar para voltar para casa inicial
                 lastPeca.backToStart();
-
-                this.seis = 0;
 
                 return false;
             }
@@ -57,14 +57,15 @@ class Jogador {
 
             return false;
         }
-
+        
+        this.seis = 0;
 		return true;
 	}
 
     public void moverPeca(Tabuleiro t, int i, int nCasas){
-        Peca currentP = this.getPeca(i);
-        currentP.moverPeca(t, nCasas);
-        this.lastPeca = currentP;
+        Peca currentPeca = this.getPeca(i);
+        currentPeca.moverPeca(t, nCasas);
+        this.lastPeca = currentPeca;
     }
 
     public Vector<Peca> pecasDisponiveis(Tabuleiro t, int nCasas){
@@ -79,7 +80,6 @@ class Jogador {
         return pecasDisponiveis;
     }
 
-
     public int somaEspacosAteFinal(int i){
         int soma = 0;
         for (Peca peca : pecas){
@@ -87,6 +87,7 @@ class Jogador {
         }
         return soma;
     }
+    
     public int[] getPosicoes(){
         int[] posicoes = new int[4];
         for (int i = 0; i < 4; i++){

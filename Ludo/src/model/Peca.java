@@ -70,7 +70,7 @@ class Peca {
 		int destinationIndex;
 		
 
-		if (!this.retaFinal){
+		if (position < 100){
 			Casa casa;
 			
 			if (position == -1){
@@ -90,7 +90,7 @@ class Peca {
 					
 					if (casa.isCasaFinal(this.cor)){ /* Se for casa final e ainda tiver coisa pra andar*/
 						this.retaFinal = true;
-						position = nCasas;
+						position = (this.cor.ordinal() + 1) * 100;
 
 						break;
 					}
@@ -101,16 +101,16 @@ class Peca {
 				}	
 			}
 
-			if (!this.retaFinal){ /* Se não estiver na reta final, para na casa anterior a ela */
+			if (position < 100){ /* Se não estiver na reta final, para na casa anterior a ela */
 				casa.parouCasa(this);
 			}
 		}
 
-		if(this.retaFinal){
+		if(position >= 100){
 			
-			destinationIndex = (position + nCasas);
+			destinationIndex = (position + nCasas) % ((this.cor.ordinal() + 1) * 100);
 
-			if (destinationIndex == 6){
+			if (destinationIndex == 5){
 				this.winner = true;
 			}
 		}
@@ -122,7 +122,7 @@ class Peca {
 
 		int casasPercorridas = (position - this.posInicial);
 
-		if (!this.retaFinal){
+		if (position < 100){
 			if (casasPercorridas < 0) {
 				casasPercorridas = 52 - this.posInicial + position;
 			}

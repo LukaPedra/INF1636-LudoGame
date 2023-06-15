@@ -5,26 +5,25 @@ import java.util.Queue;
 class Casa {
 	private TipoCasa tipo; 
 	private Cor cor; //Se for uma casa especial uma cor pode ser associada a ela
-	private Queue<Peca> pecasDentro = new LinkedList<>();
+	private LinkedList<Peca> pecasDentro = new LinkedList<>();
 	
 	public Casa() {
 		this.tipo = TipoCasa.comum;
 	}
-	//Para usar no teste
-	public Casa(TipoCasa tipo, Cor cor) {
-		this.tipo = tipo;
-		this.cor = cor;
+	public Casa(TipoCasa t, Cor c) {	//Para usar no teste
+		this.tipo = t;
+		this.cor = c;
 	}
 
-	public void setTipo(TipoCasa tipo) {
-		this.tipo = tipo;
+	public void setTipo(TipoCasa t) {
+		this.tipo = t;
 	}
 	public TipoCasa getTipo() {
 		return tipo;
 	}
 
-	public void setCor(Cor cor) {
-		this.cor = cor;
+	public void setCor(Cor c) {
+		this.cor = c;
 	}
 	public Cor getCor() {
 		return cor;
@@ -72,7 +71,8 @@ class Casa {
 				}
 				
 				else {
-					pecasDentro.remove().backToStart();
+					this.saiuCasa(pecaInimiga);
+					pecaInimiga.backToStart();
 					pecasDentro.add(peca);
 				}
 			}

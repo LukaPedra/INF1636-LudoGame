@@ -83,7 +83,7 @@ class Game{
 
 
 		if (move()){
-			if (currentP.isWinner()){
+			if (currentP.getPeca(0).getWinner()){ // MUDAR PARA TODAS AS PEÇAS DEPOIS
 					winner = currentP;
 					win = true;
 			}

@@ -5,6 +5,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 
+import model.ModelFacade;
+
 public class Menu {
 	private File file;
 	private JPanel menuPanel;
@@ -12,6 +14,8 @@ public class Menu {
 	private File lastFile;
 	private int dadoValue = 1;
 	private Color CorAtual = Color.BLUE;
+
+	private ModelFacade model = ModelFacade.getFacade();
 	
 
 	public Menu() {
@@ -51,9 +55,9 @@ public class Menu {
         dadoButton.setBounds(25, 450, 200, 50);
 
 		dadoButton.addActionListener(e -> {
-			dadoValue = (int) (Math.random() * 6 + 1);
-			fotoDado = DadoImage.getDiceImage(dadoValue);
-			System.out.println("Dado");
+			model.roll();
+			fotoDado = DadoImage.getDiceImage(model.getResultado());
+			System.out.println("Dado" + model.getResultado());
 		});
 		return dadoButton;
 	}

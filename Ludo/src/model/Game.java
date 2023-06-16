@@ -1,6 +1,6 @@
 package model;
 
-public class Game{
+class Game{
 	private Tabuleiro tabuleiro;
 	private Dado dado;
 	private Jogador jogadores[];
@@ -40,13 +40,21 @@ public class Game{
 		this.dado.rolar();
 	}
 
+	public void setResultado(int n){
+		this.dado.setResultado(n);
+	}
+
+	public int getResultado(){
+		return this.dado.getResultado();
+	}
+
 	public boolean move() {
 
-		if (currentP.podeJogar(tabuleiro, dado.getResultado())){
+		if (currentP.podeJogar(tabuleiro, this.getResultado())){
 			System.out.println("move peça");
-			currentP.moverPeca(tabuleiro, 0,dado.getResultado());
+			currentP.moverPeca(tabuleiro, 0,this.getResultado());
 
-			if (dado.getResultado() == 6){
+			if (this.getResultado() == 6){
 				currentP.addSeis();
 			}
 			
@@ -67,11 +75,12 @@ public class Game{
 	}
 
 	public void play(){
-		
-		System.out.println(dado.getResultado());
-
 		currentP = jogadores[turn];
 		System.out.println(currentP.getCor());
+		System.out.println("dado: " + this.getResultado());
+		System.out.println("Posicao peça 0 antes de mover: " + currentP.getLastPeca().getPosition());
+		System.out.println("Tirou 6: " + currentP.getSeis());
+
 
 		if (move()){
 			if (currentP.isWinner()){
@@ -79,6 +88,8 @@ public class Game{
 					win = true;
 			}
 		}
+		System.out.println("Posicao peça 0 depois de mover: " + currentP.getLastPeca().getPosition() + "\n");
+
 	}
 
 	public int[][] getEveryPosition(){
@@ -89,6 +100,10 @@ public class Game{
 		}
 
 		return p;
+	}
+
+	public boolean getWin(){
+		return this.win;
 	}
 
 	public static void main(String[] args) {
@@ -106,6 +121,6 @@ public class Game{
 				e.printStackTrace();
 			}
 
-		} while (true);
+		} while (!game.getWin());
 	}
 }

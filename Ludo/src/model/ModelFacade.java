@@ -23,6 +23,14 @@ public class ModelFacade {
 		game.roll();
 	}
 
+	public void setResultado(int n){
+		game.setResultado(n);
+	}
+
+	public int getResultado(){
+		return this.game.getResultado();
+	}
+
 	public void playGame(){
 		game.play();
 	}

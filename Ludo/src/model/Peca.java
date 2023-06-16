@@ -105,6 +105,7 @@ class Peca {
 			destinationIndex = (position + nCasas);
 
 			if (destinationIndex == 105){
+				position += nCasas;
 				this.winner = true;
 			}
 		}

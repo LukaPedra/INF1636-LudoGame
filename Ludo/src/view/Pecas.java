@@ -29,59 +29,7 @@ public class Pecas {
 					drawPecas(g2d, posicaoPecas[i], Color.RED);
 					break;
 			}
-		}
-
-		/* if(pecasSpawn[0] > 0) {
-			drawPeca(g2d, Color.GREEN, 330, 70);
-			
-			if(pecasSpawn[0] > 1) {
-				drawPeca(g2d, Color.GREEN, 510, 90);
-			}
-			if(pecasSpawn[0] > 2) {
-				drawPeca(g2d, Color.GREEN, 430, 170);
-			}
-			if(pecasSpawn[0] > 3) {
-				drawPeca(g2d, Color.GREEN, 510, 170);
-			}
-		}
-		if(pecasSpawn[1] > 0){
-			drawPeca(g2d, Color.YELLOW, 530, 350);
-			if(pecasSpawn[1] > 1) {
-				drawPeca(g2d, Color.YELLOW, 510, 450);
-			}
-			if(pecasSpawn[1] > 2) {
-				drawPeca(g2d, Color.YELLOW, 430, 530);
-			}
-			if(pecasSpawn[1] > 3) {
-				drawPeca(g2d, Color.YELLOW, 510, 530);
-			}
-		}
-		if(pecasSpawn[2] > 0){
-			drawPeca(g2d, Color.BLUE, 250, 550);
-			if(pecasSpawn[2] > 1) {
-				drawPeca(g2d, Color.BLUE, 150, 450);
-			}
-			if(pecasSpawn[2] > 2) {
-				drawPeca(g2d, Color.BLUE, 70, 530);
-			}
-			if(pecasSpawn[2] > 3) {
-				drawPeca(g2d, Color.BLUE, 150, 530);
-			}
-		}
-		if(pecasSpawn[3] > 0){
-			drawPeca(g2d, Color.RED, 50, 270);
-			if(pecasSpawn[3] > 1) {
-				drawPeca(g2d, Color.RED, 150, 90);
-			}
-			if(pecasSpawn[3] > 2) {
-				drawPeca(g2d, Color.RED, 70, 170);
-			}
-			if(pecasSpawn[3] > 3) {
-				drawPeca(g2d, Color.RED, 150, 170);
-			}
-		}
-		int [] pecasPos*/
-		
+		}	
 	}
 	
 	private void drawPecas(Graphics2D g2d, int[] pos, Color cor){
@@ -230,7 +178,7 @@ public class Pecas {
             coords.x = casaSize * 7;
             coords.y = casaSize * 8 - casaSize * (pos - 305);
         }
-		coords.y += 30;
+		coords.y += 30; 
 		coords.x += 10;
         return coords;
     }

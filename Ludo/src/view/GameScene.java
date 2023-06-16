@@ -47,7 +47,7 @@ public class GameScene extends JFrame implements TabuleiroObservador{
         return this.observer;
     }
     @Override
-    public void notify() {
+    public void update() {
         // TODO Auto-generated method stub
         this.redraw();
     }

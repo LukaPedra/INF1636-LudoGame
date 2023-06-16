@@ -8,8 +8,8 @@ public class TestJogador {
 	@Test
 	public void TestaInicializa() {
 		Tabuleiro tabuleiro = new Tabuleiro();
-		Jogador jogadorAzul = new Jogador(tabuleiro, Cor.azul);
-		Jogador jogadorAmarelo = new Jogador(tabuleiro, Cor.amarelo);
+		Jogador jogadorAzul = new Jogador(tabuleiro, Cor.AZUL);
+		Jogador jogadorAmarelo = new Jogador(tabuleiro, Cor.AMARELO);
 		assertTrue(jogadorAzul.getPeca(0).getPosition() == 2);
 		
 		boolean isAtPosition = true;
@@ -42,7 +42,7 @@ public class TestJogador {
 	@Test
 	public void TesteCasasFaltando() {
 		Tabuleiro tabuleiro = new Tabuleiro();
-		Jogador jogadorAmarelo = new Jogador(tabuleiro, Cor.amarelo);
+		Jogador jogadorAmarelo = new Jogador(tabuleiro, Cor.AMARELO);
 		assertTrue(jogadorAmarelo.getPeca(0).getPosition()==jogadorAmarelo.getPosInicial());
 		jogadorAmarelo.moverPeca(tabuleiro,0,2);
 		

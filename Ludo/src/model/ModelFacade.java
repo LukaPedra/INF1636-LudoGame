@@ -1,5 +1,4 @@
 package model;
-import controller.*;
 
 public class ModelFacade {
 	private static ModelFacade instance;

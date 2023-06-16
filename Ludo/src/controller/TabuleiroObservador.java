@@ -1,5 +1,5 @@
 package controller;
 
 public interface TabuleiroObservador {
-	public void notify();
+	public void update();
 }

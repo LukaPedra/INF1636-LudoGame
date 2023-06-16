@@ -27,15 +27,10 @@ public class ModelFacade {
 		game.play();
 	}
 
-	public int[] posicaoPecas(){
-        int posicaoPecas[] = new int[16];
-
-        for (int i = 0; i < 16; i++){
-            posicaoPecas[i] = game.getTabuleiro().getPawnsOnBoard()[i].getPosition();
-        }
-        return pawnsPosition;
+	public int[][] posicaoPecas(){
+		return game.getEveryPosition();
     }
-	
+
 	/*public void register(TabuleiroObservador observer) {
 		game.addObserver(observer);
 	}*/

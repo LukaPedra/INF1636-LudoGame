@@ -1,18 +1,22 @@
 package controller;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import model.ModelFacade;
 
 public class MouseListener extends MouseAdapter {
+    private ModelFacade modelFacade = ModelFacade.getFacade();
+    
 	int offset = 20; //Tabuleiro está um pouco para baixo 
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		int x = e.getX();
 		int y = e.getY();
 		y = y - offset;
-		System.out.println("Mouse Clicked at: ("+x+","+y+") na casa :"+getCasa(x,y));
+		System.out.println("Mouse Clicked at: ("+x+","+y+") na casa :"+getPosition(x,y));
+
 
 	}
-	int getCasa(int x, int y){
+	int getPosition(int x, int y){
 		
         if (x>=320 && x<=360 && y>=40 && y<= 240){
             return -1 + (y/40);

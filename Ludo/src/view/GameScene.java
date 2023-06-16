@@ -6,18 +6,18 @@ import controller.TabuleiroObservador;
 public class GameScene extends JFrame implements TabuleiroObservador{
 	public final int xScreen = 867;
     public final int yScreen = 656;
-    private TabulerioPanel tabulerioPanel;
+    private Tabuleiro tabuleiro;
     private TabuleiroObservador observer;
     private Menu gameMenu;
 
     public GameScene(){
         this.observer = this;
-        gerarPainelTabuleiro();
+        gerarPainel();
     }
-    public void gerarPainelTabuleiro() {
+    public void gerarPainel() {
         this.gameMenu = new Menu();
-        this.tabulerioPanel = new TabulerioPanel();
-        tabulerioPanel.addMouseListener(new MouseListener());
+        this.tabuleiro = new Tabuleiro();
+        tabuleiro.addMouseListener(new MouseListener());
         //tabulerioPanel.setPreferredSize(new Dimension(600, 600));
 
         setTitle("Ludo");
@@ -33,9 +33,9 @@ public class GameScene extends JFrame implements TabuleiroObservador{
 
         //JPanel boardPanel = boardBuilder.getBoardPanel();
         JPanel menuPanel = gameMenu.getMenuPanel();
-        contentPane.add(tabulerioPanel);
+        contentPane.add(tabuleiro);
         contentPane.add(menuPanel, BorderLayout.EAST);
-
+    
         setVisible(true);
         
     }
@@ -54,11 +54,11 @@ public class GameScene extends JFrame implements TabuleiroObservador{
     }
     
 
-    public static void main(String[] args) {
-        GameScene frame = new GameScene();
-        while(true){
-            frame.redraw();
-        }
-    }
+    // public static void main(String[] args) {
+    //     GameScene frame = new GameScene();
+    //     while(true){
+    //         frame.redraw();
+    //     }
+    // }
     
 }

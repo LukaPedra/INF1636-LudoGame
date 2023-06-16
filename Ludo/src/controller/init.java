@@ -6,7 +6,7 @@ public class init {
 		ModelFacade.getFacade();
 		ViewFacade.getFacade();
 
-		ModelFacade.addObserver(ViewFacade.getGameScene());
+		//ModelFacade.addObserver(ViewFacade.getGameScene());
 
 	}
 }

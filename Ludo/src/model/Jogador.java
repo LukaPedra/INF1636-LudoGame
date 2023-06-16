@@ -16,13 +16,13 @@ class Jogador {
         this.cor = c;
         this.posIni = t.getPosicaoSaida(c);
         this.casaIni = t.getCasaSaida(c);
-        this.pecas = inicializaPecas(t);
+        this.pecas = inicializaPecas();
         this.pecasDisp = new Vector<Peca>();
         this.lastPeca = this.getPeca(0);
         this.seis = 0;
     }
 
-    private Vector<Peca> inicializaPecas(Tabuleiro t){ // Colocar as peças no vetor de peças do jogador
+    private Vector<Peca> inicializaPecas(){ // Colocar as peças no vetor de peças do jogador
         int size = 4;
         Vector<Peca> pcs = new Vector<Peca>();
         Peca pc;

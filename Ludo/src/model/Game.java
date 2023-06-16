@@ -14,6 +14,10 @@ public class Game{
 	private Jogador currentP;
 	private int turn;
 
+	private boolean win;
+	private Jogador winner;
+	
+
 	public Game(){
 		this.tabuleiro = new Tabuleiro();
 		this.dado = new Dado();
@@ -30,18 +34,15 @@ public class Game{
 		jogadores[3] = jVermelho;
 
 		turn = 0;
+
+		win = false;
 	}
 
 	public void roll(){
 		this.dado.rolar();
 	}
 
-	public void turn() {
-
-		System.out.println(dado.getResultado());
-
-		currentP = jogadores[turn];
-		System.out.println(currentP.getCor());
+	public boolean move() {
 
 		if (currentP.podeJogar(tabuleiro, dado.getResultado())){
 			System.out.println("move peça");
@@ -55,13 +56,30 @@ public class Game{
 				currentP.setSeis(0);
 				turn = (turn + 1) % 4;
 			}
+
+			return true;
 		}
 
-		else{
-			System.out.println("nao move peça");
+		System.out.println("nao move peça");
 
-			currentP.setSeis(0);
-			turn = (turn + 1) % 4;
+		currentP.setSeis(0);
+		turn = (turn + 1) % 4;
+
+		return false;
+	}
+
+	public void play(){
+		
+		System.out.println(dado.getResultado());
+
+		currentP = jogadores[turn];
+		System.out.println(currentP.getCor());
+
+		if (move()){
+			if (currentP.isWinner()){
+					winner = currentP;
+					win = true;
+			}
 		}
 	}
 
@@ -71,7 +89,7 @@ public class Game{
 
 		do{	
 			game.roll();
-			game.turn();
+			game.play();
 
 			try {
 			Thread.sleep(1000);

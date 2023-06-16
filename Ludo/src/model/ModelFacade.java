@@ -1,11 +1,11 @@
 package model;
 
 public class ModelFacade {
-	private static ModelFacade facade;
+	private static ModelFacade facade = null;
 	private Game game;
 	
 	private ModelFacade() {
-		ModelFacade.facade = this;
+		this.game = new Game();
 	}
 
 	public static ModelFacade getFacade() {
@@ -15,23 +15,20 @@ public class ModelFacade {
 		return facade;
 	}
 
-	public void createGame(){
-		this.game = new Game();
-	}
+	// public void createGame(){
+	// 	this.game = new Game();
+	// }
 
 	public void roll(){
 		game.roll();
 	}
 
-	public void turn(){
-		game.turn();
-		// jogadores[turno].moverPeca();
+	public void playGame(){
+		game.play();
 	}
 	
 	/*public void register(TabuleiroObservador observer) {
 		game.addObserver(observer);
 	}*/
-	public Game getGame() {
-		return this.game;
-	}
+
 }

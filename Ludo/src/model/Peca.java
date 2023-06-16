@@ -78,7 +78,6 @@ class Peca {
 
 			else {
 				t.getCasa(position).saiuCasa(this);
-				destinationIndex = (position + nCasas) % 52;
 
 				casa = t.getCasa(position); //casa atual
 

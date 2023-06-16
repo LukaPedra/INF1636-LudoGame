@@ -1,27 +1,32 @@
 package view;
 
+import model.ModelFacade;
+
 public class ViewFacade {
-	private static ViewFacade instance;
+	private static ViewFacade facade = null;
 	private GameScene gameScene;
 	//private TabuleiroView tabuleiroView;
 	
 	private ViewFacade() {
-		instance = this;
+		// ViewFacade.facade = this;
+		this.gameScene = new GameScene();
 	}
 	
-	public void createView(){
+	public static ViewFacade getFacade() {
+		if(facade == null) {
+			facade = new ViewFacade();
+		}
+		return facade;
+	}
+
+	public void createScene(){
 		gameScene = new GameScene();
 	}
 
 	public void redraw(){
 		gameScene.redraw();
 	}
-	public static ViewFacade getInstance() {
-		if(instance == null) {
-			instance = new ViewFacade();
-		}
-		return instance;
-	}
+	
 
 	/* 
 	public void register(TabuleiroView tabuleiroView) {

@@ -1,10 +1,10 @@
 package controller;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import model.ModelFacade;
+//import model.ModelFacade;
 
 public class MouseListener extends MouseAdapter {
-    private ModelFacade modelFacade = ModelFacade.getFacade();
+    //private ModelFacade modelFacade = ModelFacade.getFacade();
     
 	int offset = 20; //Tabuleiro está um pouco para baixo 
 	@Override

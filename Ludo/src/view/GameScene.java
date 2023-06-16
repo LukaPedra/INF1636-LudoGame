@@ -3,15 +3,15 @@ import javax.swing.*;
 import java.awt.*;
 import controller.MouseListener;
 import controller.TabuleiroObservador;
-public class GameScene extends JFrame implements TabuleiroObservador{
+public class GameScene extends JFrame{// implements TabuleiroObservador{
 	public final int xScreen = 867;
     public final int yScreen = 656;
     private Tabuleiro tabuleiro;
-    private TabuleiroObservador observer;
+    //private TabuleiroObservador observer;
     private Menu gameMenu;
 
     public GameScene(){
-        this.observer = this;
+        //this.observer = this;
         gerarPainel();
     }
     public void gerarPainel() {
@@ -43,15 +43,14 @@ public class GameScene extends JFrame implements TabuleiroObservador{
     public void redraw(){
         repaint();
     }
-    public TabuleiroObservador getObserver(){
-        return this.observer;
+
+    
+
+    public Tabuleiro getTabuleiro(){
+        return this.tabuleiro;
     }
-    @Override
-    public void update() {
-        System.out.println("update!");
-        // TODO Auto-generated method stub
-        this.redraw();
-    }
+
+    
     
 
     // public static void main(String[] args) {

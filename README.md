@@ -5,7 +5,7 @@
 ### Jogador:
 - [x] O jogador inicia o jogo com uma peça na casa de saída *Testar*
 - [x] Se todas as peças do jogador estão na final, ele ganha *Testar*
-- [ ] Se tirar 6 no dado, movimenta o peão e joga novamente
+- [x] Se tirar 6 no dado, movimenta o peão e joga novamente
 - [x] Se tirar 6 três vezes seguidas, o último peão movimentado volta pro início *Testar*
 - [ ] Se tirar 6 e tiver uma barreira, é obrigado a mexer um de seus peões da barreira
 - [ ] Se comer uma peça inimiga, avançar qualquer peça do jogador em 6

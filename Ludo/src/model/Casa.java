@@ -1,6 +1,5 @@
 package model;
 import java.util.LinkedList;
-import java.util.Queue;
 
 class Casa {
 	private TipoCasa tipo; 
@@ -71,8 +70,8 @@ class Casa {
 				}
 				
 				else {
-					this.saiuCasa(pecaInimiga);
-					pecaInimiga.backToStart();
+					// this.saiuCasa(pecaInimiga);
+					pecaInimiga.backToStart(this);
 					pecasDentro.add(peca);
 				}
 			}

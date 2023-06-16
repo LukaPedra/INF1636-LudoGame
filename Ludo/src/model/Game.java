@@ -11,8 +11,8 @@ public class Game{
 	private Jogador jAzul;
 	private Jogador jVermelho;
 
-	private int i = 0;
-	Jogador currentP;
+	private Jogador currentP;
+	private int turn;
 
 	public Game(){
 		this.tabuleiro = new Tabuleiro();
@@ -28,49 +28,58 @@ public class Game{
 		jogadores[1] = jAmarelo;
 		jogadores[2] = jAzul;
 		jogadores[3] = jVermelho;
+
+		turn = 0;
 	}
 
-	public int rollDie(){
-		return this.dado.rolar();
+	public void roll(){
+		this.dado.rolar();
 	}
 
 	public void turn() {
-		
-    	do{	
-			Scanner scanner = new Scanner(System.in);
-			scanner.nextLine();
 
-			int resultado = dado.rolar();
-			System.out.println(resultado);
+		System.out.println(dado.getResultado());
 
-			currentP = jogadores[i];
-			System.out.println(currentP.getCor());
+		currentP = jogadores[turn];
+		System.out.println(currentP.getCor());
 
-			if (currentP.podeJogar(tabuleiro, resultado) ){
+		if (currentP.podeJogar(tabuleiro, dado.getResultado())){
+			System.out.println("move peça");
+			currentP.moverPeca(tabuleiro, 0,dado.getResultado());
 
-				currentP.moverPeca(tabuleiro,0,resultado);
+			if (dado.getResultado() == 6){
+				currentP.addSeis();
+			}
+			
+			else{
+				currentP.setSeis(0);
+				turn = (turn + 1) % 4;
+			}
+		}
+
+		else{
+			System.out.println("nao move peça");
+
+			currentP.setSeis(0);
+			turn = (turn + 1) % 4;
+		}
+	}
+
+	public static void main(String[] args) {
+		final Game game = new Game();
+
+
+		do{	
+			game.roll();
+			game.turn();
+
+			try {
+			Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 
-			if (resultado != 6){
-				i = (i+1)%4;
-			}
-
-
-			// try {
-			// 	Thread.sleep(1000);
-			// } catch (InterruptedException e) {
-			// 	// TODO Auto-generated catch block
-			// 	e.printStackTrace();
-			// }
-
-			scanner.close();
-
-			
-				//FUI COMER, JA VOLTO, ELE TA MUDANDO QUANDO APARECEM 3 VEZES O RESULTADO 6 (N NECESSARIAMENTE SEGUIDOS)
-
-			// CODIGO
-
-			
-    	}while (!currentP.isWinner());
+		} while (!currentP.isWinner());
 	}
 }

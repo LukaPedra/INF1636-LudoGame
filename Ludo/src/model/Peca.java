@@ -4,14 +4,12 @@ class Peca {
 	private int position; //-1 é posição inicial
 	private Cor cor;
 	private int posInicial;
-	private boolean retaFinal;
 	private boolean winner;
 
 	public Peca(Jogador j){
 		this.position = -1;
 		this.cor = j.getCor();
 		this.posInicial = j.getPosInicial();
-		this.retaFinal = false;
 		this.winner = false;
 	}
 
@@ -76,7 +74,6 @@ class Peca {
 			if (position == -1){
 				position = t.getPosicaoSaida(this.getCor());
 				casa = t.getCasa(position);
-				return;
 			}
 
 			else {
@@ -85,19 +82,17 @@ class Peca {
 
 				casa = t.getCasa(position); //casa atual
 
-				while (position != destinationIndex){
-					
-					
+				while (nCasas > 0){
 					if (casa.isCasaFinal(this.cor)){ /* Se for casa final e ainda tiver coisa pra andar*/
-						this.retaFinal = true;
-						position = (this.cor.ordinal() + 1) * 100;
-
-						break;
+						position = 100 + nCasas - 1;
+						nCasas = 0;
 					}
 
-					position = (position + 1) % 52; // soma um na posição da peça
-					casa = t.getCasa(position); // próxima casa
-					nCasas--; // diminui 1 da quantidade de casa para andar
+					else{
+						position = (position + 1) % 52; // soma um na posição da peça
+						casa = t.getCasa(position); // próxima casa
+						nCasas--; // diminui 1 da quantidade de casa para andar
+					}
 				}	
 			}
 
@@ -108,9 +103,9 @@ class Peca {
 
 		if(position >= 100){
 			
-			destinationIndex = (position + nCasas) % ((this.cor.ordinal() + 1) * 100);
+			destinationIndex = (position + nCasas);
 
-			if (destinationIndex == 5){
+			if (destinationIndex == 105){
 				this.winner = true;
 			}
 		}
@@ -136,11 +131,12 @@ class Peca {
 		return casasFaltando;
 	}
 	
-	public void backToStart(){
+	public void backToStart(Casa c){
+		c.saiuCasa(this);
 		position = -1;
 	}
 
-	public boolean isWinner(){
+	public boolean getWinner(){
 		return this.winner;
 	}
 }

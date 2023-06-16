@@ -7,6 +7,7 @@ class Jogador {
     private int posIni;
     private Casa casaIni;
     private Vector<Peca> pecas = new Vector<Peca>();
+    private Vector<Peca> pecasDisp;
     private Peca lastPeca;
     private int seis;
     
@@ -16,6 +17,7 @@ class Jogador {
         this.posIni = t.getPosicaoSaida(c);
         this.casaIni = t.getCasaSaida(c);
         this.pecas = inicializaPecas(t);
+        this.pecasDisp = new Vector<Peca>();
         this.lastPeca = this.getPeca(0);
         this.seis = 0;
     }
@@ -36,48 +38,72 @@ class Jogador {
     }
 
     public boolean podeJogar(Tabuleiro t, int nCasas){
-        /* Se tirar 6 no dado */
-        if (nCasas == 6){ 
-            this.seis += 1;
+        this.pecasDisponiveis(t, nCasas);
 
-            /* Se já tirou 6 3 vezes */
-            if (this.seis == 3){
-                this.seis = 0;
+        /* Se já tirou 6 3 vezes */
+        if (this.seis == 2){
+            this.seis = 0;
 
-                t.getCasa(lastPeca.getPosition()).saiuCasa(lastPeca); // Mudar para voltar para casa inicial
-                lastPeca.backToStart();
+            this.lastPeca.backToStart(t.getCasa(lastPeca.getPosition()));
 
-                return false;
-            }
+            return false;
         }
 
         /* Se não puder jogar com nenhuma peça */
-        if (pecasDisponiveis(t, nCasas).size() == 0){
+        
+        if (this.pecasDisp.size() == 0){
             this.seis = 0;
 
             return false;
         }
         
-        this.seis = 0;
 		return true;
 	}
 
     public void moverPeca(Tabuleiro t, int i, int nCasas){
-        Peca currentPeca = this.getPeca(i);
+        Peca currentPeca = this.getPecaDisponivel(i);
         currentPeca.moverPeca(t, nCasas);
         this.lastPeca = currentPeca;
     }
 
-    public Vector<Peca> pecasDisponiveis(Tabuleiro t, int nCasas){
-        Vector<Peca> pecasDisponiveis = new Vector<Peca>();
-        
-        for (Peca peca : pecas){
+    public void pecasDisponiveis(Tabuleiro t, int nCasas){
+        for (Peca peca : this.pecas){
             if (peca.podeMover(t, nCasas)){
-                pecasDisponiveis.add(peca);
+                this.pecasDisp.add(peca);
             }
         }
-        
-        return pecasDisponiveis;
+    }
+
+    public Vector<Peca> getPecasDisponiveis(){
+        return this.pecasDisp;
+    }
+
+    public Peca getPecaDisponivel(int i){
+        return this.pecasDisp.get(i);
+    }
+
+    public Peca getPeca(int i){
+        return pecas.get(i);
+    }
+
+    public Vector<Peca> getPecas(){
+        return pecas;
+    }
+
+    public void setLastPeca(Peca p){
+        this.lastPeca = p;
+    }
+
+    public Peca getLastPeca(){
+        return lastPeca;
+    }
+
+    public Cor getCor() {
+        return cor;
+    }
+
+    public int getPosInicial(){
+        return posIni;
     }
 
     public int somaEspacosAteFinal(int i){
@@ -87,6 +113,7 @@ class Jogador {
         }
         return soma;
     }
+    
     public int getNumPecasSpawn(){
         int num = 0;
         for (Peca peca : pecas){
@@ -103,41 +130,27 @@ class Jogador {
         }
         return posicoes;
     }
-     
-    public Peca getPeca(int i){
-        return pecas.get(i);
+
+    public void addSeis(){
+        seis += 1;
     }
 
-    public Vector<Peca> getPecas(){
-        return pecas;
-    }  
-
-    public Cor getCor() {
-        return cor;
+    public void setSeis(int n){
+        seis = n;
     }
 
-    public int getPosInicial(){
-        return posIni;
-    }
-    
-    public void setLastPeca(Peca p){
-        this.lastPeca = p;
-    }
-
-    public Peca getLastPeca(){
-        return lastPeca;
+    public int getSeis(){
+        return this.seis;
     }
 
     public boolean isWinner(){
         for (Peca peca : pecas){
-            if (!peca.isWinner()){
+            if (!peca.getWinner()){
                 return false;
             }
         }
         return true;
-    }
-
-    
+    }  
 }
 
 

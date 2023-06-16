@@ -83,6 +83,15 @@ public class Game{
 		}
 	}
 
+	public int[][] getEveryPosition(){
+		int[][] array = new int[4][4];
+		for(int i = 0; i < 4; i++){
+			
+			array[i] = jogadores[i].getPosicoes();
+		}
+		return array;
+	}
+
 	public static void main(String[] args) {
 		final Game game = new Game();
 

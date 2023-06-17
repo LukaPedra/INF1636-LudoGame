@@ -14,7 +14,7 @@ public class Pecas {
 		int[][] posicaoPecas = modelFacade.posicaoPecas();
 
 		for (int i = 0; i < 4; i++){
-			System.out.println(posicaoPecas[i][0] + " " + posicaoPecas[i][1] + " " + posicaoPecas[i][2] + " " + posicaoPecas[i][3] + "\n");
+			//System.out.println(posicaoPecas[i][0] + " " + posicaoPecas[i][1] + " " + posicaoPecas[i][2] + " " + posicaoPecas[i][3] + "\n");
 			switch (i) {
 				case 0:
 					drawPecas(g2d, posicaoPecas[i], Color.GREEN);

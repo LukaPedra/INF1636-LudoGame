@@ -118,7 +118,11 @@ class Game extends TabuleiroObservado {
 
 		return p;
 	}
-
+	public Peca getPecaFromMouse(int n){
+		if (n>=0 && n<=52){
+			//return tabuleiro.getPeca(n);
+		}
+	}
 	public boolean getWin(){
 		return this.win;
 	}

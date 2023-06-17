@@ -46,7 +46,7 @@ public class ModelFacade {
 		return game.getEveryPosition();
     }
 
-	/*public void register(TabuleiroObservador observer) {
-		game.addObserver(observer);
-	}*/
+	public Peca getPecaFromMouse(int n){
+		return game.getPecaFromMouse(n);
+	}
 }

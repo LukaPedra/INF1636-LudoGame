@@ -56,7 +56,7 @@ public class Menu {
 
 		dadoButton.addActionListener(e -> {
 			model.roll();
-			fotoDado = Dado.draw(model.getResultado());
+			fotoDado = Dado.getDieImage(model.getResultado());
 			System.out.println("Dado" + model.getResultado());
 		});
 		return dadoButton;
@@ -71,7 +71,7 @@ public class Menu {
 		JButton button = new JButton("Novo Jogo");
         button.setBounds(25, 20, 200, 50);
 		button.addActionListener(e -> {
-			fotoDado = Dado.draw(dadoValue);
+			fotoDado = Dado.getDieImage(dadoValue);
 			System.out.println("New Game pressed!");
 		});
 		return button;

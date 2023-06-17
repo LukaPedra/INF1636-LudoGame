@@ -6,7 +6,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 public class Dado {
-    public static Image getDiceImage(int dieValue) {
+    public static Image getDieImage(int dieValue) {
     	Image image;
         Dado dado = new Dado();
         

@@ -1,4 +1,6 @@
 package model;
+import java.awt.Color;
+
 import controller.TabuleiroObservador;
 public class ModelFacade {
 	private static ModelFacade facade = null;
@@ -31,7 +33,9 @@ public class ModelFacade {
 	public int getResultado(){
 		return this.game.getResultado();
 	}
-
+	public Color getCor(){
+		return game.getCurrentColor();
+	}
 	public void playGame(){
 		game.play();
 	}

@@ -13,7 +13,7 @@ public class Menu {
 	private Image fotoDado;
 	private File lastFile;
 	private int dadoValue = 1;
-	private Color CorAtual = Color.BLUE;
+	private Color CorAtual = Color.GREEN;
 
 	private ModelFacade model = ModelFacade.getFacade();
 	
@@ -23,6 +23,7 @@ public class Menu {
 	}
 
 	private void createMenuPanel() {
+		
 		menuPanel = new JPanel() {
 			@Override
 			protected void paintComponent(Graphics g) {
@@ -58,6 +59,7 @@ public class Menu {
 			model.roll();
 			fotoDado = Dado.getDieImage(model.getResultado());
 			System.out.println("Dado" + model.getResultado());
+			CorAtual = model.getCor();
 		});
 		return dadoButton;
 	}

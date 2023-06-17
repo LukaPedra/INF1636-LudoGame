@@ -1,4 +1,6 @@
 package model;
+import java.awt.Color;
+
 import controller.TabuleiroObservado;
 class Game extends TabuleiroObservado {
 	private Tabuleiro tabuleiro;
@@ -9,7 +11,7 @@ class Game extends TabuleiroObservado {
 	private Jogador jAzul;
 	private Jogador jVermelho;
 
-	private Jogador currentP;
+	private Jogador currentP = jVerde;
 	private int turn;
 
 	private boolean win;
@@ -38,7 +40,7 @@ class Game extends TabuleiroObservado {
 
 	public void roll(){
 		this.dado.rolar();
-		
+		play();
 	}
 
 	public void setResultado(int n){
@@ -48,7 +50,20 @@ class Game extends TabuleiroObservado {
 	public int getResultado(){
 		return this.dado.getResultado();
 	}
+	public Color getCurrentColor(){
+		switch(currentP.getCor()){
+			case VERDE:
+				return Color.GREEN;
+			case AMARELO:
+				return Color.YELLOW;
+			case AZUL:
+				return Color.BLUE;
+			case VERMELHO:
+				return Color.RED;
+		}
+		return Color.WHITE;//Caso erro
 
+	}
 	public boolean move() {
 
 		if (currentP.podeJogar(tabuleiro, this.getResultado())){

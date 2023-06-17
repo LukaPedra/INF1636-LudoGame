@@ -165,10 +165,25 @@ public class Pecas {
         } else if (pos >= 50 && pos <= 51){
             coords.x = casaSize * 6 + casaSize * (pos - 49);
             coords.y = 0;
-        } else if (pos >= 100 && pos <= 105) {
-            coords.x = casaSize * 7;
-            coords.y = casaSize + casaSize * (pos - 100);
-        } else if (pos >= 200 && pos <= 205) {
+        } else if (pos >= 100) {
+			if (cor == Color.GREEN){
+				coords.x = casaSize * 7;
+				coords.y = casaSize + casaSize * (pos - 100);
+        	} 
+			else if (cor == Color.YELLOW){
+				coords.x = casaSize * 8 - casaSize * (pos - 105);
+            	coords.y = casaSize * 7;
+			}
+			else if (cor == Color.BLUE){
+				coords.x = casaSize * 7;
+            	coords.y = casaSize * 8 - casaSize * (pos - 105);
+			}
+			else if (cor == Color.RED){
+				coords.x = casaSize + casaSize * (pos - 100);
+            	coords.y = casaSize * 7;
+			}
+		}
+		/*else if (pos >= 200 && pos <= 205) {
             coords.x = casaSize * 8 - casaSize * (pos - 205);
             coords.y = casaSize * 7;
         } else if (pos >= 400 && pos <= 405) {
@@ -177,7 +192,7 @@ public class Pecas {
         } else if (pos >= 300 && pos <= 305) {
             coords.x = casaSize * 7;
             coords.y = casaSize * 8 - casaSize * (pos - 305);
-        }
+        }*/
 		coords.y += 30; 
 		coords.x += 10;
         return coords;

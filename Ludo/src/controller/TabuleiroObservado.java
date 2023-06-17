@@ -15,6 +15,7 @@ public class TabuleiroObservado {
 
 	public void notifyObservers() {
 		for(TabuleiroObservador observer : this.observers) {
+			System.out.println("Notifying observers");
 			observer.update();
 		}
 	}

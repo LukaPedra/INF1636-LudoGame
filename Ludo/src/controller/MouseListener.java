@@ -1,10 +1,10 @@
 package controller;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-//import model.ModelFacade;
+import model.ModelFacade;
 
 public class MouseListener extends MouseAdapter {
-    //private ModelFacade modelFacade = ModelFacade.getFacade();
+    private ModelFacade model = ModelFacade.getFacade();
     
 	int offset = 20; //Tabuleiro está um pouco para baixo 
 	@Override
@@ -12,13 +12,25 @@ public class MouseListener extends MouseAdapter {
 		int x = e.getX();
 		int y = e.getY();
 		y = y - offset;
-		System.out.println("Mouse Clicked at: ("+x+","+y+") na casa :"+getPosition(x,y));
-
+		System.out.println("Mouse Clicked at: ("+x+","+y+") na casa : "+getPosition(x,y));
+        model.setPosPecaMover(getPosition(x, y));
+        model.play();
 
 	}
 	int getPosition(int x, int y){
-		
-        if (x>=320 && x<=360 && y>=40 && y<= 240){
+		if(x>=0 && x<=240 && y>=0 && y<=240){
+            return -1;
+        }
+        else if(x>=0 && x<=240 && y>=360 && y<=600){
+            return -1;
+        }
+        else if(x>=360 && x<=600 && y>=0 && y<=240){
+            return -1;
+        }
+        else if(x>=360 && x<=600 && y>=360 && y<=600){
+            return -1;
+        }
+        else if (x>=320 && x<=360 && y>=40 && y<= 240){
             return -1 + (y/40);
         }
 
@@ -50,26 +62,18 @@ public class MouseListener extends MouseAdapter {
             return 38 + (x/40);
         }
         else if(x>=40 && x<=280 && y>=280 && y<=320){
-            return 399 + (x/40);
+            return 99 + (x/40);
         }
         else if(x>=320 && x<=560 && y>=280 && y<=320){
-            return 213 - (x/40);
+            return 113 - (x/40);
         }
         else if(x>=280 && x<=320 && y>=40 && y<=280){
             return 99 + (y/40);
         }
         else if(x>=280 && x<=320 && y>=320 && y<=560){
-            return 313 - (y/40);
+            return 113 - (y/40);
         }
-        else if(x>=0 && x<=240 && y>=0 && y<=240){
-            return -4;
-        }
-        else if(x>=0 && x<=240 && y>=360 && y<=600){
-            return -3;
-        }
-        else if(x>=360 && x<=600 && y>=0 && y<=240){
-            return -1;
-        }
+       
         else if(x>=240 && x <=280 && y>=40 && y<=240){
             return 49 - (y/40);
         }

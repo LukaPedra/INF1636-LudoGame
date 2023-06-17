@@ -2,12 +2,12 @@ package model;
 import java.awt.Color;
 
 import controller.TabuleiroObservador;
-public class ModelFacade {
+public class ModelFacade{
 	private static ModelFacade facade = null;
 	private Game game;
 	
 	private ModelFacade() {
-		this.facade = this;
+		ModelFacade.facade = this;
 		this.game = new Game();
 	}
 
@@ -24,6 +24,9 @@ public class ModelFacade {
 
 	public void roll(){
 		game.roll();
+		
+	}
+	public void play(){
 		game.play();
 	}
 
@@ -37,17 +40,18 @@ public class ModelFacade {
 	public Color getCor(){
 		return game.getCurrentColor();
 	}
-	public void playGame(){
-		game.play();
-	}
+	
 	public void addObserver(TabuleiroObservador observer) {
 		game.addObserver(observer);
 	}
 	public int[][] posicaoPecas(){
 		return game.getEveryPosition();
     }
-
-	public Peca getPecaFromMouse(int n){
+	public void setPosPecaMover(int pos){
+		game.setPosPecaMover(pos);
+	}
+	
+	public int getPecaFromMouse(int n){
 		return game.getPecaFromMouse(n);
 	}
 }

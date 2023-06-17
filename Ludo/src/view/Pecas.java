@@ -62,7 +62,6 @@ public class Pecas {
 						coords.y = 90;
 					}
 					if(qtdPosInicial > 2){
-						System.out.println("Entrou aqui");
 						coords.x = 430;
 						coords.y = 170;
 					}

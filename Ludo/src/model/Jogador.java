@@ -40,7 +40,7 @@ class Jogador {
     }
 
     public boolean podeJogar(Tabuleiro t, int nCasas){
-        this.pecasDisponiveis(t, nCasas);
+        this.pecasDisponiveis = pecasDisponiveis(t, nCasas);
 
         /* Se já tirou 6 3 vezes */
         if (nCasas == 6){
@@ -52,6 +52,7 @@ class Jogador {
             }
         }
             
+        // System.out.println("qtd pecas disponiveis: "+this.pecasDisponiveis.size());
         /* Se não puder jogar com nenhuma peça */
         if (this.pecasDisponiveis.size() == 0){
 
@@ -67,12 +68,16 @@ class Jogador {
         this.lastPeca = currentPeca;
     }
 
-    public void pecasDisponiveis(Tabuleiro t, int nCasas){
+    public Vector<Peca> pecasDisponiveis(Tabuleiro t, int nCasas){
+        Vector<Peca> pcsDisp = new Vector<Peca>();
         for (Peca peca : this.pecas){
             if (peca.podeMover(t, nCasas)){
-                this.pecasDisponiveis.add(peca);
+                System.out.println("pode mover ");
+                pcsDisp.add(peca);
             }
         }
+
+        return pcsDisp;
     }
 
     public Vector<Peca> getPecasDisponiveis(){

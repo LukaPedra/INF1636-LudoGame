@@ -11,8 +11,10 @@ class Game extends TabuleiroObservado {
 	private Jogador jAzul;
 	private Jogador jVermelho;
 
-	private Jogador currentP = jVerde;
+	//private boolean podeJogar;
 	private int turn;
+	private Jogador currentP;
+	private int posPecaMover;
 
 	private boolean win;
 	private Jogador winner;
@@ -34,12 +36,14 @@ class Game extends TabuleiroObservado {
 		jogadores[3] = jVermelho;
 
 		turn = 0;
+		currentP = jogadores[turn];
 
 		win = false;
 	}
 
 	public void roll(){
 		this.dado.rolar();
+		notifyObservers();
 	}
 
 	public void setResultado(int n){
@@ -54,7 +58,13 @@ class Game extends TabuleiroObservado {
 
 		if (currentP.podeJogar(tabuleiro, this.getResultado())){
 			System.out.println("move peça");
-			currentP.moverPeca(tabuleiro, 0,this.getResultado());
+
+			int posPc = getPecaFromMouse(posPecaMover);
+			System.out.println("Posicao da peca escolhida: " + posPc);
+			/*if (posPc == -100){
+				return false;
+			}*/
+			currentP.moverPeca(tabuleiro, posPc, this.getResultado());
 
 			if (this.getResultado() == 6){
 				currentP.addSeis();
@@ -65,7 +75,6 @@ class Game extends TabuleiroObservado {
 				turn = (turn + 1) % 4;
 			}
 			
-			notifyObservers();
 			return true;
 		}
 
@@ -78,10 +87,11 @@ class Game extends TabuleiroObservado {
 	}
 
 	public void play(){
-		currentP = jogadores[turn];
+		
 		System.out.println(currentP.getCor());
 		System.out.println("dado: " + this.getResultado());
-		System.out.println("Posicao peça 0 antes de mover: " + currentP.getLastPeca().getPosition());
+		// System.out.println("Pecas disponives: " + currentP.getPecasDisponiveis());
+		// System.out.println("Posicao peça 0 antes de mover: " + currentP.getLastPeca().getPosition());
 		System.out.println("Tirou 6: " + currentP.getSeis());
 
 
@@ -91,9 +101,12 @@ class Game extends TabuleiroObservado {
 					win = true;
 					System.out.println(currentP.getCor() + " ganhou");
 			}
-		}
-		System.out.println("Posicao peça 0 depois de mover: " + currentP.getLastPeca().getPosition() + "\n");
 
+			notifyObservers();
+		}
+		
+		System.out.println("Posicao peça 0 depois de mover: " + currentP.getLastPeca().getPosition() + "\n");
+		currentP = jogadores[turn];
 	}
 
 	public int[][] getEveryPosition(){
@@ -106,17 +119,17 @@ class Game extends TabuleiroObservado {
 		return p;
 	}
 	
-	public Peca getPecaFromMouse(int n){ // Se olhar pra posicao de cada peca disponivel e uma delas fizer parte, retorna a peca
+	public int getPecaFromMouse(int n){ // Se olhar pra posicao de cada peca disponivel e uma delas fizer parte, retorna a peca
 		if (n >= -1 && n <= 105){
 			for (int i = 0; i < currentP.getPecasDisponiveis().size(); i++){
 				Peca pc = currentP.getPecaDisponivel(i);
 				if (pc.getPosition() == n){
-					return pc;
+					// play();
+					return i;
 				}
 			}
 		}
-
-		return null;
+		return -100;
 	}
 
 	public Color getCurrentColor(){ // Não seria mais fácil só retornar a cor?
@@ -136,6 +149,9 @@ class Game extends TabuleiroObservado {
 
 	public boolean getWin(){
 		return this.win;
+	}
+	public void setPosPecaMover(int pos){
+		this.posPecaMover = pos;
 	}
 	
 	public static void main(String[] args) {

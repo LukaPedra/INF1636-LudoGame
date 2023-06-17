@@ -98,7 +98,7 @@ public class Menu {
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JFileChooser fileChooser = new JFileChooser();
-				int result = fileChooser.showSaveDialog(null);
+				int result = fileChooser.showSaveDialog(null); //save game
 				if (result == JFileChooser.APPROVE_OPTION) {
 					file = fileChooser.getSelectedFile();
 				}

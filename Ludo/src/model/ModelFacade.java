@@ -42,5 +42,4 @@ public class ModelFacade {
 	/*public void register(TabuleiroObservador observer) {
 		game.addObserver(observer);
 	}*/
-
 }

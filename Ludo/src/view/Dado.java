@@ -3,8 +3,8 @@ package view;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 
-public class DadoImage {
-    public static Image getDiceImage(int dieValue) {
+public class Dado {
+    public static Image draw(int dieValue) {
         if (dieValue < 1 || dieValue > 6) {
             throw new IllegalArgumentException("Invalid die value. Must be between 1 and 6.");
         }

@@ -11,7 +11,7 @@ public class Pecas {
 
 	public void draw(Graphics2D g2d) {
 		
-		int[][] posicaoPecas = modelFacade.posicaoPecas();
+		int[][] posicaoPecas = modelFacade.getPosicaoPecas();
 
 		for (int i = 0; i < 4; i++){
 			//System.out.println(posicaoPecas[i][0] + " " + posicaoPecas[i][1] + " " + posicaoPecas[i][2] + " " + posicaoPecas[i][3] + "\n");

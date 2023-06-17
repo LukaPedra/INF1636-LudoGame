@@ -31,10 +31,9 @@ class Jogador {
             pcs.add(pc);
         }
 
-        pcs.get(0).moverPeca(t, 5); /// OLHAR ISSO COM O LUCCA AMANHÃ PRA VER SE TA CERTO
+        pcs.get(0).moverPeca(t, 5); 
         
-        // pcs.get(0).setPosition(this.posIni);
-        // this.casaIni.parouCasa(pcs.get(0));
+
 
         return pcs;
     }
@@ -72,7 +71,6 @@ class Jogador {
         Vector<Peca> pcsDisp = new Vector<Peca>();
         for (Peca peca : this.pecas){
             if (peca.podeMover(t, nCasas)){
-                System.out.println("pode mover ");
                 pcsDisp.add(peca);
             }
         }
@@ -139,6 +137,10 @@ class Jogador {
             soma =+ peca.casasFaltando(posIni);
         }
         return soma;
+    }
+
+    public void setPosicoes(int[] v){
+        
     }
     
     public int[] getPosicoes(){

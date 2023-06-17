@@ -44,14 +44,15 @@ public class ModelFacade{
 	public void addObserver(TabuleiroObservador observer) {
 		game.addObserver(observer);
 	}
-	public int[][] posicaoPecas(){
-		return game.getEveryPosition();
+	
+	public int[][] getPosicaoPecas(){
+		return game.getPosicaoPecas();
     }
-	public void setPosPecaMover(int pos){
-		game.setPosPecaMover(pos);
+	public void setIdxPecaMover(int idx){
+		game.setIdxPecaMover(idx);
 	}
-	public int getPecaFromMouse(int pos){
-		return game.getPecaFromMouse(pos);
+	public int getIdxFromMouse(int idx){
+		return game.getIdxFromMouse(idx);
 	}
 	
 }

@@ -42,7 +42,10 @@ class Game extends TabuleiroObservado {
 	}
 
 	public void roll(){
+		currentP = jogadores[turn];
 		this.dado.rolar();
+		checkMove();
+		//currentP.se
 		notifyObservers();
 	}
 	
@@ -70,34 +73,20 @@ class Game extends TabuleiroObservado {
 		return false;
 	}
 
-	public boolean move() {
+	public void move() {
+		System.out.println("index da peca escolhida: " + idxPecaMover);
 
-		if (checkMove()){
+		System.out.println("move peça");
+		currentP.moverPeca(tabuleiro, idxPecaMover, this.getResultado());
 
-			System.out.println("index da peca escolhida: " + idxPecaMover);
-
-			if (idxPecaMover == -100){
-				return false;
-			}
-
-			System.out.println("move peça");
-			currentP.moverPeca(tabuleiro, idxPecaMover, this.getResultado());
-
-			if (this.getResultado() == 6){
-				currentP.addSeis();
-			}
-			
-			else{
-				currentP.setSeis(0);
-				turn = (turn + 1) % 4;
-			}
-			
-			return true;
+		if (this.getResultado() == 6){
+			currentP.addSeis();
 		}
-
-		System.out.println("nao move peça");
-
-		return false;
+		
+		else{
+			currentP.setSeis(0);
+			turn = (turn + 1) % 4;
+		}
 	}
 
 	public void play(){
@@ -108,22 +97,28 @@ class Game extends TabuleiroObservado {
 		// System.out.println("Posicao peça 0 antes de mover: " + currentP.getLastPeca().getPosition());
 		// System.out.println("Tirou 6: " + currentP.getSeis());
 
-
-		if (move()){
-			if (currentP.isWinner()){
-					winner = currentP;
-					win = true;
-					System.out.println(currentP.getCor() + " ganhou");
-			}
-
-			notifyObservers();
-		}
+		move();
 		
+		if (currentP.isWinner()){
+				winner = currentP;
+				win = true;
+				System.out.println(currentP.getCor() + " ganhou");
+		}
+
+		notifyObservers();
+	
+	
 		// System.out.println("Posicao peça depois de mover: " + posPecaMover + "\n");
-		currentP = jogadores[turn];
+
 	}
 
-	public int[][] getEveryPosition(){
+	// public void setPosicaoPecas(int[][] v){
+	// 	for(int i = 0; i < 4; i++){
+	// 		jogadores[i].setPosicoes(v[i]);
+	// 	}
+	// }
+
+	public int[][] getPosicaoPecas(){
 		int p[][] = new int[4][4];
 		for(int i = 0; i < 4; i++){
 			
@@ -133,12 +128,13 @@ class Game extends TabuleiroObservado {
 		return p;
 	}
 
-	public void setPosPecaMover(int pos){
-		this.idxPecaMover = pos;
+	public void setIdxPecaMover(int idx){
+		this.idxPecaMover = idx;
 	}
 
-	public int getPecaFromMouse(int n){ // Se olhar pra posicao de cada peca disponivel e uma delas fizer parte, retorna a peca
+	public int getIdxFromMouse(int n){ // Se olhar pra posicao de cada peca disponivel e uma delas fizer parte, retorna a peca
 		if (n >= -1 && n <= 105){
+			System.out.println(currentP.getPecasDisponiveis().size());
 			for (int i = 0; i < currentP.getPecasDisponiveis().size(); i++){
 				Peca pc = currentP.getPecaDisponivel(i);
 				if (pc.getPosition() == n){

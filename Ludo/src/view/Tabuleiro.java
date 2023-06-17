@@ -5,9 +5,15 @@ import java.awt.Graphics2D;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import controller.TabuleiroObservador;
 
-public class Tabuleiro extends JPanel {
+public class Tabuleiro extends JPanel implements TabuleiroObservador{
      private Pecas pecas = new Pecas();
+     private TabuleiroObservador observer;
+     private ViewFacade facade = ViewFacade.getFacade();
+     public Tabuleiro() {
+		this.observer = this;
+	}
      @Override
      public void paintComponent(Graphics g) {
           Graphics2D g2d = (Graphics2D) g;
@@ -247,6 +253,16 @@ public class Tabuleiro extends JPanel {
           g2d.drawPolygon(xPoints2, yPoints2, 3);
           pecas.draw(g2d);
           
+     }
+     public TabuleiroObservador getTabuleiroObservador(){
+          return observer;
+     }
+     @Override
+     public void update() {
+          System.out.println("update!");
+          // TODO Auto-generated method stub
+          //this.redraw();
+          facade.redraw();
      }
      
      

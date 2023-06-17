@@ -11,6 +11,9 @@ public class Tabuleiro extends JPanel implements TabuleiroObservador{
      private Pecas pecas = new Pecas();
      private TabuleiroObservador observer;
      private ViewFacade facade = ViewFacade.getFacade();
+     public Tabuleiro() {
+		this.observer = this;
+	}
      @Override
      public void paintComponent(Graphics g) {
           Graphics2D g2d = (Graphics2D) g;

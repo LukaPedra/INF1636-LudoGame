@@ -1,6 +1,6 @@
 package model;
-
-class Game{
+import controller.TabuleiroObservado;
+class Game extends TabuleiroObservado {
 	private Tabuleiro tabuleiro;
 	private Dado dado;
 	private Jogador jogadores[];
@@ -38,6 +38,7 @@ class Game{
 
 	public void roll(){
 		this.dado.rolar();
+		
 	}
 
 	public void setResultado(int n){
@@ -62,7 +63,7 @@ class Game{
 				currentP.setSeis(0);
 				turn = (turn + 1) % 4;
 			}
-
+			notifyObservers();
 			return true;
 		}
 
@@ -106,7 +107,7 @@ class Game{
 	public boolean getWin(){
 		return this.win;
 	}
-
+	
 	public static void main(String[] args) {
 		final Game game = new Game();
 

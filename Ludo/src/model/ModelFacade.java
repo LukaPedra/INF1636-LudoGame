@@ -1,10 +1,11 @@
 package model;
-
+import controller.TabuleiroObservador;
 public class ModelFacade {
 	private static ModelFacade facade = null;
 	private Game game;
 	
 	private ModelFacade() {
+		this.facade = this;
 		this.game = new Game();
 	}
 
@@ -34,7 +35,9 @@ public class ModelFacade {
 	public void playGame(){
 		game.play();
 	}
-
+	public void addObserver(TabuleiroObservador observer) {
+		game.addObserver(observer);
+	}
 	public int[][] posicaoPecas(){
 		return game.getEveryPosition();
     }

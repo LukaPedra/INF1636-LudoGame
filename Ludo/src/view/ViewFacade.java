@@ -9,7 +9,8 @@ public class ViewFacade {
 	//private TabuleiroView tabuleiroView;
 	
 	private ViewFacade() {
-		// ViewFacade.facade = this;
+		this.facade = this;
+
 		this.gameScene = new GameScene();
 	}
 	

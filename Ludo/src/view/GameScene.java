@@ -2,7 +2,6 @@ package view;
 import javax.swing.*;
 import java.awt.*;
 import controller.MouseListener;
-import controller.TabuleiroObservador;
 public class GameScene extends JFrame{// implements TabuleiroObservador{
 	public final int xScreen = 867;
     public final int yScreen = 656;

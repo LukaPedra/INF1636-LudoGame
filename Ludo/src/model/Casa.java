@@ -7,7 +7,7 @@ class Casa {
 	private LinkedList<Peca> pecasDentro = new LinkedList<>();
 	
 	public Casa() {
-		this.tipo = TipoCasa.comum;
+		this.tipo = TipoCasa.COMUM;
 	}
 	public Casa(TipoCasa t, Cor c) {	//Para usar no teste
 		this.tipo = t;
@@ -31,7 +31,7 @@ class Casa {
 	public boolean podeParar(Peca peca){
 		if (pecasDentro.size() <= 1){
 			//Se a casa estiver vazia ou tiver outra peça
-			if (pecasDentro.size() == 1 && pecasDentro.peek().getCor() == peca.getCor() && tipo == TipoCasa.saida){
+			if (pecasDentro.size() == 1 && pecasDentro.peek().getCor() == peca.getCor() && tipo == TipoCasa.SAIDA){
 				//Não pode parar na casa de partida se já tiver uma peça da mesma cor lá
 				return false;
 			}
@@ -59,12 +59,12 @@ class Casa {
 				Peca pecaInimiga = pecasDentro.peek();
 
 				/* Casa de abrigo: Duas peças distintas podem ocupar */
-				if (tipo == TipoCasa.abrigo){ 
+				if (tipo == TipoCasa.ABRIGO){ 
 					pecasDentro.add(peca);
 				}
 
 				/* Casa de saída: Duas peças distintas podem ocupar desde que uma delas seja da cor da casa*/
-				else if(tipo == TipoCasa.saida && cor == pecaInimiga.getCor()){
+				else if(tipo == TipoCasa.SAIDA && cor == pecaInimiga.getCor()){
 					//Não comeu a peça e está na casa com o inimigo
 					pecasDentro.add(peca);
 				}
@@ -97,7 +97,7 @@ class Casa {
 
 	/* Verifica se é casa de saída da cor */
 	public boolean isCasaSaida(Cor c){
-		if ((tipo == TipoCasa.saida) && (cor == c)){
+		if ((tipo == TipoCasa.SAIDA) && (cor == c)){
 			return true;
 		}
 		else {
@@ -105,12 +105,25 @@ class Casa {
 		}
 	}
 	public boolean isCasaFinal(Cor c){
-		if ((tipo == TipoCasa.casafinal) && (cor == c)){
+		if ((tipo == TipoCasa.CASAFINAL) && (cor == c)){
 			return true;
 		}
 		else {
 			return false;
 		}
+	}
+
+	public Peca getPeca(Cor c){
+		for (int i = 0; i < pecasDentro.size(); i++){
+			Peca pc = pecasDentro.get(i);
+			if (pc.getCor() == c){
+				return pc;
+			}
+		}
+
+		return null;
+	
+			
 	}
 
 /* Métodos usados para teste */		

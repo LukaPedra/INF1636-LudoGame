@@ -32,15 +32,15 @@ public class TestCasa {
 		assertFalse(casa.podeParar(peca2));
 		casa.saiuCasa(peca2);
 		
-		casa.setTipo(TipoCasa.saida);
+		casa.setTipo(TipoCasa.SAIDA);
 		
-		Casa casaPartida = new Casa(TipoCasa.saida, Cor.VERDE);
+		Casa casaPartida = new Casa(TipoCasa.SAIDA, Cor.VERDE);
 		casaPartida.parouCasa(peca1);
 		
 		assertFalse(casa.podeParar(peca11));
 		
 		Casa casaAbrigoCasa = new Casa();
-		casaAbrigoCasa.setTipo(TipoCasa.abrigo);
+		casaAbrigoCasa.setTipo(TipoCasa.ABRIGO);
 		
 		casaAbrigoCasa.parouCasa(peca1);
 		casaAbrigoCasa.parouCasa(peca2);
@@ -67,16 +67,16 @@ public class TestCasa {
 	
 	@Test
 	public void TesteCasaFinal() {
-		Casa casaFinal = new Casa(TipoCasa.casafinal, Cor.VERDE);
+		Casa casaFinal = new Casa(TipoCasa.CASAFINAL, Cor.VERDE);
 		assertTrue(casaFinal.isCasaFinal(jogadorVerde.getCor()));
 	}
 	@Test
 	public void TesteConstrutor() {
 		Casa casa = new Casa();
-		assertTrue(casa.getTipo() == TipoCasa.comum);
+		assertTrue(casa.getTipo() == TipoCasa.COMUM);
 		
 		Casa casaAbrigo = new Casa();
-		casaAbrigo.setTipo(TipoCasa.abrigo);
+		casaAbrigo.setTipo(TipoCasa.ABRIGO);
 		
 	}
 	@Test

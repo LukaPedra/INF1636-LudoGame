@@ -15,7 +15,7 @@ class Tabuleiro {
 			Casa casa = new Casa();
 
 			if (i % parte == 0) { // Casa de Saída
-				casa.setTipo(TipoCasa.saida);
+				casa.setTipo(TipoCasa.SAIDA);
 				switch (i){
 					case 0:
 						casa.setCor(Cor.VERDE);
@@ -33,11 +33,11 @@ class Tabuleiro {
 			}
 
 			else if (i % parte == 9) { // Abrigo
-				casa.setTipo(TipoCasa.abrigo);
+				casa.setTipo(TipoCasa.ABRIGO);
 			} 
 
 			else if (i % parte == 11) { // Casa Final
-				casa.setTipo(TipoCasa.casafinal);
+				casa.setTipo(TipoCasa.CASAFINAL);
 				switch (i){
 					case 11:
 						casa.setCor(Cor.AMARELO);

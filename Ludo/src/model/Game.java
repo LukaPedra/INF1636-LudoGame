@@ -40,7 +40,6 @@ class Game extends TabuleiroObservado {
 
 	public void roll(){
 		this.dado.rolar();
-		play();
 	}
 
 	public void setResultado(int n){
@@ -50,20 +49,7 @@ class Game extends TabuleiroObservado {
 	public int getResultado(){
 		return this.dado.getResultado();
 	}
-	public Color getCurrentColor(){
-		switch(currentP.getCor()){
-			case VERDE:
-				return Color.GREEN;
-			case AMARELO:
-				return Color.YELLOW;
-			case AZUL:
-				return Color.BLUE;
-			case VERMELHO:
-				return Color.RED;
-		}
-		return Color.WHITE;//Caso erro
 
-	}
 	public boolean move() {
 
 		if (currentP.podeJogar(tabuleiro, this.getResultado())){
@@ -78,6 +64,7 @@ class Game extends TabuleiroObservado {
 				currentP.setSeis(0);
 				turn = (turn + 1) % 4;
 			}
+			
 			notifyObservers();
 			return true;
 		}
@@ -99,7 +86,7 @@ class Game extends TabuleiroObservado {
 
 
 		if (move()){
-			if (currentP.getPeca(0).getWinner()){ // MUDAR PARA TODAS AS PEÇAS DEPOIS
+			if (currentP.isWinner()){
 					winner = currentP;
 					win = true;
 					System.out.println(currentP.getCor() + " ganhou");
@@ -118,11 +105,35 @@ class Game extends TabuleiroObservado {
 
 		return p;
 	}
-	public Peca getPecaFromMouse(int n){
-		if (n>=0 && n<=52){
-			//return tabuleiro.getPeca(n);
+	
+	public Peca getPecaFromMouse(int n){ // Se olhar pra posicao de cada peca disponivel e uma delas fizer parte, retorna a peca
+		if (n >= -1 && n <= 105){
+			for (int i = 0; i < currentP.getPecasDisponiveis().size(); i++){
+				Peca pc = currentP.getPecaDisponivel(i);
+				if (pc.getPosition() == n){
+					return pc;
+				}
+			}
 		}
+
+		return null;
 	}
+
+	public Color getCurrentColor(){ // Não seria mais fácil só retornar a cor?
+		switch(currentP.getCor()){
+			case VERDE:
+				return Color.GREEN;
+			case AMARELO:
+				return Color.YELLOW;
+			case AZUL:
+				return Color.BLUE;
+			case VERMELHO:
+				return Color.RED;
+		}
+		return Color.WHITE;//Caso erro
+
+	}
+
 	public boolean getWin(){
 		return this.win;
 	}

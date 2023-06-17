@@ -24,6 +24,7 @@ public class ModelFacade {
 
 	public void roll(){
 		game.roll();
+		game.play();
 	}
 
 	public void setResultado(int n){

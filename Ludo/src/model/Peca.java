@@ -3,13 +3,11 @@ package model;
 class Peca {
 	private int position; //-1 é posição inicial
 	private Cor cor;
-	private int posInicial;
 	private boolean winner;
 
 	public Peca(Jogador j){
 		this.position = -1;
 		this.cor = j.getCor();
-		this.posInicial = j.getPosInicial();
 		this.winner = false;
 	}
 
@@ -112,14 +110,14 @@ class Peca {
 	}
 
 	//função que retorna quantas casas faltam para chegar no final
-	public int casasFaltando() { // Melhorar para não precisar receber o tabuleiro
+	public int casasFaltando(int posIni) { // Melhorar para não precisar receber o tabuleiro
 		int casasFaltando;
 
-		int casasPercorridas = (position - this.posInicial);
+		int casasPercorridas = (position - posIni);
 
 		if (position < 100){
 			if (casasPercorridas < 0) {
-				casasPercorridas = 52 - this.posInicial + position;
+				casasPercorridas = 52 - posIni + position;
 			}
 			casasFaltando = 52 - casasPercorridas - 2 + 6;
 		}
@@ -136,7 +134,7 @@ class Peca {
 		position = -1;
 	}
 
-	public boolean getWinner(){
+	public boolean isWinner(){
 		return this.winner;
 	}
 }

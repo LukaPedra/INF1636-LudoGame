@@ -4,25 +4,25 @@ import java.util.Vector;
 
 class Jogador {
     private Cor cor;
-    private int posIni;
-    private Casa casaIni;
-    private Vector<Peca> pecas = new Vector<Peca>();
-    private Vector<Peca> pecasDisp;
+    private Vector<Peca> pecas;
+    private Vector<Peca> pecasDisponiveis;
     private Peca lastPeca;
+    private int posIni;
+    // private Casa casaIni;
     private int seis;
     
     
     public Jogador(Tabuleiro t, Cor c) {
         this.cor = c;
+        this.pecas = inicializaPecas(t);
+        this.pecasDisponiveis = new Vector<Peca>();
+        this.lastPeca = pecas.get(0);
         this.posIni = t.getPosicaoSaida(c);
-        this.casaIni = t.getCasaSaida(c);
-        this.pecas = inicializaPecas();
-        this.pecasDisp = new Vector<Peca>();
-        this.lastPeca = this.getPeca(0);
+        // this.casaIni = t.getCasaSaida(c);
         this.seis = 0;
     }
 
-    private Vector<Peca> inicializaPecas(){ // Colocar as peças no vetor de peças do jogador
+    private Vector<Peca> inicializaPecas(Tabuleiro t){ // TALVEZ MUDAR ISSO PARA O TABULEIRO E RETORNAR PARA O CONSTRUTOR DO JOGADOR, QUE RECEBERIA UM VETOR DE PEÇAS COMO PARAMETRO
         int size = 4;
         Vector<Peca> pcs = new Vector<Peca>();
         Peca pc;
@@ -30,9 +30,11 @@ class Jogador {
             pc = new Peca(this);
             pcs.add(pc);
         }
+
+        pcs.get(0).moverPeca(t, 5); /// OLHAR ISSO COM O LUCCA AMANHÃ PRA VER SE TA CERTO
         
-        pcs.get(0).setPosition(this.posIni);
-        this.casaIni.parouCasa(pcs.get(0));
+        // pcs.get(0).setPosition(this.posIni);
+        // this.casaIni.parouCasa(pcs.get(0));
 
         return pcs;
     }
@@ -44,8 +46,6 @@ class Jogador {
         if (nCasas == 6){
             
             if (this.seis == 2){
-                this.seis = 0;
-
                 this.lastPeca.backToStart(t.getCasa(lastPeca.getPosition()));
 
                 return false;
@@ -53,9 +53,7 @@ class Jogador {
         }
             
         /* Se não puder jogar com nenhuma peça */
-        
-        if (this.pecasDisp.size() == 0){
-            this.seis = 0;
+        if (this.pecasDisponiveis.size() == 0){
 
             return false;
         }
@@ -72,25 +70,25 @@ class Jogador {
     public void pecasDisponiveis(Tabuleiro t, int nCasas){
         for (Peca peca : this.pecas){
             if (peca.podeMover(t, nCasas)){
-                this.pecasDisp.add(peca);
+                this.pecasDisponiveis.add(peca);
             }
         }
     }
 
     public Vector<Peca> getPecasDisponiveis(){
-        return this.pecasDisp;
+        return this.pecasDisponiveis;
     }
 
     public Peca getPecaDisponivel(int i){
-        return this.pecasDisp.get(i);
+        return this.pecasDisponiveis.get(i);
     }
 
     public Peca getPeca(int i){
-        return pecas.get(i);
+        return this.pecas.get(i);
     }
 
     public Vector<Peca> getPecas(){
-        return pecas;
+        return this.pecas;
     }
 
     public void setLastPeca(Peca p){
@@ -98,31 +96,15 @@ class Jogador {
     }
 
     public Peca getLastPeca(){
-        return lastPeca;
+        return this.lastPeca;
     }
 
     public Cor getCor() {
-        return cor;
+        return this.cor;
     }
 
     public int getPosInicial(){
-        return posIni;
-    }
-
-    public int somaEspacosAteFinal(int i){
-        int soma = 0;
-        for (Peca peca : pecas){
-            soma =+ peca.casasFaltando();
-        }
-        return soma;
-    }
-    
-    public int[] getPosicoes(){
-        int posicoes[] = new int[4];
-        for (int i = 0; i < 4; i++){
-            posicoes[i] = pecas.get(i).getPosition();
-        }
-        return posicoes;
+        return this.posIni;
     }
 
     public void addSeis(){
@@ -139,12 +121,28 @@ class Jogador {
 
     public boolean isWinner(){
         for (Peca peca : pecas){
-            if (!peca.getWinner()){
+            if (!peca.isWinner()){
                 return false;
             }
         }
         return true;
-    }  
+    } 
+
+    public int somaEspacosAteFinal(int i){
+        int soma = 0;
+        for (Peca peca : pecas){
+            soma =+ peca.casasFaltando(posIni);
+        }
+        return soma;
+    }
+    
+    public int[] getPosicoes(){
+        int posicoes[] = new int[4];
+        for (int i = 0; i < 4; i++){
+            posicoes[i] = pecas.get(i).getPosition();
+        }
+        return posicoes;
+    }
 }
 
 

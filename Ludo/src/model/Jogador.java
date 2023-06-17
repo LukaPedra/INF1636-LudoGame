@@ -41,14 +41,17 @@ class Jogador {
         this.pecasDisponiveis(t, nCasas);
 
         /* Se já tirou 6 3 vezes */
-        if (this.seis == 2){
-            this.seis = 0;
+        if (nCasas == 6){
+            
+            if (this.seis == 2){
+                this.seis = 0;
 
-            this.lastPeca.backToStart(t.getCasa(lastPeca.getPosition()));
+                this.lastPeca.backToStart(t.getCasa(lastPeca.getPosition()));
 
-            return false;
+                return false;
+            }
         }
-
+            
         /* Se não puder jogar com nenhuma peça */
         
         if (this.pecasDisp.size() == 0){

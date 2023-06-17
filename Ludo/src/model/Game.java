@@ -86,6 +86,7 @@ class Game{
 			if (currentP.getPeca(0).getWinner()){ // MUDAR PARA TODAS AS PEÇAS DEPOIS
 					winner = currentP;
 					win = true;
+					System.out.println(currentP.getCor() + " ganhou");
 			}
 		}
 		System.out.println("Posicao peça 0 depois de mover: " + currentP.getLastPeca().getPosition() + "\n");
@@ -109,7 +110,6 @@ class Game{
 	public static void main(String[] args) {
 		final Game game = new Game();
 
-
 		do{	
 			game.roll();
 			game.play();
@@ -117,7 +117,6 @@ class Game{
 			try {
 			Thread.sleep(1000);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 

@@ -13,8 +13,11 @@ public class MouseListener extends MouseAdapter {
 		int y = e.getY();
 		y = y - offset;
 		System.out.println("Mouse Clicked at: ("+x+","+y+") na casa : "+getPosition(x,y));
-        model.setPosPecaMover(getPosition(x, y));
-        model.play();
+        if (model.getPecaFromMouse(getPosition(x, y)) != -100);{
+            model.setPosPecaMover(model.getPecaFromMouse(getPosition(x, y)));
+            model.play();
+        }
+        
 
 	}
 	int getPosition(int x, int y){

@@ -50,8 +50,8 @@ public class ModelFacade{
 	public void setPosPecaMover(int pos){
 		game.setPosPecaMover(pos);
 	}
-	
-	public int getPecaFromMouse(int n){
-		return game.getPecaFromMouse(n);
+	public int getPecaFromMouse(int pos){
+		return game.getPecaFromMouse(pos);
 	}
+	
 }

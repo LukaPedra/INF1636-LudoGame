@@ -56,10 +56,14 @@ public class Menu {
         dadoButton.setBounds(25, 450, 200, 50);
 
 		dadoButton.addActionListener(e -> {
-			model.roll();
-			fotoDado = Dado.getDieImage(model.getResultado());
-			System.out.println("Dado" + model.getResultado());
-			CorAtual = model.getCor();
+			if(model.getcanRollAgain()){
+				model.roll();
+				fotoDado = Dado.getDieImage(model.getResultado());
+				System.out.println("Dado" + model.getResultado());
+				CorAtual = model.getCor();
+				model.setcanRollAgain(false);
+			}
+			
 		});
 		return dadoButton;
 	}

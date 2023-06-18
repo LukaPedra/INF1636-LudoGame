@@ -54,5 +54,10 @@ public class ModelFacade{
 	public int getIdxFromMouse(int idx){
 		return game.getIdxFromMouse(idx);
 	}
-	
+	public boolean getcanRollAgain(){
+		return game.getcanRollAgain();
+	}
+	public void setcanRollAgain(boolean b){
+		game.setcanRollAgain(b);
+	}
 }

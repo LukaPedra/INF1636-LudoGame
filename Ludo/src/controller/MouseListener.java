@@ -15,6 +15,7 @@ public class MouseListener extends MouseAdapter {
 		System.out.println("Mouse Clicked at: ("+x+","+y+") na casa : "+getPosition(x,y));
         if (model.getIdxFromMouse(getPosition(x, y)) != -100);{
             model.setIdxPecaMover(model.getIdxFromMouse(getPosition(x, y)));
+            model.setcanRollAgain(true);
             model.play();
         }
         

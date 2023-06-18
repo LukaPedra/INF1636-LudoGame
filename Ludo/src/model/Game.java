@@ -11,7 +11,7 @@ class Game extends TabuleiroObservado {
 	private Jogador jAzul;
 	private Jogador jVermelho;
 
-	//private boolean podeJogar;
+	private boolean canRollAgain;
 	private int turn;
 	private Jogador currentP;
 	private int idxPecaMover;
@@ -24,6 +24,7 @@ class Game extends TabuleiroObservado {
 		this.tabuleiro = new Tabuleiro();
 		this.dado = new Dado();
 		this.jogadores = new Jogador[4];
+		this.canRollAgain = true;
 
 		jVerde = new Jogador(tabuleiro, Cor.VERDE);
 		jAmarelo = new Jogador(tabuleiro, Cor.AMARELO);
@@ -52,7 +53,7 @@ class Game extends TabuleiroObservado {
 	public void setResultado(int n){
 		this.dado.setResultado(n);
 	}
-
+	
 	public int getResultado(){
 		return this.dado.getResultado();
 	}
@@ -160,7 +161,12 @@ class Game extends TabuleiroObservado {
 		return Color.WHITE;//Caso erro
 
 	}
-
+	public boolean getcanRollAgain(){
+		return this.canRollAgain;
+	}
+	public void setcanRollAgain(boolean b){
+		this.canRollAgain = b;
+	}
 	public boolean getWin(){
 		return this.win;
 	}

@@ -50,6 +50,23 @@ public class Pecas {
 		
     }
 
+	 private void drawBarreira(Graphics2D g2d,int pos, Color cor){
+        Point coords = this.getCoordinates(pos, cor, 0);
+		g2d.setColor(cor);
+        g2d.fillOval(coords.x,coords.y , tam, tam);
+        g2d.drawOval(coords.x-10,coords.y-10 , tam+20, tam+20);
+    }
+
+	private void drawAbrigo(Graphics2D g2d, int pos, Color cor, Color cor2){
+        Point coords = this.getCoordinates(pos, cor, 0);
+		g2d.setColor(cor);
+
+        g2d.fillOval(coords.x-10,coords.y-10, tam+20, tam+20);
+
+        g2d.setColor(cor2);
+        g2d.fillOval(coords.x,coords.y, tam, tam);
+    }
+
 	private Point getCoordinates(int pos, Color cor, int qtdPosInicial){
         Point coords = new Point();
 		if (pos == -1) {

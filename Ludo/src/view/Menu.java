@@ -4,6 +4,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 
 import model.ModelFacade;
 
@@ -103,10 +105,26 @@ public class Menu {
 
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+
+				int[][] aux = model.getPosicaoPecas();
 				JFileChooser fileChooser = new JFileChooser();
 				int result = fileChooser.showSaveDialog(null); //save game
 				if (result == JFileChooser.APPROVE_OPTION) {
 					file = fileChooser.getSelectedFile();
+					try{
+						FileWriter escrita = new FileWriter(file);
+						for(int i = 0; i<4; i++){
+                			for(int j = 0; j<4; j++){
+                    			escrita.write(String.valueOf(aux[i][j])+" ");
+                    			
+               				}
+                			escrita.write("\n");
+           				}
+						escrita.close();
+
+					} catch(IOException e1){
+
+					}
 				}
 			}
 		});

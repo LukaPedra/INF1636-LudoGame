@@ -3,7 +3,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -106,6 +108,9 @@ public class Menu {
                 int result = fileChooser.showOpenDialog(null);
                 if (result == JFileChooser.APPROVE_OPTION) {
                     lastFile = fileChooser.getSelectedFile();
+					int[][] aux = readMatrixFromFile(lastFile);
+					printMatrix(aux);
+					model.setPosicaoPecas(aux);
                 }
             }
         });
@@ -142,6 +147,39 @@ public class Menu {
 		});
 		return button;
 	}
+	public static int[][] readMatrixFromFile(File file) {
+        int[][] matrix = null;
+        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+            String line;
+            int rowCount = 0;
+            while ((line = br.readLine()) != null) {
+                String[] numbers = line.trim().split("\\s+");
+                if (matrix == null) {
+                    matrix = new int[numbers.length][];
+                }
+
+                matrix[rowCount] = new int[numbers.length];
+                for (int i = 0; i < numbers.length; i++) {
+                    matrix[rowCount][i] = Integer.parseInt(numbers[i]);
+                }
+
+                rowCount++;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return matrix;
+    }
+	public static void printMatrix(int[][] matrix) {
+        if (matrix != null) {
+            for (int[] row : matrix) {
+                for (int num : row) {
+                    System.out.print(num + " ");
+                }
+                System.out.println();
+            }
+        }
+    }
 	public JPanel getMenuPanel() {
 		return menuPanel;
 	}

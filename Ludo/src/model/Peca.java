@@ -108,7 +108,12 @@ class Peca {
 			}
 		}
 	}
-
+	public void PararCasaEspecifica(int posicao, Tabuleiro t){ //usado para carregar peças para posição de um arquivo
+		setPosition(posicao);
+		if (posicao>-1 && posicao < 100){
+			t.getCasa(posicao).parouCasa(this);
+		}
+	}
 	//função que retorna quantas casas faltam para chegar no final
 	public int casasFaltando(int posIni) { // Melhorar para não precisar receber o tabuleiro
 		int casasFaltando;

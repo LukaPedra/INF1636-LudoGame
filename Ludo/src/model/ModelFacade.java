@@ -60,6 +60,9 @@ public class ModelFacade{
 	public void setcanRollAgain(boolean b){
 		game.setcanRollAgain(b);
 	}
+	public void setPosicaoPecas(int[][] pos){
+		game.setPosicaoPecas(pos);
+	}
 	public void setValorDado(String Num){
 		game.getDado().setResultadoManual(Num);
 	}

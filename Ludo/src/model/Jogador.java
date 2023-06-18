@@ -139,8 +139,10 @@ class Jogador {
         return soma;
     }
 
-    public void setPosicoes(int[] v){
-        
+    public void PararCasaEspecifica(int[] v, Tabuleiro t){
+        for (int i = 0; i < 4; i++){
+            pecas.get(i).PararCasaEspecifica(v[i],t);
+        }
     }
     
     public int[] getPosicoes(){

@@ -46,7 +46,6 @@ class Game extends TabuleiroObservado {
 		currentP = jogadores[turn];
 		this.dado.rolar();
 		checkMove();
-		//currentP.se
 		notifyObservers();
 	}
 	
@@ -113,11 +112,12 @@ class Game extends TabuleiroObservado {
 
 	}
 
-	// public void setPosicaoPecas(int[][] v){
-	// 	for(int i = 0; i < 4; i++){
-	// 		jogadores[i].setPosicoes(v[i]);
-	// 	}
-	// }
+	public void setPosicaoPecas(int[][] v){
+		for(int i = 0; i < 4; i++){
+			jogadores[i].PararCasaEspecifica(v[i], tabuleiro);
+		}
+		notifyObservers();
+	}
 
 	public int[][] getPosicaoPecas(){
 		int p[][] = new int[4][4];

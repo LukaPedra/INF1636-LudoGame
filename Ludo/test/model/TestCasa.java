@@ -2,6 +2,11 @@ package model;
 
 import static org.junit.Assert.*;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+
 import org.junit.Test;
 
 
@@ -96,6 +101,42 @@ public class TestCasa {
 		
 		//Caso de se 
 	}
-	
+	@Test
+	public void testearquivo(){
+		
+	}
+	public static void printMatrix(int[][] matrix) {
+        if (matrix != null) {
+            for (int[] row : matrix) {
+                for (int num : row) {
+                    System.out.print(num + " ");
+                }
+                System.out.println();
+            }
+        }
+    }
+	public static int[][] readMatrixFromFile(File file) {
+        int[][] matrix = null;
+        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+            String line;
+            int rowCount = 0;
+            while ((line = br.readLine()) != null) {
+                String[] numbers = line.trim().split("\\s+");
+                if (matrix == null) {
+                    matrix = new int[numbers.length][];
+                }
+
+                matrix[rowCount] = new int[numbers.length];
+                for (int i = 0; i < numbers.length; i++) {
+                    matrix[rowCount][i] = Integer.parseInt(numbers[i]);
+                }
+
+                rowCount++;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return matrix;
+    }
 
 }

@@ -161,6 +161,9 @@ class Game extends TabuleiroObservado {
 		return Color.WHITE;//Caso erro
 
 	}
+	public Dado getDado(){
+		return this.dado;
+	}
 	public boolean getcanRollAgain(){
 		return this.canRollAgain;
 	}

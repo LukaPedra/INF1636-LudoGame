@@ -60,4 +60,7 @@ public class ModelFacade{
 	public void setcanRollAgain(boolean b){
 		game.setcanRollAgain(b);
 	}
+	public void setValorDado(String Num){
+		game.getDado().setResultadoManual(Num);
+	}
 }

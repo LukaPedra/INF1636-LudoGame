@@ -16,7 +16,7 @@ public class Menu {
 	private File lastFile;
 	private int dadoValue = 1;
 	private Color CorAtual = Color.GREEN;
-
+	private String numDadoTeste[] = {"Random","1","2","3","4","5","6"};
 	private ModelFacade model = ModelFacade.getFacade();
 	
 
@@ -25,7 +25,6 @@ public class Menu {
 	}
 
 	private void createMenuPanel() {
-		
 		menuPanel = new JPanel() {
 			@Override
 			protected void paintComponent(Graphics g) {
@@ -46,12 +45,25 @@ public class Menu {
         menuPanel.setBackground(Color.GRAY);
         menuPanel.setLayout(null);
 
-
+		menuPanel.add(escolhaNumPopUp());
 		menuPanel.add(novoJogoButton());
 		menuPanel.add(carregarJogoButton());
 		menuPanel.add(salvarJogoButton());
 		menuPanel.add(dadoButton());
 		menuPanel.add(textLabel("Á jogar"));
+	}
+	public JComboBox escolhaNumPopUp(){
+		JComboBox cb = new JComboBox(numDadoTeste);
+		cb.setBounds(70, 520, 120, 20);
+		cb.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JComboBox cb = (JComboBox)e.getSource();
+				String numDado = (String)cb.getSelectedItem();
+				model.setValorDado(numDado);
+			}
+		});
+		return cb;
 	}
 	public JButton dadoButton() {
 		JButton dadoButton = new JButton("Dado");
@@ -74,7 +86,7 @@ public class Menu {
 		textLabel.setBounds(55, 220, 200, 50);
 		return textLabel;
 	}
-
+	
 	public JButton novoJogoButton(){
 		JButton button = new JButton("Novo Jogo");
         button.setBounds(25, 20, 200, 50);

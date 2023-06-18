@@ -90,11 +90,21 @@ public class Menu {
 	}
 	
 	public JButton novoJogoButton(){
+		int[][] aux = new int[4][4];
+		int var = 0;
+		for(int i=0;i<4;i++){
+			aux[i][0]=var;
+			var+=13;
+			for(int j=1;j<4;j++){
+				aux[i][j]=-1;
+			}
+		}
 		JButton button = new JButton("Novo Jogo");
         button.setBounds(25, 20, 200, 50);
 		button.addActionListener(e -> {
 			fotoDado = Dado.getDieImage(dadoValue);
 			System.out.println("New Game pressed!");
+			model.setPosicaoPecas(aux);
 		});
 		return button;
 	}

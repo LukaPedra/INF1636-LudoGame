@@ -76,7 +76,7 @@ class Game extends TabuleiroObservado {
 
 			// currentP = jogadores[turn];
 			// roll();
-			
+			hasPlayed = true;
 			canRollAgain = true;
 			return false;
 		}

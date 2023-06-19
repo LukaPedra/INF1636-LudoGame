@@ -32,15 +32,23 @@ public class Pecas {
 		}	
 	}
 	
+
 	private void drawPecas(Graphics2D g2d, int[] pos, Color cor){
 		int qtdPosInicial = 0;
+		
 		for (int i = 0; i < 4; i++){
-			if (pos[i] == -1){
+			if (pos[i] == -1 ){
                 qtdPosInicial++;
             }
 			
 			Point coords = this.getCoordinates(pos[i], cor, qtdPosInicial);
-
+			/*if (pos[i] == posicaoBarreira){
+				drawBarreira(g2d, pos[i], cor);
+			}*/
+			if (findBarreira(pos, pos[i], i)){
+				System.out.println("Resumo barreira: "+pos[i] + coords.toString());
+				drawBarreira(g2d, pos[i], cor);
+			}
 			g2d.setColor(cor);
 			g2d.fillOval(coords.x, coords.y, tam, tam);
 			g2d.setColor(Color.BLACK);
@@ -50,12 +58,13 @@ public class Pecas {
 		
     }
 
-	 private void drawBarreira(Graphics2D g2d,int pos, Color cor){
-        Point coords = this.getCoordinates(pos, cor, 0);
+	private void drawBarreira(Graphics2D g2d,int pos, Color cor){
+		Point coords = this.getCoordinates(pos, cor, 0);
 		g2d.setColor(cor);
-        g2d.fillOval(coords.x,coords.y , tam, tam);
-        g2d.drawOval(coords.x-10,coords.y-10 , tam+20, tam+20);
-    }
+
+		g2d.fillOval(coords.x,coords.y , tam, tam);
+		g2d.drawOval(coords.x-10,coords.y-10 , tam+20, tam+20);
+	}
 
 	private void drawAbrigo(Graphics2D g2d, int pos, Color cor, Color cor2){
         Point coords = this.getCoordinates(pos, cor, 0);
@@ -66,6 +75,36 @@ public class Pecas {
         g2d.setColor(cor2);
         g2d.fillOval(coords.x,coords.y, tam, tam);
     }
+	
+	public boolean findBarreira(int[] posPecas, int pos, int index) {
+        if (pos <= 1 || pos >= 100) {
+           return false;
+        }
+
+        for (int i = 0; i < posPecas.length; i++) {
+            if (pos == posPecas[i] && i != index) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+	public int findDuplicatePosition(int[] positions) {
+		boolean[] visited = new boolean[100];
+		
+		for (int position : positions) {
+			if (position >= 0 && position < 100) {
+				if (visited[position]) {
+					return position; // Found a duplicate position
+				}
+				
+				visited[position] = true;
+			}
+		}
+		
+		return -100; // No duplicate position found
+	}
 
 	private Point getCoordinates(int pos, Color cor, int qtdPosInicial){
         Point coords = new Point();

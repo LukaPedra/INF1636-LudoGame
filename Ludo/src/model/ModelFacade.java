@@ -34,8 +34,8 @@ public class ModelFacade{
 	public void play(){
 		game.play();
 	}
-	
-	public void setResultado(int n){
+
+	public void setResultado(String n){
 		game.setResultado(n);
 	}
 
@@ -71,7 +71,5 @@ public class ModelFacade{
 	public void setPosicaoPecas(int[][] pos){
 		game.setPosicaoPecas(pos);
 	}
-	public void setValorDado(String Num){
-		game.getDado().setResultadoManual(Num);
-	}
+
 }

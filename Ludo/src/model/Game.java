@@ -52,12 +52,13 @@ class Game extends TabuleiroObservado {
 	public void roll(){
 		currentP = jogadores[turn];
 		this.dado.rolar();
+		canRollAgain = false;
 		hasPlayed = false;
 		checkMove();
 		notifyObservers();
 	}
 	
-	public void setResultado(int n){
+	public void setResultado(String n){
 		this.dado.setResultado(n);
 	}
 	
@@ -67,18 +68,23 @@ class Game extends TabuleiroObservado {
 
 	public boolean checkMove(){
 
-		if (currentP.podeJogar(tabuleiro, this.getResultado())){
-			System.out.println("pode mover");
+		if (!currentP.podeJogar(tabuleiro, this.getResultado())){
+			System.out.println("nao pode mover");
+
+			currentP.setSeis(0);
+			turn = (turn + 1) % 4;
+
+			// currentP = jogadores[turn];
+			// roll();
 			
-			return true;
+			canRollAgain = true;
+			return false;
 		}
+		System.out.println("pode mover");
 
-		System.out.println("nao pode mover");
+		return true;
 
-		currentP.setSeis(0);
-		turn = (turn + 1) % 4;
-
-		return false;
+		
 	}
 
 	public void move() {
@@ -114,6 +120,7 @@ class Game extends TabuleiroObservado {
 			getResumo();
 
 		}
+		// currentP = jogadores[turn];
 		notifyObservers();
 	
 	}

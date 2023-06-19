@@ -2,6 +2,8 @@ package model;
 
 import java.util.Vector;
 
+import view.ViewFacade;
+
 
 class Jogador {
     private Cor cor;
@@ -135,6 +137,7 @@ class Jogador {
     public int somaEspacosAteFinal(){
         int soma = 0;
         for (Peca peca : pecas){
+            System.out.println(peca.casasFaltando(posIni));
             soma += peca.casasFaltando(posIni);
         }
         return soma;
@@ -156,7 +159,11 @@ class Jogador {
     public String getJogadorName(){
         return this.cor.name();
     }
-    
+    public static void main(String[] args){
+		Tabuleiro t = new Tabuleiro();
+        Jogador j = new Jogador(t, Cor.AZUL);
+        System.out.println(j.somaEspacosAteFinal());
+	}
 }
 
 

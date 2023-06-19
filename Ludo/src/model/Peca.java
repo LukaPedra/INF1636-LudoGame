@@ -34,7 +34,7 @@ class Peca {
 		}
 		
 		/* Está na casa inicial e indo para casa de partida */
-		if (startPoint == -1){
+		if (position == -1){
 			if (nCasas != 5){ 
 				return false;
 			}

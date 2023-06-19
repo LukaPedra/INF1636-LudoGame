@@ -16,14 +16,11 @@ class Dado {
 		}
 	}
 	
-	public void setResultado(int n) {
-		this.resultado = n;
+	public void setResultado(String n) {
+		this.ResultadoManual = n;
 	}
 
 	public int getResultado() {
 		return this.resultado;
-	}
-	public void setResultadoManual(String n) {
-		this.ResultadoManual = n;
 	}
 }

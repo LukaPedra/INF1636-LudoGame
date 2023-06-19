@@ -1,5 +1,7 @@
 package view;
 import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -64,7 +66,7 @@ public class Menu {
 			public void actionPerformed(ActionEvent e) {
 				JComboBox<String> cb = (JComboBox)e.getSource();
 				String numDado = (String)cb.getSelectedItem();
-				model.setValorDado(numDado);
+				model.setResultado(numDado);
 			}
 		});
 		return cb;
@@ -74,12 +76,14 @@ public class Menu {
         dadoButton.setBounds(25, 450, 200, 50);
 
 		dadoButton.addActionListener(e -> {
+			System.out.println(model.getcanRollAgain());
 			if(model.getcanRollAgain()){
+				//model.setcanRollAgain(true);
 				model.roll();
 				fotoDado = Dado.getDieImage(model.getResultado());
 				System.out.println("Dado" + model.getResultado());
 				CorAtual = model.getCor();
-				model.setcanRollAgain(false);
+				//model.setcanRollAgain(false);
 			}
 			
 		});
@@ -162,9 +166,14 @@ public class Menu {
 
 				int[][] aux = model.getPosicaoPecas();
 				JFileChooser fileChooser = new JFileChooser();
+				FileNameExtensionFilter filter = new FileNameExtensionFilter("TEXT FILES", "txt");
+				fileChooser.setFileFilter(filter);
 				int result = fileChooser.showSaveDialog(null); //save game
 				if (result == JFileChooser.APPROVE_OPTION) {
 					file = fileChooser.getSelectedFile();
+					if (!file.getName().endsWith(".txt")) {
+						file = new File(file.getAbsolutePath() + ".txt");
+					}
 					try{
 						FileWriter escrita = new FileWriter(file);
 						for(int i = 0; i<4; i++){

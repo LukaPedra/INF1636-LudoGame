@@ -49,6 +49,10 @@ public class ModelFacade{
 	public void addObserver(TabuleiroObservador observer) {
 		game.addObserver(observer);
 	}
+
+	public void setPosicaoPecas(int[][] pos){
+		game.setPosicaoPecas(pos);
+	}
 	
 	public int[][] getPosicaoPecas(){
 		return game.getPosicaoPecas();
@@ -68,8 +72,6 @@ public class ModelFacade{
 	public void setcanRollAgain(boolean b){
 		game.setcanRollAgain(b);
 	}
-	public void setPosicaoPecas(int[][] pos){
-		game.setPosicaoPecas(pos);
-	}
+	
 
 }

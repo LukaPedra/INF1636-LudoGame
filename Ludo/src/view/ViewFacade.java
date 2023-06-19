@@ -1,6 +1,5 @@
 package view;
 
-import model.ModelFacade;
 import controller.TabuleiroObservador;
 
 public class ViewFacade {
@@ -9,7 +8,7 @@ public class ViewFacade {
 	//private TabuleiroView tabuleiroView;
 	
 	private ViewFacade() {
-		this.facade = this;
+		facade = this;
 
 		this.gameScene = new GameScene();
 	}
@@ -31,13 +30,4 @@ public class ViewFacade {
 	public TabuleiroObservador getTabuleiroObservador() {
 		return gameScene.getTabuleiro().getTabuleiroObservador();
 	}
-	
-
-	/* 
-	public void register(TabuleiroView tabuleiroView) {
-		this.tabuleiroView = tabuleiroView;
-	}
-	public TabuleiroView getTabuleiroView() {
-		return this.tabuleiroView;
-	}*/
 }

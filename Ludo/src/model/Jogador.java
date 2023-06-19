@@ -2,9 +2,6 @@ package model;
 
 import java.util.Vector;
 
-import view.ViewFacade;
-
-
 class Jogador {
     private Cor cor;
     private Vector<Peca> pecas;
@@ -54,7 +51,6 @@ class Jogador {
             }
         }
             
-        // System.out.println("qtd pecas disponiveis: "+this.pecasDisponiveis.size());
         /* Se não puder jogar com nenhuma peça */
         if (this.pecasDisponiveis.size() == 0){
 

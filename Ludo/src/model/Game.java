@@ -2,6 +2,7 @@ package model;
 import java.awt.Color;
 import java.util.Arrays;
 import java.util.Comparator;
+
 import javax.swing.JOptionPane;
 
 import controller.TabuleiroObservado;
@@ -18,11 +19,7 @@ class Game extends TabuleiroObservado {
 	private boolean canRollAgain;
 	private int turn;
 	private Jogador currentP;
-	private int idxPecaMover;
-
-	private boolean win;
-	private Jogador winner;
-	
+	private int idxPecaMover;	
 
 	public Game(){
 		this.tabuleiro = new Tabuleiro();
@@ -44,16 +41,14 @@ class Game extends TabuleiroObservado {
 		turn = 0;
 		currentP = jogadores[turn];
 
-		win = false;
-
 		notifyObservers();
 	}
 
 	public void roll(){
-		currentP = jogadores[turn];
+		this.currentP = jogadores[turn];
 		this.dado.rolar();
-		canRollAgain = false;
-		hasPlayed = false;
+		this.canRollAgain = false;
+		this.hasPlayed = false;
 		checkMove();
 		notifyObservers();
 	}
@@ -66,7 +61,7 @@ class Game extends TabuleiroObservado {
 		return this.dado.getResultado();
 	}
 
-	public boolean checkMove(){
+	public void checkMove(){
 
 		if (!currentP.podeJogar(tabuleiro, this.getResultado())){
 			System.out.println("nao pode mover");
@@ -74,23 +69,12 @@ class Game extends TabuleiroObservado {
 			currentP.setSeis(0);
 			turn = (turn + 1) % 4;
 
-			// currentP = jogadores[turn];
-			// roll();
 			hasPlayed = true;
 			canRollAgain = true;
-			return false;
 		}
-		System.out.println("pode mover");
-
-		return true;
-
-		
 	}
 
 	public void move() {
-		System.out.println("index da peca escolhida: " + idxPecaMover);
-
-		System.out.println("move peça");
 		currentP.moverPeca(tabuleiro, idxPecaMover, this.getResultado());
 
 		if (this.getResultado() == 6){
@@ -104,23 +88,15 @@ class Game extends TabuleiroObservado {
 	}
 
 	public void play(){
-		hasPlayed = true;
-		System.out.println(currentP.getCor());
-		System.out.println("dado: " + this.getResultado());
-		// System.out.println("Pecas disponives: " + currentP.getPecasDisponiveis());
-		// System.out.println("Posicao peça 0 antes de mover: " + currentP.getLastPeca().getPosition());
-		// System.out.println("Tirou 6: " + currentP.getSeis());
-
 		move();
 
 		if (currentP.isWinner()){
-			winner = currentP;
-			win = true;
 			System.out.println(currentP.getCor() + " ganhou");
 			getResumo();
 
 		}
-		// currentP = jogadores[turn];
+
+		hasPlayed = true;
 		notifyObservers();
 	
 	}
@@ -141,7 +117,7 @@ class Game extends TabuleiroObservado {
 
 		return p;
 	}
-
+	
 	public void setIdxPecaMover(int idx){
 		this.idxPecaMover = idx;
 	}
@@ -155,7 +131,6 @@ class Game extends TabuleiroObservado {
 			for (int i = 0; i < currentP.getPecasDisponiveis().size(); i++){
 				Peca pc = currentP.getPecaDisponivel(i);
 				if (pc.getPosition() == n){
-					// play();
 					return i;
 				}
 			}
@@ -205,21 +180,17 @@ class Game extends TabuleiroObservado {
 				return Color.RED;
 		}
 		return Color.WHITE;//Caso erro
-
 	}
+
 	public boolean getHasPlayed(){
 		return this.hasPlayed;
 	}
-	public Dado getDado(){
-		return this.dado;
-	}
+
 	public boolean getcanRollAgain(){
 		return this.canRollAgain;
 	}
+
 	public void setcanRollAgain(boolean b){
 		this.canRollAgain = b;
-	}
-	public boolean getWin(){
-		return this.win;
 	}
 }

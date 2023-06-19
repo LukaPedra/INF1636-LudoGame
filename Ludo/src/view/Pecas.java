@@ -35,16 +35,13 @@ public class Pecas {
 
 	private void drawPecas(Graphics2D g2d, int[] pos, Color cor){
 		int qtdPosInicial = 0;
-		
 		for (int i = 0; i < 4; i++){
 			if (pos[i] == -1 ){
                 qtdPosInicial++;
             }
 			
 			Point coords = this.getCoordinates(pos[i], cor, qtdPosInicial);
-			/*if (pos[i] == posicaoBarreira){
-				drawBarreira(g2d, pos[i], cor);
-			}*/
+			
 			if (findBarreira(pos, pos[i], i)){
 				System.out.println("Resumo barreira: "+pos[i] + coords.toString());
 				drawBarreira(g2d, pos[i], cor);
@@ -66,7 +63,7 @@ public class Pecas {
 		g2d.drawOval(coords.x-10,coords.y-10 , tam+20, tam+20);
 	}
 
-	private void drawAbrigo(Graphics2D g2d, int pos, Color cor, Color cor2){
+	/*private void drawAbrigo(Graphics2D g2d, int pos, Color cor, Color cor2){
         Point coords = this.getCoordinates(pos, cor, 0);
 		g2d.setColor(cor);
 
@@ -74,23 +71,23 @@ public class Pecas {
 
         g2d.setColor(cor2);
         g2d.fillOval(coords.x,coords.y, tam, tam);
-    }
+    }*/
 	
-	public boolean findBarreira(int[] posPecas, int pos, int index) {
+	public boolean findBarreira(int[] positions, int pos, int index) {
         if (pos <= 1 || pos >= 100) {
            return false;
         }
 
-        for (int i = 0; i < posPecas.length; i++) {
-            if (pos == posPecas[i] && i != index) {
+        for (int i = 0; i < positions.length; i++) {
+            if (pos == positions[i] && i != index) {
                 return true;
             }
         }
 
         return false;
     }
-
-	public int findDuplicatePosition(int[] positions) {
+/* 
+	public int findAbrigo(int[][] positions, int pos, int index) {
 		boolean[] visited = new boolean[100];
 		
 		for (int position : positions) {
@@ -105,7 +102,7 @@ public class Pecas {
 		
 		return -100; // No duplicate position found
 	}
-
+*/
 	private Point getCoordinates(int pos, Color cor, int qtdPosInicial){
         Point coords = new Point();
 		if (pos == -1) {
@@ -238,16 +235,7 @@ public class Pecas {
             	coords.y = casaSize * 7;
 			}
 		}
-		/*else if (pos >= 200 && pos <= 205) {
-            coords.x = casaSize * 8 - casaSize * (pos - 205);
-            coords.y = casaSize * 7;
-        } else if (pos >= 400 && pos <= 405) {
-            coords.x = casaSize + casaSize * (pos - 400);
-            coords.y = casaSize * 7;
-        } else if (pos >= 300 && pos <= 305) {
-            coords.x = casaSize * 7;
-            coords.y = casaSize * 8 - casaSize * (pos - 305);
-        }*/
+
 		coords.y += 30; 
 		coords.x += 10;
         return coords;

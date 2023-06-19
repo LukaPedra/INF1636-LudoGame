@@ -3,7 +3,6 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 import controller.TabuleiroObservador;
 
@@ -266,15 +265,4 @@ public class Tabuleiro extends JPanel implements TabuleiroObservador{
      }
      
      
-     public static void main(String[] args) {
-          JFrame frame = new JFrame("Exemplo Desenho");
-          frame.setResizable(false);
-          
-          Tabuleiro tabuleiro = new Tabuleiro();
-          tabuleiro.setBounds(10, 10, 1200, 700);
-          frame.add(new Tabuleiro());
-          frame.setSize(1200, 700);
-          frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-          frame.setVisible(true);
-     }
 }

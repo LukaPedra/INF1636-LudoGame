@@ -36,27 +36,13 @@ public class GameScene extends JFrame{// implements TabuleiroObservador{
         contentPane.add(menuPanel, BorderLayout.EAST);
     
         setVisible(true);
-        
     }
 
     public void redraw(){
         repaint();
     }
 
-    
-
     public Tabuleiro getTabuleiro(){
         return this.tabuleiro;
-    }
-
-    
-    
-
-    // public static void main(String[] args) {
-    //     GameScene frame = new GameScene();
-    //     while(true){
-    //         frame.redraw();
-    //     }
-    // }
-    
+    } 
 }

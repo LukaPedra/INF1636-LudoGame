@@ -14,6 +14,7 @@ class Game extends TabuleiroObservado {
 	private Jogador jAzul;
 	private Jogador jVermelho;
 
+	private boolean hasPlayed;
 	private boolean canRollAgain;
 	private int turn;
 	private Jogador currentP;
@@ -28,6 +29,7 @@ class Game extends TabuleiroObservado {
 		this.dado = new Dado();
 		this.jogadores = new Jogador[4];
 		this.canRollAgain = true;
+		this.hasPlayed = false;
 
 		jVerde = new Jogador(tabuleiro, Cor.VERDE);
 		jAmarelo = new Jogador(tabuleiro, Cor.AMARELO);
@@ -50,6 +52,7 @@ class Game extends TabuleiroObservado {
 	public void roll(){
 		currentP = jogadores[turn];
 		this.dado.rolar();
+		hasPlayed = false;
 		checkMove();
 		notifyObservers();
 	}
@@ -95,6 +98,7 @@ class Game extends TabuleiroObservado {
 	}
 
 	public void play(){
+		hasPlayed = true;
 		System.out.println(currentP.getCor());
 		System.out.println("dado: " + this.getResultado());
 		// System.out.println("Pecas disponives: " + currentP.getPecasDisponiveis());
@@ -136,7 +140,10 @@ class Game extends TabuleiroObservado {
 	}
 
 	public int getIdxFromMouse(int n){ // Se olhar pra posicao de cada peca disponivel e uma delas fizer parte, retorna a peca
-		if (n >= -1 && n <= 105){
+		if(hasPlayed == true){
+			return -100;
+		}
+		else if (n >= -1 && n <= 105){
 			System.out.println(currentP.getPecasDisponiveis().size());
 			for (int i = 0; i < currentP.getPecasDisponiveis().size(); i++){
 				Peca pc = currentP.getPecaDisponivel(i);
@@ -192,6 +199,9 @@ class Game extends TabuleiroObservado {
 		}
 		return Color.WHITE;//Caso erro
 
+	}
+	public boolean getHasPlayed(){
+		return this.hasPlayed;
 	}
 	public Dado getDado(){
 		return this.dado;

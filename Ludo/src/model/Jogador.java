@@ -2,7 +2,6 @@ package model;
 
 import java.util.Vector;
 
-import view.ViewFacade;
 
 class Jogador {
     private Cor cor;
@@ -135,7 +134,6 @@ class Jogador {
 
     public int somaEspacosAteFinal(){
         int soma = 0;
-        int i = 0;
         for (Peca peca : pecas){
             soma += peca.casasFaltando(posIni);
         }

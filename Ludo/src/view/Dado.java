@@ -16,7 +16,7 @@ public class Dado {
         try {
 			image = ImageIO.read(dado.getClass().getClassLoader().getResourceAsStream("Imagens/Dado"+dieValue+".png"));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 			return null;
 		}

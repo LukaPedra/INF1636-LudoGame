@@ -62,6 +62,9 @@ public class ModelFacade{
 	public boolean getcanRollAgain(){
 		return game.getcanRollAgain();
 	}
+	public boolean getHasPlayed(){
+		return game.getHasPlayed();
+	}
 	public void setcanRollAgain(boolean b){
 		game.setcanRollAgain(b);
 	}

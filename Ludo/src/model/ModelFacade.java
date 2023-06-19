@@ -2,13 +2,16 @@ package model;
 import java.awt.Color;
 
 import controller.TabuleiroObservador;
+import view.ViewFacade;
 public class ModelFacade{
 	private static ModelFacade facade = null;
 	private Game game;
+	private ViewFacade viewFacade;
 	
 	private ModelFacade() {
 		ModelFacade.facade = this;
 		this.game = new Game();
+		viewFacade = ViewFacade.getFacade();
 	}
 
 	public static ModelFacade getFacade() {
@@ -18,9 +21,11 @@ public class ModelFacade{
 		return facade;
 	}
 
-	// public void createGame(){
-	// 	this.game = new Game();
-	// }
+	public void createGame(){
+	 	this.game = new Game();
+		game.addObserver(viewFacade.getTabuleiroObservador());
+		viewFacade.redraw();
+	}
 
 	public void roll(){
 		game.roll();

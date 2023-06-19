@@ -1,5 +1,8 @@
 package model;
 import java.awt.Color;
+import java.util.Arrays;
+import java.util.Comparator;
+import javax.swing.JOptionPane;
 
 import controller.TabuleiroObservado;
 class Game extends TabuleiroObservado {
@@ -40,6 +43,8 @@ class Game extends TabuleiroObservado {
 		currentP = jogadores[turn];
 
 		win = false;
+
+		notifyObservers();
 	}
 
 	public void roll(){
@@ -90,7 +95,7 @@ class Game extends TabuleiroObservado {
 	}
 
 	public void play(){
-		
+		//openWinnerPopUp();
 		System.out.println(currentP.getCor());
 		System.out.println("dado: " + this.getResultado());
 		// System.out.println("Pecas disponives: " + currentP.getPecasDisponiveis());
@@ -103,6 +108,8 @@ class Game extends TabuleiroObservado {
 				winner = currentP;
 				win = true;
 				System.out.println(currentP.getCor() + " ganhou");
+
+				
 		}
 
 		notifyObservers();
@@ -111,7 +118,44 @@ class Game extends TabuleiroObservado {
 		// System.out.println("Posicao peça depois de mover: " + posPecaMover + "\n");
 
 	}
+	public void openWinnerPopUp(){
+		Jogador[] copia = jogadores;
+		Arrays.sort(copia, Comparator.comparingInt(Jogador::somaEspacosAteFinal));
+		
+		
+		String line1 = copia[0].getJogadorName() + " ganhou!";
+		String line2 = copia[1].getJogadorName() + " ficou em segundo lugar faltando: " + copia[1].somaEspacosAteFinal() + " casas";
+		String line3 = copia[2].getJogadorName() + " ficou em terceiro lugar faltando: " + copia[2].somaEspacosAteFinal() + " casas";
+		String line4 = copia[3].getJogadorName() + " ficou em quarto lugar faltando: " + copia[3].somaEspacosAteFinal() + " casas";
+        
 
+        String message = line1 + "\n" + line2 + "\n" + line3 + "\n" + line4;
+
+        int option = JOptionPane.showOptionDialog(
+                null,
+                message,
+                "Popup Box",
+                JOptionPane.OK_CANCEL_OPTION,
+                JOptionPane.PLAIN_MESSAGE,
+                null,
+                new Object[]{"OK"},
+                "OK");
+
+        if (option == JOptionPane.OK_OPTION) {
+			int[][] aux = new int[4][4];
+			int var = 0;
+			for(int i=0;i<4;i++){
+				aux[i][0]=var;
+				var+=13;
+				for(int j=1;j<4;j++){
+					aux[i][j]=-1;
+				}
+			}
+            // Execute your function here
+            setPosicaoPecas(aux);
+			notifyObservers();
+        }
+	}
 	public void setPosicaoPecas(int[][] v){
 		for(int i = 0; i < 4; i++){
 			jogadores[i].PararCasaEspecifica(v[i], tabuleiro);

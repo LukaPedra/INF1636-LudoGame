@@ -54,13 +54,13 @@ public class Menu {
 		menuPanel.add(dadoButton());
 		menuPanel.add(textLabel("Á jogar"));
 	}
-	public JComboBox escolhaNumPopUp(){
-		JComboBox cb = new JComboBox(numDadoTeste);
+	public JComboBox<String> escolhaNumPopUp(){
+		JComboBox<String> cb = new JComboBox<String>(numDadoTeste);
 		cb.setBounds(70, 520, 120, 20);
 		cb.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				JComboBox cb = (JComboBox)e.getSource();
+				JComboBox<String> cb = (JComboBox)e.getSource();
 				String numDado = (String)cb.getSelectedItem();
 				model.setValorDado(numDado);
 			}
@@ -104,7 +104,7 @@ public class Menu {
 		button.addActionListener(e -> {
 			fotoDado = Dado.getDieImage(dadoValue);
 			System.out.println("New Game pressed!");
-			model.setPosicaoPecas(aux);
+			model.createGame();
 		});
 		return button;
 	}

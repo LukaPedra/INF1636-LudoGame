@@ -135,8 +135,9 @@ class Jogador {
 
     public int somaEspacosAteFinal(){
         int soma = 0;
+        int i = 0;
         for (Peca peca : pecas){
-            soma =+ peca.casasFaltando(posIni);
+            soma += peca.casasFaltando(posIni);
         }
         return soma;
     }
@@ -157,13 +158,7 @@ class Jogador {
     public String getJogadorName(){
         return this.cor.name();
     }
-    public static void main(String[] args){
-		Tabuleiro t = new Tabuleiro();
-        Jogador j = new Jogador(t, Cor.AZUL);
-        System.out.println(j.getJogadorName());
-        System.out.println(j.getPeca(0).casasFaltando(0));
-
-	}
+    
 }
 
 

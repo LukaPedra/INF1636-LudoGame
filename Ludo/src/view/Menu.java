@@ -8,6 +8,9 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.Comparator;
+
 
 import model.ModelFacade;
 
@@ -126,6 +129,31 @@ public class Menu {
         });
 		return button;
 	}
+	/*public void openWinnerPopUp(){
+		String[][] aux = model.getResumo(); //[Cor, NumCasasFaltando]
+		String line1 = aux[0][0] + " venceu!";
+		String line2 = aux[1][0] + " tem " + aux[1][1] + " casas faltando";
+		String line3 = aux[2][0] + " tem " + aux[2][1] + " casas faltando";
+		String line4 = aux[3][0] + " tem " + aux[3][1] + " casas faltando";
+        
+
+        String message = line1 + "\n" + line2 + "\n" + line3 + "\n" + line4;
+
+        int option = JOptionPane.showOptionDialog(
+                null,
+                message,
+                "Popup Box",
+                JOptionPane.OK_CANCEL_OPTION,
+                JOptionPane.PLAIN_MESSAGE,
+                null,
+                new Object[]{"OK"},
+                "OK");
+
+        if (option == JOptionPane.OK_OPTION) {
+            // Execute your function here
+            
+        }
+	}*/
 	public JButton salvarJogoButton(){
 		JButton button = new JButton("Salvar Jogo");
 		button.setBounds(25, 160, 200, 50);

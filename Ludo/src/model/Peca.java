@@ -119,12 +119,14 @@ class Peca {
 		int casasFaltando;
 
 		int casasPercorridas = (position - posIni);
-
-		if (position < 100){
+		if (position == -1){
+			return 59;
+		}
+		else if (position < 100){
 			if (casasPercorridas < 0) {
 				casasPercorridas = 52 - posIni + position;
 			}
-			casasFaltando = 52 - casasPercorridas - 2 + 6;
+			casasFaltando = 52 - casasPercorridas + 6;
 		}
 
 		else{

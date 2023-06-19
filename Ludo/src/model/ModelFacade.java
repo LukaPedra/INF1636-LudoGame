@@ -34,7 +34,7 @@ public class ModelFacade{
 	public void play(){
 		game.play();
 	}
-
+	
 	public void setResultado(int n){
 		game.setResultado(n);
 	}

@@ -95,7 +95,6 @@ class Game extends TabuleiroObservado {
 	}
 
 	public void play(){
-		//openWinnerPopUp();
 		System.out.println(currentP.getCor());
 		System.out.println("dado: " + this.getResultado());
 		// System.out.println("Pecas disponives: " + currentP.getPecasDisponiveis());
@@ -103,59 +102,18 @@ class Game extends TabuleiroObservado {
 		// System.out.println("Tirou 6: " + currentP.getSeis());
 
 		move();
-		
+
 		if (currentP.isWinner()){
-				winner = currentP;
-				win = true;
-				System.out.println(currentP.getCor() + " ganhou");
+			winner = currentP;
+			win = true;
+			System.out.println(currentP.getCor() + " ganhou");
+			getResumo();
 
-				
 		}
-
 		notifyObservers();
 	
+	}
 	
-		// System.out.println("Posicao peça depois de mover: " + posPecaMover + "\n");
-
-	}
-	public void openWinnerPopUp(){
-		Jogador[] copia = jogadores;
-		Arrays.sort(copia, Comparator.comparingInt(Jogador::somaEspacosAteFinal));
-		
-		
-		String line1 = copia[0].getJogadorName() + " ganhou!";
-		String line2 = copia[1].getJogadorName() + " ficou em segundo lugar faltando: " + copia[1].somaEspacosAteFinal() + " casas";
-		String line3 = copia[2].getJogadorName() + " ficou em terceiro lugar faltando: " + copia[2].somaEspacosAteFinal() + " casas";
-		String line4 = copia[3].getJogadorName() + " ficou em quarto lugar faltando: " + copia[3].somaEspacosAteFinal() + " casas";
-        
-
-        String message = line1 + "\n" + line2 + "\n" + line3 + "\n" + line4;
-
-        int option = JOptionPane.showOptionDialog(
-                null,
-                message,
-                "Popup Box",
-                JOptionPane.OK_CANCEL_OPTION,
-                JOptionPane.PLAIN_MESSAGE,
-                null,
-                new Object[]{"OK"},
-                "OK");
-
-        if (option == JOptionPane.OK_OPTION) {
-			int[][] aux = new int[4][4];
-			int var = 0;
-			for(int i=0;i<4;i++){
-				aux[i][0]=var;
-				var+=13;
-				for(int j=1;j<4;j++){
-					aux[i][j]=-1;
-				}
-			}
-            // Execute your function here
-            setPosicaoPecas(aux);
-			notifyObservers();
-        }
-	}
 	public void setPosicaoPecas(int[][] v){
 		for(int i = 0; i < 4; i++){
 			jogadores[i].PararCasaEspecifica(v[i], tabuleiro);
@@ -190,7 +148,37 @@ class Game extends TabuleiroObservado {
 		}
 		return -100;
 	}
+	public void getResumo(){
+		Jogador[] copia = jogadores;
+		Arrays.sort(copia, Comparator.comparingInt(Jogador::somaEspacosAteFinal));
+		String[][] lines = new String[4][2];
+		
+		lines[0] = new String[]{copia[0].getJogadorName(), Integer.toString(copia[0].somaEspacosAteFinal())};
+		lines[1] = new String[]{copia[1].getJogadorName(), Integer.toString(copia[1].somaEspacosAteFinal())};
+		lines[2] = new String[]{copia[2].getJogadorName(), Integer.toString(copia[2].somaEspacosAteFinal())};
+		lines[3] = new String[]{copia[3].getJogadorName(), Integer.toString(copia[3].somaEspacosAteFinal())};
+		
+		String vencedor = lines[0][0]+ " venceu!";
+		String segundo = lines[1][0] + " tem " + lines[1][1] + " casas faltando";
+		String terceiro = lines[2][0] + " tem " + lines[2][1] + " casas faltando";
+		String quarto = lines[3][0] + " tem " + lines[3][1] + " casas faltando";
+		
+		String message = vencedor + "\n" + segundo + "\n" + terceiro + "\n" + quarto;
+		int option = JOptionPane.showOptionDialog(
+                null,
+                message,
+                "Popup Box",
+                JOptionPane.OK_CANCEL_OPTION,
+                JOptionPane.PLAIN_MESSAGE,
+                null,
+                new Object[]{"OK"},
+                "OK");
 
+        if (option == JOptionPane.OK_OPTION) {
+            // Execute your function here
+            
+        }
+	}
 	public Color getCurrentColor(){ 
 		switch(currentP.getCor()){
 			case VERDE:
